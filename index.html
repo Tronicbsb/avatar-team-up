@@ -3618,12 +3618,15 @@ aside .setup-group span {
 <body>
   <main class="avatar-page">
     <!-- Hero Section -->
-    <section class="avatar-hero">
+    <section class="avatar-hero" style="position: relative;">
+      <div class="lang-switch" style="position: absolute; top: 15px; right: 20px; display: flex; gap: 8px; z-index: 1000;">
+        <button class="lang-btn active" data-lang="en" onclick="switchLanguage('en')" style="background:rgba(0,0,0,0.5); border:1px solid rgba(255,255,255,0.2); color:#fff; cursor:pointer; padding:4px 12px; border-radius:4px; font-family:var(--font-heading); font-size: 0.8rem; font-weight: bold; text-transform: uppercase;">EN</button>
+        <button class="lang-btn" data-lang="pt" onclick="switchLanguage('pt')" style="background:rgba(0,0,0,0.5); border:1px solid rgba(255,255,255,0.2); color:#fff; cursor:pointer; padding:4px 12px; border-radius:4px; font-family:var(--font-heading); font-size: 0.8rem; font-weight: bold; text-transform: uppercase;">PT-BR</button>
+      </div>
       <div class="container">
-        <h1>Avatar: Invasão da Nação do Fogo</h1>
+        <h1 data-i18n="hero_title">Avatar: Fire Nation Invasion</h1>
         <p>
-          Auxiliar interativo e galeria de cartas para o modo cooperativo de Magic: The Gathering. 
-          Enfrente a Nação do Fogo com seus amigos ou jogue sozinho nesta adaptação premium baseada no manual oficial.
+          <span data-i18n="hero_desc">Interactive companion app for Magic: The Gathering cooperative mode. Face the Fire Nation with your friends or play solo in this premium adaptation based on the official cooperative rules.</span>
         </p>
       </div>
     </section>
@@ -3633,27 +3636,27 @@ aside .setup-group span {
       <div class="game-grid">
         <!-- Sidebar de Controles e Configuração -->
         <aside class="panel-glass">
-          <h3 style="color: var(--fire-gold); font-family: var(--font-heading); margin-bottom: var(--space-md); border-bottom: 1px solid rgba(225, 29, 72, 0.2); padding-bottom: 8px;">🎮 Painel do Jogo</h3>
+          <h3 style="color: var(--fire-gold); font-family: var(--font-heading); margin-bottom: var(--space-md); border-bottom: 1px solid rgba(225, 29, 72, 0.2); padding-bottom: 8px;">🎮 <span data-i18n="companion_title">Game Panel</span></h3>
           
           <!-- Seleção de Jogadores -->
           <div class="setup-group">
-            <label>Quantidade de Jogadores</label>
+            <label data-i18n="player_count">Number of Players</label>
             <div class="btn-player-select">
-              <button id="player-2" class="active" onclick="handlePlayerChange(2)">2 Jogadores</button>
-              <button id="player-3" onclick="handlePlayerChange(3)">3 Jogadores</button>
-              <button id="player-4" onclick="handlePlayerChange(4)">4 Jogadores</button>
+              <button id="player-2" class="active" onclick="handlePlayerChange(2)" data-i18n="btn_2p">2 Players</button>
+              <button id="player-3" onclick="handlePlayerChange(3)" data-i18n="btn_3p">3 Players</button>
+              <button id="player-4" onclick="handlePlayerChange(4)" data-i18n="btn_4p">4 Players</button>
             </div>
             <p style="font-size: 0.72rem; color: var(--text-muted); margin-top: 6px; line-height: 1.3;">
-              2-3 jog.: 6 chefes aleatórios dos 11 disponíveis. 4 jog.: 10 chefes. O Event Deck sempre tem 27 cartas.
+              <span data-i18n="setup_desc">2-3 players: 6 random bosses out of 11. 4 players: 10 bosses. The Event Deck always contains 27 cards.</span>
             </p>
           </div>
 
           <!-- Rastreador de Vida -->
           <div class="setup-group">
-            <label>Pontos de Vida (Compartilhados)</label>
+            <label data-i18n="life_shared">Life Points (Shared)</label>
             <div class="life-tracker-container">
               <div class="life-box heroes">
-                <h4>Heróis</h4>
+                <h4><span data-i18n="heroes">HEROES</span></h4>
                 <div class="life-value" id="heroes-life-val">20</div>
                 <div class="life-controls">
                   <button onclick="adjustHeroesLife(-1)">-</button>
@@ -3661,7 +3664,7 @@ aside .setup-group span {
                 </div>
               </div>
               <div class="life-box bosses">
-                <h4>Chefes</h4>
+                <h4><span data-i18n="bosses">BOSSES</span></h4>
                 <div class="life-value" id="bosses-life-val">20</div>
                 <div class="life-controls">
                   <button onclick="adjustBossesLife(-1)">-</button>
@@ -3675,26 +3678,26 @@ aside .setup-group span {
           <!-- Infos Gerais de Status -->
           <div class="setup-group" style="background: rgba(0,0,0,0.2); padding: 12px; border-radius: var(--radius-md); border: 1px solid rgba(255, 255, 255, 0.03);">
             <div style="display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 6px;">
-              <span style="color: var(--text-secondary);">Estágio Atual:</span>
+              <span style="color: var(--text-secondary);" data-i18n="stage_label">Current Stage:</span></span>
               <strong style="color: var(--fire-gold);" id="current-stage-val">1</strong>
             </div>
             <div style="display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 6px;">
-              <span style="color: var(--text-secondary);">Turno do Jogo:</span>
+              <span style="color: var(--text-secondary);" data-i18n="turn_label">Game Turn:</span></span>
               <strong style="color: var(--text-white);" id="turn-count-val">1</strong>
             </div>
             <div style="display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 6px;">
-              <span style="color: var(--text-secondary);">Cartas no Deck de Eventos:</span>
+              <span style="color: var(--text-secondary);" data-i18n="event_cards_label">Event Deck Cards:</span></span>
               <strong style="color: var(--water-primary);" id="deck-count-val">27</strong>
             </div>
             <div style="display: flex; justify-content: space-between; font-size: 0.8rem;">
-              <span style="color: var(--text-secondary);">Cemitério de Táticas:</span>
+              <span style="color: var(--text-secondary);" data-i18n="cemetery_tactics_label">Graveyard Tactics:</span></span>
               <strong style="color: var(--text-muted);" id="graveyard-count-val">0</strong>
             </div>
           </div>
 
           <!-- Deck de Chefes (10 Chefes Fechado) -->
           <div class="setup-group" style="background: rgba(225, 29, 72, 0.03); padding: 12px; border-radius: var(--radius-md); border: 1px solid rgba(225, 29, 72, 0.15); margin-top: var(--space-md); text-align: center;">
-            <label style="color: var(--fire-gold); font-weight: bold; margin-bottom: 8px; display: block;">👹 Baralho de Chefes (<span id="boss-deck-count-val">10</span>)</label>
+            <label style="color: var(--fire-gold); font-weight: bold; margin-bottom: 8px; display: block;">👹 <span data-i18n="boss_deck_label">BOSS DECK</span> (<span id="boss-deck-count-val">10</span>)</label>
             
             <div style="display: flex; align-items: center; justify-content: center; gap: 12px; margin: 12px 0;">
               <!-- Visual Pile Card Back for Bosses -->
@@ -3706,26 +3709,26 @@ aside .setup-group span {
 
             <!-- Chefes Já Derrotados -->
             <div style="border-top: 1px dashed rgba(255, 255, 255, 0.08); padding-top: 8px; margin-top: 8px; text-align: left;">
-              <span style="font-size: 0.72rem; color: var(--text-muted); font-weight: bold; text-transform: uppercase; display: block; margin-bottom: 4px;">💀 Derrotados nesta partida:</span>
+              <span style="font-size: 0.72rem; color: var(--text-muted); font-weight: bold; text-transform: uppercase; display: block; margin-bottom: 4px;">💀 <span data-i18n="defeated_match_label">DEFEATED IN THIS MATCH:</span></span>
               <div id="bosses-defeated-list" style="font-size: 0.72rem; color: var(--text-secondary); max-height: 80px; overflow-y: auto;">
-                Nenhum chefe derrotado ainda.
+                <span data-i18n="no_boss_defeated_yet">No boss defeated yet.</span>
               </div>
             </div>
           </div>
 
           <!-- Botões Principais de Partida -->
           <div style="display: flex; flex-direction: column; gap: var(--space-sm); margin-top: var(--space-md);">
-            <button id="btn-next-turn" class="btn btn-primary" style="background: var(--fire-primary); color: #fff; width: 100%; font-weight: bold;" onclick="handleNextTurn()">⌛ Próximo Turno dos Chefes</button>
-            <button class="btn btn-secondary" style="width: 100%; border-color: rgba(255,255,255,0.1); color: var(--text-muted);" onclick="handleResetGame()">🔄 Reiniciar Partida</button>
+            <button id="btn-next-turn" class="btn btn-primary" style="background: var(--fire-primary); color: #fff; width: 100%; font-weight: bold;" onclick="handleNextTurn()">⌛ <span data-i18n="next_boss_turn_btn">NEXT BOSS TURN</span></button>
+            <button class="btn btn-secondary" style="width: 100%; border-color: rgba(255,255,255,0.1); color: var(--text-muted);" onclick="handleResetGame()">🔄 <span data-i18n="reset_match_btn">RESTART MATCH</span></button>
           </div>
         </aside>
 
         <!-- Tabuleiro de Simulação Principal -->
         <section class="panel-glass" style="display: flex; flex-direction: column; gap: var(--space-xl);">
-          <!-- Chefes Ativos do Estágio -->
+          <!-- <span data-i18n="active_bosses">ACTIVE STAGE BOSSES</span> -->
           <div class="active-bosses-panel">
-            <h3 style="font-family: var(--font-heading); color: var(--fire-primary); margin-bottom: 6px; font-size: 1.15rem; text-transform: uppercase;">👹 Chefes Ativos do Estágio</h3>
-            <p style="color: var(--text-muted); font-size: 0.78rem; margin-bottom: var(--space-md);">Estes são os dobradores de elite que lideram o ataque atualmente.</p>
+            <h3 style="font-family: var(--font-heading); color: var(--fire-primary); margin-bottom: 6px; font-size: 1.15rem; text-transform: uppercase;">👹 <span data-i18n="active_bosses">ACTIVE STAGE BOSSES</span></h3>
+            <p style="color: var(--text-muted); font-size: 0.78rem; margin-bottom: var(--space-md);"><span data-i18n="active_bosses_desc">These are the elite benders currently leading the assault.</span></p>
             <div class="boss-cards-row" id="active-bosses-container">
               <!-- Renderizado dinamicamente via JS -->
             </div>
@@ -3733,10 +3736,9 @@ aside .setup-group span {
 
           <!-- Fase de Ação Automática do Boss -->
           <div style="border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: var(--space-lg);">
-            <h3 style="font-family: var(--font-heading); color: var(--fire-gold); margin-bottom: 6px; font-size: 1.15rem; text-transform: uppercase;">🔥 Fase de Ação da Nação do Fogo</h3>
+            <h3 style="font-family: var(--font-heading); color: var(--fire-gold); margin-bottom: 6px; font-size: 1.15rem; text-transform: uppercase;">🔥 <span data-i18n="fire_nation_action_phase">FIRE NATION ACTION PHASE</span></h3>
             <p style="color: var(--text-muted); font-size: 0.78rem; margin-bottom: var(--space-md);">
-              Ao clicar em <strong style="color: var(--fire-gold);">Próximo Turno</strong>, os chefes jogam automaticamente
-              <strong id="cards-per-turn-label">2</strong> cartas do Event Deck em ordem. Lacaios entram em campo; táticas são resolvidas e descartadas.
+              <span data-i18n="action_phase_desc">By clicking <strong style='color: var(--fire-gold);'>Next Turn</strong>, the bosses automatically play <strong id='cards-per-turn-label'>2</strong> cards from the Event Deck in order. Minions enter the battlefield; tactics are resolved and discarded.</span>
             </p>
 
             <div class="engine-grid">
@@ -3744,7 +3746,7 @@ aside .setup-group span {
               <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(0,0,0,0.2); border-radius: var(--radius-lg); padding: var(--space-md); border: 1px dashed rgba(225, 29, 72, 0.2);">
                 <div class="deck-card-back" style="cursor: default;">
                   <div class="logo-mini">🔥</div>
-                  <div class="deck-count" style="margin-top: 8px;"><span id="deck-count-val-mini">27</span> Restantes</div>
+                  <div class="deck-count" style="margin-top: 8px;"><span id="deck-count-val-mini">27</span> <span data-i18n="cards_left_label">Left</span></div>
                   <div style="font-size: 0.65rem; color: var(--fire-gold); margin-top: 4px; font-weight: bold; text-transform: uppercase;">Event Deck</div>
                 </div>
               </div>
@@ -3752,7 +3754,7 @@ aside .setup-group span {
               <!-- Cartas Reveladas neste Turno -->
               <div style="display: flex; flex-direction: column; justify-content: space-between;">
                 <h4 id="drawn-cards-title" style="font-size: 0.85rem; text-transform: uppercase; color: var(--text-secondary); margin-bottom: var(--space-xs);">
-                  Ações Reveladas neste Turno:
+                  <span data-i18n="actions_revealed_turn">ACTIONS REVEALED THIS TURN:</span>
                 </h4>
                 <div class="drawn-cards-row" id="drawn-cards-container">
                   <!-- Renderizado dinamicamente via JS -->
@@ -3763,8 +3765,8 @@ aside .setup-group span {
 
           <!-- Lacaio e Campo de Criaturas Inimigas -->
           <div class="battlefield-panel" style="border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: var(--space-lg);">
-            <h3 style="font-family: var(--font-heading); color: var(--earth-primary); margin-bottom: 6px; font-size: 1.15rem; text-transform: uppercase;">⚔️ Campo de Batalha Inimigo (Lacaios)</h3>
-            <p style="color: var(--text-muted); font-size: 0.78rem; margin-bottom: var(--space-md);">Criaturas da Nação do Fogo em combate ativo. Elas atacam os heróis a cada turno se possível.</p>
+            <h3 style="font-family: var(--font-heading); color: var(--earth-primary); margin-bottom: 6px; font-size: 1.15rem; text-transform: uppercase;">⚔️ <span data-i18n="enemy_battlefield">ENEMY BATTLEFIELD (MINIONS)</span></h3>
+            <p style="color: var(--text-muted); font-size: 0.78rem; margin-bottom: var(--space-md);"><span data-i18n="enemy_battlefield_desc">Fire Nation creatures in active combat. They attack the heroes every turn if possible.</span></p>
             <div class="battlefield-cards-row" id="battlefield-container">
               <!-- Renderizado dinamicamente via JS -->
             </div>
@@ -3772,8 +3774,8 @@ aside .setup-group span {
 
           <!-- Cemitério Inimigo (Descarte) -->
           <div class="graveyard-panel" style="border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: var(--space-lg);">
-            <h3 style="font-family: var(--font-heading); color: var(--text-muted); margin-bottom: 6px; font-size: 1.15rem; text-transform: uppercase;">💀 Cemitério & Descarte (<span id="graveyard-count-val-mini">0</span>)</h3>
-            <p style="color: var(--text-muted); font-size: 0.78rem; margin-bottom: var(--space-md);">Histórico de táticas resolvidas e lacaios derrotados. Passe o mouse para focar ou clique para visualizar/editar.</p>
+            <h3 style="font-family: var(--font-heading); color: var(--text-muted); margin-bottom: 6px; font-size: 1.15rem; text-transform: uppercase;">💀 <span data-i18n="cemetery_discard">GRAVEYARD & DISCARDS</span> (<span id="graveyard-count-val-mini">0</span>)</h3>
+            <p style="color: var(--text-muted); font-size: 0.78rem; margin-bottom: var(--space-md);"><span data-i18n="cemetery_desc">History of resolved tactics and defeated minions. Hover to focus or click to view/edit.</span></p>
             <div class="graveyard-cards-row" id="graveyard-container">
               <!-- Renderizado dinamicamente via JS -->
             </div>
@@ -3781,9 +3783,9 @@ aside .setup-group span {
 
           <!-- Console de Logs da Partida -->
           <div style="border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: var(--space-lg);">
-            <h4 style="font-size: 0.85rem; text-transform: uppercase; color: var(--text-secondary); margin-bottom: var(--space-xs);">📜 Diário de Batalha (Console)</h4>
+            <h4 style="font-size: 0.85rem; text-transform: uppercase; color: var(--text-secondary); margin-bottom: var(--space-xs);"><span data-i18n="battle_log">BATTLE LOG (CONSOLE)</span></h4>
             <div id="game-console-log" style="height: 120px; background: rgba(0,0,0,0.5); border-radius: var(--radius-md); border: 1px solid rgba(255,255,255,0.05); padding: 10px; font-family: monospace; overflow-y: auto; color: #ddd; line-height: 1.4;">
-              <p style="color: var(--fire-gold); font-size: 0.85rem;">[T1] 🎮 Companion carregado. Clique em 'Próximo Turno' ou compre cartas para começar!</p>
+              
             </div>
           </div>
         </section>
@@ -3791,30 +3793,30 @@ aside .setup-group span {
 
       <!-- PANEL 2: MANUAL DE REGRAS RÁPIDO -->
       <section class="panel-glass">
-        <h2 style="color: var(--fire-gold); font-family: var(--font-heading); margin-bottom: var(--space-md); border-bottom: 1px solid rgba(225, 29, 72, 0.2); padding-bottom: 8px;">📖 Guia de Jogo Rápido (Baseado nas Regras Oficiais)</h2>
+        <h2 style="color: var(--fire-gold); font-family: var(--font-heading); margin-bottom: var(--space-md); border-bottom: 1px solid rgba(225, 29, 72, 0.2); padding-bottom: 8px;">📖 <span data-i18n="quick_guide_title">Quick Game Guide (Based on Official Rules)</span></h2>
         <div style="display: grid; grid-template-columns: 1fr; gap: var(--space-xl); margin-top: var(--space-md);">
           <div>
-            <h3 style="color: var(--text-white); font-size: 1rem; margin-bottom: 8px;">⚙️ Estrutura do Turno Inimigo:</h3>
+            <h3 style="color: var(--text-white); font-size: 1rem; margin-bottom: 8px;">⚙️ <span data-i18n="guide_enemy_turn">Enemy Turn Structure:</span></h3>
             <ol class="rules-list">
-              <li><strong>Etapa de Desvirar:</strong> Desvire todas as criaturas e chefes que o exército inimigo controla.</li>
-              <li><strong>Fase de Ação:</strong> Compre as duas cartas do topo do Event Deck sequencialmente. Revele a primeira, resolva-a por completo (se for Tática, execute e descarte; se for Criatura, coloque-a no campo), e depois revele e resolva a segunda.
+              <li><span data-i18n="guide_untap"><strong>Untap Step:</strong> Untap all creatures and bosses the enemy army controls.</span></li>
+              <li><span data-i18n="guide_action"><strong>Action Phase:</strong> Draw the top two cards of the Event Deck sequentially. Reveal the first, resolve it completely (if it is a Tactic, execute and discard; if it is a Creature, put it on the battlefield), and then reveal and resolve the second.</span>
                 <ul>
-                  <li><em>Escala multiplayer:</em> Se estiver jogando com 3 ou 4 jogadores, revele 3 cartas a cada turno de ação!</li>
+                  <li><span data-i18n="guide_multiplayer"><em>Multiplayer Scaling:</em> If playing with 3 or 4 players, reveal 3 cards each action turn!</span></li>
                 </ul>
               </li>
-              <li><strong>Etapa de Combate:</strong> Cada criatura do exército inimigo ataca os heróis se estiver apta (criaturas conjuradas neste turno não atacam a menos que possuam ímpeto/haste).</li>
+              <li><span data-i18n="guide_combat"><strong>Combat Step:</strong> Each creature in the enemy army attacks the heroes if able (creatures cast this turn do not attack unless they have haste).</span></li>
             </ol>
           </div>
           <div style="border-top: 1px dashed rgba(255,255,255,0.05); padding-top: var(--space-md);">
-            <h3 style="color: var(--text-white); font-size: 1rem; margin-bottom: 8px;">🎯 Avanço de Estágios:</h3>
+            <h3 style="color: var(--text-white); font-size: 1rem; margin-bottom: 8px;">🎯 <span data-i18n="guide_stage_advance">Stage Advancement:</span></h3>
             <ul class="rules-list">
-              <li>Quando o total de vida da equipe dos Chefes chega a 0, aquele estágio é derrotado.</li>
-              <li>Remova os chefes antigos do jogo. Mantenha os lacaios, o Event Deck, o cemitério e a fase de turnos exatamente como estão!</li>
-              <li>Revele os novos chefes do estágio seguinte e restaure a vida total dos Chefes (20 PV, ou 30 PV se jogando com 4 jogadores).</li>
-              <li><strong>Distribuição por Estágio:</strong>
+              <li><span data-i18n="guide_stage_1">When the Boss team's total life reaches 0, that stage is defeated.</span></li>
+              <li><span data-i18n="guide_stage_2">Remove the old bosses from the game. Keep the minions, the Event Deck, the graveyard, and the turn phase exactly as they are!</span></li>
+              <li><span data-i18n="guide_stage_3">Reveal the new bosses for the next stage and restore the Bosses' total life (20 HP, or 30 HP if playing with 4 players).</span></li>
+              <li><span data-i18n="guide_stage_dist"><strong>Distribution by Stage:</strong></span>
                 <ul>
-                  <li>2 ou 3 Jogadores (6 Chefes no total): Stage 1 = 1 Chefe, Stage 2 = 2 Chefes, Stage 3 = 3 Chefes.</li>
-                  <li>4 Jogadores (10 Chefes no total): Stage 1 = 2 Chefes, Stage 2 = 3 Chefes, Stage 3 = 5 Chefes.</li>
+                  <li><span data-i18n="guide_stage_dist_1">2 or 3 Players (6 Bosses total): Stage 1 = 1 Boss, Stage 2 = 2 Bosses, Stage 3 = 3 Bosses.</span></li>
+                  <li><span data-i18n="guide_stage_dist_2">4 Players (10 Bosses total): Stage 1 = 2 Bosses, Stage 2 = 3 Bosses, Stage 3 = 5 Bosses.</span></li>
                 </ul>
               </li>
             </ul>
@@ -3827,18 +3829,18 @@ aside .setup-group span {
     <section class="gallery-section">
       <div class="container">
         <div class="section-title text-center" style="margin-bottom: var(--space-2xl);">
-          <h2 style="font-family: var(--font-heading); color: var(--text-white); margin-bottom: var(--space-xs);">🎴 Galeria de Cartas do Jogo</h2>
+          <h2 style="font-family: var(--font-heading); color: var(--text-white); margin-bottom: var(--space-xs);">🎴 <span data-i18n="gallery_title">Game Card Gallery</span></h2>
           <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto;">
-            Explore todas as cartas disponíveis na campanha cooperativa.
+            <span data-i18n="gallery_desc">Explore all cards available in the cooperative campaign.</span>
           </p>
         </div>
 
         <!-- Filtros da Galeria -->
         <div class="gallery-filters">
-          <button id="filter-all" class="active" onclick="renderCardGallery('all')">🃏 Mostrar Todas</button>
-          <button id="filter-bosses" onclick="renderCardGallery('bosses')">👹 Chefes Inimigos (11)</button>
-          <button id="filter-tactics" onclick="renderCardGallery('tactics')">🔮 Táticas de Boss (11)</button>
-          <button id="filter-minions" onclick="renderCardGallery('minions')">👾 Lacaios (3 tipos · 10 cópias no deck)</button>
+          <button id="filter-all" class="active" onclick="renderCardGallery('all')">🃏 <span data-i18n="tab_all">Show All</span></button>
+          <button id="filter-bosses" onclick="renderCardGallery('bosses')">👹 <span data-i18n="tab_bosses">Enemy Bosses (11)</span></button>
+          <button id="filter-tactics" onclick="renderCardGallery('tactics')">🔮 <span data-i18n="tab_tactics">Boss Tactics (11)</span></button>
+          <button id="filter-minions" onclick="renderCardGallery('minions')">👾 <span data-i18n="tab_minions">Minions (3 types · 10 copies in deck)</span></button>
         </div>
 
         <!-- Grid de Cartas -->
@@ -3925,7 +3927,7 @@ aside .setup-group span {
   </div>
 
   <!-- Scripts -->
-  <script src="./avatar-team-up.js"></script>
+  <script src="./avatar-team-up.js?v=260604"></script>
 </body>
 </html>
 

@@ -2,6 +2,151 @@
    Avatar: Invasão da Nação do Fogo (MTG Team-Up) — Engine & Banco de Dados
    ================================================================ */
 
+
+// ── SISTEMA DE INTERNACIONALIZAÇÃO (I18N) ──
+let currentLang = 'en';
+try {
+  currentLang = localStorage.getItem('avatar_lang') || 'en';
+} catch(e) {}
+
+const I18N = {
+  en: {
+    "nav_hero_rules": "Hero Rules",
+    "nav_gallery": "Card Gallery",
+    "nav_companion": "Companion Engine",
+    "hero_badge": "Avatar MTG Co-op Companion",
+    "hero_title": "Fire Nation <span class='gradient-text'>Invasion</span>",
+    "hero_desc": "Interactive table assistant and card gallery for the custom cooperative mode of Magic: The Gathering. Defeat the Fire Lord!",
+    "btn_rules": "How to Play",
+    "btn_companion": "Start Game",
+    "gallery_title": "Card Gallery",
+    "gallery_desc": "Explore all custom cards from the Fire Nation deck.",
+    "tab_all": "All",
+    "tab_bosses": "Bosses",
+    "tab_tactics": "Tactics",
+    "tab_minions": "Minions",
+    "companion_title": "Companion Engine",
+    "companion_desc": "Manage life points, enemy deck, and rules automatically.",
+    "config_title": "Game Setup",
+    "btn_2p": "2 Players",
+    "btn_3p": "3 Players",
+    "btn_4p": "4 Players",
+    "btn_reset": "Restart Match",
+    "heroes_life": "Heroes Life",
+    "bosses_life": "Bosses Life",
+    "boss_stage": "Boss Stage",
+    "cards_turn": "Cards / Turn",
+    "boss_deck": "Boss Deck",
+    "enemy_graveyard": "Cemetery",
+    "btn_draw": "Action Phase (Draw)",
+    "btn_dice": "Roll d6 Dice",
+    "btn_next": "End Turn",
+    "log_title": "Action Log",
+    "active_bosses": "Active Bosses",
+    "battlefield": "Battlefield (Minions)",
+    "drawn_actions": "Revealed Actions",
+    "cemetery": "Cemetery",
+    "defeated_bosses": "Defeated Bosses",
+    "footer_text": "Not affiliated with Wizards of the Coast or Nickelodeon. Created for the MTG community.",
+    "modal_edit_art": "Edit Art & Text",
+    "modal_reset_art": "Reset",
+    "modal_close": "Close",
+    "cust_title": "Customize Card",
+    "cust_name": "Custom Name:",
+    "cust_art": "Art Image URL:",
+    "cust_text": "Rules Text:",
+    "cust_pt": "Power/Toughness:",
+    "cust_save": "Save Changes",
+    "cust_cancel": "Cancel",
+    "die_roll": "Result: <strong>-</strong> — use to resolve abilities!"
+  },
+  pt: {
+    "nav_hero_rules": "Regras dos Heróis",
+    "nav_gallery": "Galeria de Cartas",
+    "nav_companion": "Motor Companion",
+    "hero_badge": "Avatar MTG Co-op Companion",
+    "hero_title": "Invasão da <span class='gradient-text'>Nação do Fogo</span>",
+    "hero_desc": "Auxiliar de mesa interativo e galeria de cartas para o modo cooperativo customizado de Magic: The Gathering. Derrote o Senhor do Fogo!",
+    "btn_rules": "Como Jogar",
+    "btn_companion": "Iniciar Partida",
+    "gallery_title": "Galeria de Cartas",
+    "gallery_desc": "Explore todas as cartas customizadas do baralho da Nação do Fogo.",
+    "tab_all": "Todas",
+    "tab_bosses": "Chefes",
+    "tab_tactics": "Táticas",
+    "tab_minions": "Lacaios",
+    "companion_title": "Motor Companion",
+    "companion_desc": "Gerencie pontos de vida, deck inimigo e regras automaticamente.",
+    "config_title": "Configuração da Partida",
+    "btn_2p": "2 Jogadores",
+    "btn_3p": "3 Jogadores",
+    "btn_4p": "4 Jogadores",
+    "btn_reset": "Reiniciar Partida",
+    "heroes_life": "Vida dos Heróis",
+    "bosses_life": "Vida dos Chefes",
+    "boss_stage": "Estágio do Chefe",
+    "cards_turn": "Cartas / Turno",
+    "boss_deck": "Deck de Chefes",
+    "enemy_graveyard": "Cemitério",
+    "btn_draw": "Fase de Ação (Comprar)",
+    "btn_dice": "Rolar Dado d6",
+    "btn_next": "Encerrar Turno",
+    "log_title": "Registro de Ações",
+    "active_bosses": "Chefes Ativos",
+    "battlefield": "Campo de Batalha (Lacaios)",
+    "drawn_actions": "Ações Reveladas",
+    "cemetery": "Cemitério",
+    "defeated_bosses": "Chefes Derrotados",
+    "footer_text": "Não afiliado com Wizards of the Coast ou Nickelodeon. Criado para a comunidade de MTG.",
+    "modal_edit_art": "Editar Arte e Texto",
+    "modal_reset_art": "Restaurar",
+    "modal_close": "Fechar",
+    "cust_title": "Personalizar Carta",
+    "cust_name": "Nome Customizado:",
+    "cust_art": "URL da Imagem da Arte:",
+    "cust_text": "Texto de Regras:",
+    "cust_pt": "Poder/Resistência:",
+    "cust_save": "Salvar Alterações",
+    "cust_cancel": "Cancelar",
+    "die_roll": "Resultado: <strong>-</strong> — use para resolver habilidades!"
+  }
+};
+
+function switchLanguage(lang) {
+  currentLang = lang;
+  try {
+    localStorage.setItem('avatar_lang', lang);
+  } catch(e) {}
+  
+  applyTranslations();
+  if (typeof updateUI === 'function') {
+    updateUI();
+  }
+  if (typeof renderGallery === 'function') {
+    renderGallery('all');
+  }
+  
+  // Update button active state
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.lang === lang);
+  });
+}
+
+function applyTranslations() {
+  const dict = I18N[currentLang] || I18N['en'];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (dict[key]) {
+      if (el.tagName === 'INPUT' && el.type === 'button') {
+        el.value = dict[key];
+      } else {
+        el.innerHTML = dict[key];
+      }
+    }
+  });
+}
+
+
 // ── BANCO DE DADOS DAS CARTAS (Mapeamento Oficial de TMNT -> Avatar TLA) ──
 
 const CARD_DATABASE = {
@@ -16,7 +161,11 @@ const CARD_DATABASE = {
       flavor: "Um mercenário silencioso que usa sua mente para disparar rajadas explosivas mortais.",
       pt: "4/4",
       artDefault: "🔥"
-    },
+    ,
+      nameEn: "Combustion Man",
+      typeEn: "Legendary Boss — Firebender",
+      rulesEn: `Creatures named Fire Nation Soldier the bosses control have flying.`,
+      flavorEn: "A silent mercenary who uses his mind to fire deadly explosive blasts."},
     {
       id: "zuko",
       originalName: "Bebop, Porcine Punk",
@@ -27,7 +176,11 @@ const CARD_DATABASE = {
       flavor: "A determinação incansável de capturar o Avatar alimenta sua agressividade em combate.",
       pt: "3/5",
       artDefault: "⚔️"
-    },
+    ,
+      nameEn: "Prince Zuko",
+      typeEn: "Legendary Boss — Firebender",
+      rulesEn: `Whenever the bosses attack, put a +1/+1 counter on each creature named Fire Nation Soldier.`,
+      flavorEn: "His relentless determination to capture the Avatar fuels his aggression in combat."},
     {
       id: "ty_lee",
       originalName: "Chrome Dome, Cyber-Ninja",
@@ -38,7 +191,11 @@ const CARD_DATABASE = {
       flavor: "Com agilidade incomparável, seus golpes bloqueiam o fluxo de chi de qualquer adversário.",
       pt: "2/6",
       artDefault: "🤸"
-    },
+    ,
+      nameEn: "Ty Lee",
+      typeEn: "Legendary Boss — Acrobat",
+      rulesEn: `Soldiers the bosses control get +1/+0 for each boss on the battlefield.`,
+      flavorEn: "With unparalleled agility, her strikes block the chi flow of any adversary."},
     {
       id: "azula",
       originalName: "Karai, Shadow Warrior",
@@ -49,7 +206,11 @@ const CARD_DATABASE = {
       flavor: "Cruel, calculista e uma prodígio das chamas azuis e eletricidade.",
       pt: "4/4",
       artDefault: "⚡"
-    },
+    ,
+      nameEn: "Princess Azula",
+      typeEn: "Legendary Boss — Firebender",
+      rulesEn: `Whenever a creature the heroes control dies, the heroes lose 1 life.`,
+      flavorEn: "Cruel, calculating, and a prodigy of blue flames and electricity."},
     {
       id: "zhao",
       originalName: "Krang, Dimension X Overlord",
@@ -60,7 +221,11 @@ const CARD_DATABASE = {
       flavor: "Sua sede impetuosa de glória o cega para os danos colaterais de sua própria frota.",
       pt: "5/4",
       artDefault: "🚢"
-    },
+    ,
+      nameEn: "Admiral Zhao",
+      typeEn: "Legendary Boss — Commander",
+      rulesEn: `The bosses play an additional card each turn.\nAt the beginning of the bosses' turn, the bosses lose 2 life.`,
+      flavorEn: "His reckless thirst for glory blinds him to the collateral damage of his own fleet."},
     {
       id: "hama",
       originalName: "Leatherhead, Sewer Gator",
@@ -71,7 +236,11 @@ const CARD_DATABASE = {
       flavor: "A criadora do sangue-dobramento usa a umidade do ar e do corpo de suas vítimas na lua cheia.",
       pt: "4/5",
       artDefault: "🌙"
-    },
+    ,
+      nameEn: "Hama, the Puppetmaster",
+      typeEn: "Legendary Boss — Waterbender",
+      rulesEn: `When this card enters, the bosses gain 5 life for each boss on the battlefield.`,
+      flavorEn: "The creator of bloodbending uses the moisture from the air and her victims' bodies during the full moon."},
     {
       id: "long_feng",
       originalName: "Rat King, the Chaosbringer",
@@ -82,7 +251,11 @@ const CARD_DATABASE = {
       flavor: "Nas profundezas do Lago Laogai, ele controla segredos e lava cérebros para manter sua utopia.",
       pt: "3/5",
       artDefault: "🏛️"
-    },
+    ,
+      nameEn: "Long Feng",
+      typeEn: "Legendary Boss — Dai Li Leader",
+      rulesEn: `Soldiers the bosses control have deathtouch.`,
+      flavorEn: "Deep within Lake Laogai, he controls secrets and brainwashes to maintain his utopia."},
     {
       id: "mai",
       originalName: "Rocksteady, Rowdy Rhino",
@@ -93,7 +266,11 @@ const CARD_DATABASE = {
       flavor: "Agulhas de arremesso silenciosas e um tédio mortal para com seus oponentes.",
       pt: "4/4",
       artDefault: "🎯"
-    },
+    ,
+      nameEn: "Mai",
+      typeEn: "Legendary Boss — Marksman",
+      rulesEn: `Whenever the bosses attack, put a +1/+1 counter on each creature named Fire Nation Soldier.`,
+      flavorEn: "Silent throwing needles and a deadly boredom towards her opponents."},
     {
       id: "sozin",
       originalName: "Savanti Romero, Temporal Rogue",
@@ -104,7 +281,11 @@ const CARD_DATABASE = {
       flavor: "A passagem de seu cometa marcou o início de uma guerra centenária de devastação.",
       pt: "5/5",
       artDefault: "☄️"
-    },
+    ,
+      nameEn: "Fire Lord Sozin",
+      typeEn: "Legendary Boss — Firebender",
+      rulesEn: `Whenever one or more creatures the bosses control deal combat damage to the heroes, the heroes choose a card and put it on the bottom of the library.`,
+      flavorEn: "The passing of his comet marked the beginning of a hundred-year war of devastation."},
     {
       id: "ozai",
       originalName: "Shredder, Foot Clan Overlord",
@@ -115,7 +296,11 @@ const CARD_DATABASE = {
       flavor: "A força soberana suprema da Nação do Fogo, determinado a queimar o mundo sob o Cometa.",
       pt: "6/6",
       artDefault: "👑"
-    },
+    ,
+      nameEn: "Fire Lord Ozai",
+      typeEn: "Legendary Boss — Firebender",
+      rulesEn: `Whenever a creature the bosses control dies, the heroes lose 1 life.`,
+      flavorEn: "The supreme sovereign force of the Fire Nation, determined to burn the world under the Comet."},
     {
       id: "jet_brainwashed",
       originalName: "Slash, the Dark Mirror",
@@ -140,7 +325,15 @@ const CARD_DATABASE = {
       flavor: "Treinados exaustivamente para marchar e espalhar cinzas por onde passam.",
       pt: "3/3",
       artDefault: "🛡️"
-    },
+    ,
+      nameEn: "Jet, Brainwashed Rebel",
+      typeEn: "Legendary Boss — Warrior",
+      rulesEn: `Attacking creatures the bosses control have first strike.`,
+      flavorEn: "His dual hook swords now strike under the orders and brainwashing control of the Dai Li.",
+      nameEn: "Fire Nation Soldier",
+      typeEn: "Creature — Fire Nation Soldier",
+      rulesEn: `This creature can't block.`,
+      flavorEn: "Trained exhaustively to march and spread ashes wherever they go."},
     {
       id: "fire_scout",
       originalName: "Foot Skirmisher",
@@ -151,7 +344,11 @@ const CARD_DATABASE = {
       flavor: "Montados em balões de guerra ou usando planadores, eles mapeiam o campo de batalha inimigo.",
       pt: "2/1",
       artDefault: "🎈"
-    },
+    ,
+      nameEn: "Fire Nation Air Scout",
+      typeEn: "Creature — Scout Soldier",
+      rulesEn: `Flying.\n(This creature can't be blocked except by creatures with flying or reach.)\nThis creature can't block.`,
+      flavorEn: "Mounted on war balloons or using gliders, they map the enemy battlefield."},
     {
       id: "fire_vanguard",
       originalName: "Foot Enforcer",
@@ -174,7 +371,15 @@ const CARD_DATABASE = {
       type: "Tática (Feitiço Inimigo)",
       rules: "Copie o próximo evento que os Chefes jogarem.\n(Coloque este card ao lado do deck de eventos. Depois que o próximo evento for jogado e resolvido, coloque este card no descarte de eventos.)",
       flavor: "Uma segunda faísca mental que explode logo em seguida, dobrando o perigo."
-    },
+    ,
+      nameEn: "Fire Elite Vanguard",
+      typeEn: "Creature — Elite Soldier",
+      rulesEn: `This creature can't block.\nThis creature can only be blocked by one creature.`,
+      flavorEn: "With heavy armor and concentrated flames, they break any of the heroes' defense lines.",
+      nameEn: "Combustion Blast",
+      typeEn: "Tactic (Enemy Sorcery)",
+      rulesEn: `Copy the next event the Bosses play.\n(Put this card aside. After the next event is played and resolved, put this card into the graveyard.)`,
+      flavorEn: "A second mental spark that explodes shortly after, doubling the danger."},
     {
       id: "zuko_fire_lash",
       originalName: "Bebop's Rampage",
@@ -183,7 +388,11 @@ const CARD_DATABASE = {
       type: "Tática (Feitiço Inimigo)",
       rules: "Esta Tática causa 2 pontos de dano a cada criatura que os heróis controlam.",
       flavor: "Um chicote de fogo fluido que varre os benders heróis de uma vez só."
-    },
+    ,
+      nameEn: "Zuko's Fire Lash",
+      typeEn: "Tactic (Enemy Sorcery)",
+      rulesEn: `This Tactic deals 2 damage to each creature the heroes control.`,
+      flavorEn: "A fluid fire whip that sweeps away the hero benders all at once."},
     {
       id: "ty_lee_chi_block",
       originalName: "Chrome Dome's Overload",
@@ -192,7 +401,11 @@ const CARD_DATABASE = {
       type: "Tática (Feitiço Inimigo)",
       rules: "Cada herói sacrifica uma criatura virada que controla.",
       flavor: "Um toque rápido nos pontos de pressão desativa completamente a capacidade de dobrar dos heróis."
-    },
+    ,
+      nameEn: "Ty Lee's Chi Block",
+      typeEn: "Tactic (Enemy Sorcery)",
+      rulesEn: `Each hero sacrifices a tapped creature they control.`,
+      flavorEn: "A quick touch on pressure points completely disables the heroes' bending abilities."},
     {
       id: "azula_infiltration",
       originalName: "Karai's Planning",
@@ -201,7 +414,11 @@ const CARD_DATABASE = {
       type: "Tática (Feitiço Inimigo)",
       rules: "Os heróis perdem 3 pontos de vida e os chefes ganham 3 pontos de vida.",
       flavor: "Disfarçada como guerreira Kyoshi, ela rouba a liderança por dentro das muralhas de Ba Sing Se."
-    },
+    ,
+      nameEn: "Azula's Infiltration",
+      typeEn: "Tactic (Enemy Sorcery)",
+      rulesEn: `The heroes lose 3 life and the bosses gain 3 life.`,
+      flavorEn: "Disguised as a Kyoshi warrior, she steals the leadership from inside Ba Sing Se's walls."},
     {
       id: "zhao_conquest",
       originalName: "Krang's Stratagem",
@@ -210,7 +427,11 @@ const CARD_DATABASE = {
       type: "Tática (Feitiço Inimigo)",
       rules: "Como equipe, os heróis descartam um total de 2 cartas.",
       flavor: "O cerco massivo ao Polo Norte força os benders da Tribo da Água a recuarem sob pressão."
-    },
+    ,
+      nameEn: "Admiral Zhao's Conquest",
+      typeEn: "Tactic (Enemy Sorcery)",
+      rulesEn: `As a team, the heroes discard a total of 2 cards.`,
+      flavorEn: "The massive siege on the North Pole forces the Water Tribe benders to retreat under pressure."},
     {
       id: "hama_bloodbending",
       originalName: "Leatherhead's Smackdown",
@@ -219,7 +440,11 @@ const CARD_DATABASE = {
       type: "Tática (Feitiço Inimigo)",
       rules: "Como equipe, os heróis escolhem uma criatura que controlam com o maior poder e a destroem. Os chefes perdem pontos de vida igual ao poder dela.",
       flavor: "Manipulando os fluidos do próprio guerreiro herói, ela o força a atacar a si mesmo."
-    },
+    ,
+      nameEn: "Hama's Bloodbending",
+      typeEn: "Tactic (Enemy Sorcery)",
+      rulesEn: `As a team, the heroes choose a creature they control with the greatest power and destroy it. The bosses lose life equal to its power.`,
+      flavorEn: "Manipulating the fluids of the hero warrior themselves, she forces them to attack themselves."},
     {
       id: "long_feng_brainwash",
       originalName: "Rat King's Revolution",
@@ -228,7 +453,11 @@ const CARD_DATABASE = {
       type: "Tática (Feitiço Inimigo)",
       rules: "Cada herói vira X criaturas que controla, onde X é o número de chefes em jogo.\n(Se uma permanente já estiver virada, ela continua virada.)",
       flavor: "Não há guerra em Ba Sing Se. O Rei da Terra convida você para o Lago Laogai."
-    },
+    ,
+      nameEn: "Long Feng's Brainwash",
+      typeEn: "Tactic (Enemy Sorcery)",
+      rulesEn: `Each hero taps X creatures they control, where X is the number of bosses on the battlefield.\n(If a permanent is already tapped, it remains tapped.)`,
+      flavorEn: "There is no war in Ba Sing Se. The Earth King invites you to Lake Laogai."},
     {
       id: "mai_pinpoint",
       originalName: "Rocksteady's Beatdown",
@@ -237,7 +466,11 @@ const CARD_DATABASE = {
       type: "Tática (Feitiço Inimigo)",
       rules: "Destrua todas as criaturas com voar que os heróis controlam.",
       flavor: "Sua pontaria milimétrica fixa instantaneamente as asas dos oponentes na parede."
-    },
+    ,
+      nameEn: "Mai's Pinpoint Dagger",
+      typeEn: "Tactic (Enemy Sorcery)",
+      rulesEn: `Destroy all creatures with flying the heroes control.`,
+      flavorEn: "Her pinpoint accuracy instantly pins the opponents' wings to the wall."},
     {
       id: "sozin_comet_erase",
       originalName: "Savanti Romero's Curse",
@@ -246,7 +479,11 @@ const CARD_DATABASE = {
       type: "Tática (Feitiço Inimigo)",
       rules: "Cada herói devolve X criaturas que controla para a mão de seus donos, onde X é o número de chefes em jogo.",
       flavor: "Um calor insuportável consome a atmosfera, forçando todas as defesas a recuarem."
-    },
+    ,
+      nameEn: "Sozin's Comet",
+      typeEn: "Tactic (Enemy Sorcery)",
+      rulesEn: `Each hero returns X creatures they control to their owners' hands, where X is the number of bosses on the battlefield.`,
+      flavorEn: "An unbearable heat consumes the atmosphere, forcing all defenses to retreat."},
     {
       id: "ozai_decree",
       originalName: "Shredder's Challenge",
@@ -255,7 +492,11 @@ const CARD_DATABASE = {
       type: "Tática (Feitiço Inimigo)",
       rules: "Retorne 2 cartas de Soldado aleatórias do cemitério dos chefes para o campo de batalha sob o controle dos chefes.",
       flavor: "Ele exige lealdade absoluta e ressuscita sua infantaria caída para marchar novamente."
-    },
+    ,
+      nameEn: "Ozai's Imperial Decree",
+      typeEn: "Tactic (Enemy Sorcery)",
+      rulesEn: `Return 2 random Soldier cards from the bosses' graveyard to the battlefield under the bosses' control.`,
+      flavorEn: "He demands absolute loyalty and resurrects his fallen infantry to march once again."},
     {
       id: "jet_rampage",
       originalName: "Slash's Smash",
@@ -264,7 +505,11 @@ const CARD_DATABASE = {
       type: "Tática (Feitiço Inimigo)",
       rules: "Destrua todos os Aliados que os heróis controlam.",
       flavor: "Jet usa táticas implacáveis de guerrilha, inundando o vale sem se importar com inocentes."
-    },
+    ,
+      nameEn: "Jet's Rebel Ambush",
+      typeEn: "Tactic (Enemy Sorcery)",
+      rulesEn: `Destroy all Allies the heroes control.`,
+      flavorEn: "Jet uses ruthless guerrilla tactics, flooding the valley without caring for innocents."},
     {
       id: "fire_ambush",
       originalName: "Villain Infiltration",
@@ -273,7 +518,11 @@ const CARD_DATABASE = {
       type: "Tática (Feitiço Inimigo)",
       rules: "Como equipe, os heróis escolhem uma criatura que controlam com o maior poder e a destroem.",
       flavor: "Um ataque surpresa das forças especiais Yuyan incapacita o líder da defesa."
-    },
+    ,
+      nameEn: "Fire Nation Ambush",
+      typeEn: "Tactic (Enemy Sorcery)",
+      rulesEn: `As a team, the heroes choose a creature they control with the greatest power and destroy it.`,
+      flavorEn: "A surprise attack from the Yuyan special forces incapacitates the defense leader."},
     {
       id: "firebombing",
       originalName: "Villain Mayhem",
@@ -282,7 +531,11 @@ const CARD_DATABASE = {
       type: "Tática (Feitiço Inimigo)",
       rules: "Como equipe, os heróis escolhem 3 criaturas que controlam. Destrua todas as outras criaturas que os heróis controlam.",
       flavor: "Dirigíveis cobrem os céus e lançam fogo devastador, limpando o campo de batalha."
-    },
+    ,
+      nameEn: "Fire Nation Firebombing",
+      typeEn: "Tactic (Enemy Sorcery)",
+      rulesEn: `As a team, the heroes choose 3 creatures they control. Destroy all other creatures the heroes control.`,
+      flavorEn: "Airships cover the skies and drop devastating fire, clearing the battlefield."},
     {
       id: "resurgence",
       originalName: "Villain Scheme",
@@ -537,9 +790,9 @@ const GameEngine = {
         this.eventDeck = [...this.eventGraveyard];
         this.shuffleArray(this.eventDeck);
         this.eventGraveyard = [];
-        this.logMessage("⚠️ O deck inimigo acabou! O cemitério foi reembaralhado automaticamente no Event Deck.");
+        this.logMessage("⚠️ O deck inimigo acabou! O cemitério foi reembaralhado automaticamente no Event Deck.", "⚠️ The enemy deck is empty! The graveyard was automatically reshuffled into the Event Deck.");
       } else {
-        this.logMessage("🚨 Sem cartas no deck ou cemitério dos chefes!");
+        this.logMessage("🚨 Sem cartas no deck ou cemitério dos chefes!", "🚨 No cards left in the bosses' deck or graveyard!");
         return null;
       }
     }
@@ -552,9 +805,9 @@ const GameEngine = {
     if (isMinion) {
       card.summoningSickness = true; // Aplica o enjoo de invocação (não pode atacar neste turno)
       this.battlefield.push(card);
-      this.logMessage(`👾 Criatura Invocada: ${card.name} (${card.pt}) [Enjoo de Invocação]`);
+      this.logMessage(`👾 Criatura Invocada: ${card.name} (${card.pt}) [Enjoo de Invocação]`, `👾 Creature Summoned: ${card.nameEn || card.name} (${card.pt}) [Summoning Sickness]`);
     } else {
-      this.logMessage(`🔮 Tática Revelada: ${card.name}`);
+      this.logMessage(`🔮 Tática Revelada: ${card.name}`, `🔮 Tactic Revealed: ${card.nameEn || card.name}`);
       
       // Tratamento especial da carta de Ressurgimento
       if (card.id === 'resurgence') {
@@ -576,7 +829,7 @@ const GameEngine = {
     if (this.activeStage > 3) {
       this.isGameOver = true;
       this.isVictory = true;
-      this.logMessage("🏆 VITÓRIA SUPREMA DOS HERÓIS! Todos os chefes da Nação do Fogo foram derrotados!");
+      this.logMessage("🏆 VITÓRIA SUPREMA DOS HERÓIS! Todos os chefes da Nação do Fogo foram derrotados!", "🏆 SUPREME HERO VICTORY! All Fire Nation bosses have been defeated!");
       return;
     }
     
@@ -601,8 +854,8 @@ const GameEngine = {
       }
     }
     
-    const bossNames = this.activeBosses.map(b => b.name).join(", ");
-    this.logMessage(`🔥 Fase de Chefes Avançada! Estágio ${this.activeStage} iniciado. Novos Chefes Revelados: ${bossNames}!`);
+    const bossNames = this.activeBosses.map(b => (currentLang === 'en' && b.nameEn) ? b.nameEn : b.name).join(", ");
+    this.logMessage(`🔥 Fase de Chefes Avançada! Estágio ${this.activeStage} iniciado. Novos Chefes Revelados: ${bossNames}!`, `🔥 Boss Phase Advanced! Stage ${this.activeStage} started. New Bosses Revealed: ${bossNames}!`);
   },
   
   // Avançar Turno do Jogo — descarta o turno anterior e auto-compra as cartas do novo turno
@@ -627,7 +880,7 @@ const GameEngine = {
       minion.summoningSickness = false;
     });
 
-    this.logMessage(`⌛ Turno ${this.turnCount} — Fase de Ação dos Chefes:`);
+    this.logMessage(`⌛ Turno ${this.turnCount} — Fase de Ação dos Chefes:`, `⌛ Turn ${this.turnCount} — Boss Action Phase:`);
 
     // Efeito passivo do Almirante Zhao:
     // - No início do turno dos chefes, eles perdem 2 de vida.
@@ -635,7 +888,7 @@ const GameEngine = {
     const zhaoActive = Array.isArray(this.activeBosses) && this.activeBosses.some(b => b && b.id === 'zhao');
     if (zhaoActive) {
       this.bossesLife = Math.max(0, this.bossesLife - 2);
-      this.logMessage("🩸 Almirante Zhao ativo: os chefes perdem 2 pontos de vida no início do turno.");
+      this.logMessage("🩸 Almirante Zhao ativo: os chefes perdem 2 pontos de vida no início do turno.", "🩸 Admiral Zhao active: bosses lose 2 life points at the start of the turn.");
       if (this.bossesLife === 0) {
         this.advanceBossStage();
         return;
@@ -675,12 +928,12 @@ const GameEngine = {
       });
       if (buffed > 0) {
         const triggerText = soldierBuffTriggers === 1 ? "1 gatilho" : `${soldierBuffTriggers} gatilhos`;
-        this.logMessage(`🔥 Zuko/Mai (${triggerText}): +${soldierBuffTriggers}/+${soldierBuffTriggers} aplicado em ${buffed} Soldado(s) da Nação do Fogo.`);
+        this.logMessage(`🔥 Zuko/Mai (${triggerText}): +${soldierBuffTriggers}/+${soldierBuffTriggers} aplicado em ${buffed} Soldado(s) da Nação do Fogo.`, `🔥 Zuko/Mai (${triggerText}): +${soldierBuffTriggers}/+${soldierBuffTriggers} applied to ${buffed} Fire Nation Soldier(s).`);
       } else {
-        this.logMessage("🔥 Zuko/Mai: nenhum Soldado da Nação do Fogo em campo para receber +1/+1.");
+        this.logMessage("🔥 Zuko/Mai: nenhum Soldado da Nação do Fogo em campo para receber +1/+1.", "🔥 Zuko/Mai: no Fire Nation Soldier on the field to receive +1/+1.");
       }
     } else if (soldierBuffTriggers > 0 && !hasValidAttacker) {
-      this.logMessage("🔥 Zuko/Mai: sem ataque válido de lacaio neste turno (recém-invocados não atacam).");
+      this.logMessage("🔥 Zuko/Mai: sem ataque válido de lacaio neste turno (recém-invocados não atacam).", "🔥 Zuko/Mai: no valid minion attacker this turn (newly summoned ones cannot attack).");
     }
 
     // Ao final da ação dos chefes, o turno deles acaba e a contagem avança para o PRÓXIMO turno dos jogadores.
@@ -694,7 +947,7 @@ const GameEngine = {
       if (this.heroesLife === 0) {
         this.isGameOver = true;
         this.isVictory = false;
-        this.logMessage("💀 GAME OVER! Os heróis foram derrotados pela Nação do Fogo!");
+        this.logMessage("💀 GAME OVER! Os heróis foram derrotados pela Nação do Fogo!", "💀 GAME OVER! The heroes were defeated by the Fire Nation!");
       }
     } else {
       this.bossesLife = Math.max(0, this.bossesLife + amount);
@@ -710,7 +963,7 @@ const GameEngine = {
     if (index !== -1) {
       const minion = this.battlefield.splice(index, 1)[0];
       this.eventGraveyard.push(minion);
-      this.logMessage(`💀 Lacaio Derrotado: ${minion.name} foi enviado para o Cemitério.`);
+      this.logMessage(`💀 Lacaio Derrotado: ${minion.name} foi enviado para o Cemitério.`, `💀 Minion Defeated: ${minion.nameEn || minion.name} was sent to the Graveyard.`);
     }
   },
 
@@ -720,7 +973,7 @@ const GameEngine = {
     // Dado padrão do jogo é d6 (qualquer dado de 6 faces)
     const roll = Math.floor(Math.random() * 6) + 1;
     this.bossDieResult = roll;
-    this.logMessage(`🎲 Rolagem de Dado: Resultado = ${roll}! (Use para determinar alvos de habilidades e ataques)`);
+    this.logMessage(`🎲 Rolagem de Dado: Resultado = ${roll}! (Use para determinar alvos de habilidades e ataques)`, `🎲 Die Roll: Result = ${roll}! (Use to determine ability targets and attacks)`);
     return roll;
   },
   
@@ -749,7 +1002,7 @@ const GameEngine = {
     this.eventGraveyard = [];
     
     const total = cardsToReturn.length;
-    this.logMessage(`🔄 Ressurgimento Imperial! ${total} cartas do cemitério + descarte ativo foram reembaralhadas de volta no Event Deck! (Deck agora tem ${this.eventDeck.length} cartas)`);
+    this.logMessage(`🔄 Ressurgimento Imperial! ${total} cartas do cemitério + descarte ativo foram reembaralhadas de volta no Event Deck! (Deck agora tem ${this.eventDeck.length} cartas)`, `🔄 Imperial Resurgence! ${total} cards from the graveyard + active discard were reshuffled into the Event Deck! (Deck now has ${this.eventDeck.length} cards)`);
     
     // Força atualização visual imediata dos contadores
     if (typeof updateUI === 'function') updateUI();
@@ -763,7 +1016,11 @@ const GameEngine = {
     }
   },
   
-  logMessage(msg) {
+  logMessage(ptText, enText) {
+    let msg = ptText;
+    if (typeof currentLang !== 'undefined' && currentLang === 'en' && enText) {
+      msg = enText;
+    }
     const logEl = document.getElementById('game-console-log');
     if (logEl) {
       const p = document.createElement('p');
@@ -817,19 +1074,26 @@ function initCard3DTilt(wrapper) {
 function renderVirtualCard(card, isOnBattlefield = false, allowEditFromModal = false) {
   const custom = CustomizationStore.get(card.id) || {};
   const artUrl = convertToScryfallArtCrop(custom.artUrl || '');
-  const cardName = custom.customName || card.name;
-  let cardText = custom.customText || card.rules;
+  const isEn = (typeof currentLang !== 'undefined' && currentLang === 'en');
+  const baseName = isEn && card.nameEn ? card.nameEn : card.name;
+  const baseRules = isEn && card.rulesEn ? card.rulesEn : card.rules;
+  const baseType = isEn && card.typeEn ? card.typeEn : card.type;
+  const baseFlavor = isEn && card.flavorEn ? card.flavorEn : card.flavor;
+  const cardName = custom.customName || baseName;
+  let cardText = custom.customText || baseRules;
   const cardPT = custom.customPT || card.pt || '';
+  const cardType = baseType;
+  const cardFlavor = baseFlavor;
 
   // Efeitos temporários vindos de chefes ativos (somente render em campo).
   if (card.grantedFlying) {
-    cardText = `Voar.\n${cardText}`;
+    cardText = (isEn ? 'Flying.\\n' : 'Voar.\\n') + cardText;
   }
   if (card.grantedDeathtouch) {
-    cardText = `Toque mortífero.\n${cardText}`;
+    cardText = (isEn ? 'Deathtouch.\\n' : 'Toque mortífero.\\n') + cardText;
   }
   if (card.grantedFirstStrike) {
-    cardText = `Iniciativa.\n${cardText}`;
+    cardText = (isEn ? 'First strike.\\n' : 'Iniciativa.\\n') + cardText;
   }
   
   // Bosses oficiais não exibem ataque/vida (PT).
@@ -860,7 +1124,7 @@ function renderVirtualCard(card, isOnBattlefield = false, allowEditFromModal = f
   // Se for lacaio no campo de batalha, adiciona botão de Derrotar
   let defeatButtonHTML = '';
   if (isOnBattlefield && isCreature) {
-    defeatButtonHTML = `<button class="minion-defeat-btn" onclick="event.stopPropagation(); handleDefeatMinion('${card.instanceId}')">💀 Derrotar Lacaio</button>`;
+    defeatButtonHTML = `<button class="minion-defeat-btn" onclick="event.stopPropagation(); handleDefeatMinion('${card.instanceId}')">${isEn ? '☠️ Defeat Minion' : '💀 Derrotar Lacaio'}</button>`;
   }
 
   // Marcadores de lacaio em campo (+1/+0 e +1/+1)
@@ -900,7 +1164,7 @@ function renderVirtualCard(card, isOnBattlefield = false, allowEditFromModal = f
     const fmt = (n) => (n >= 0 ? `+${n}` : `${n}`);
     bossEffectBadgeHTML = `
       <div style="margin: 4px 0 0; padding: 3px 6px; border-radius: 6px; border: 1px solid rgba(56,189,248,.55); background: rgba(14,116,144,.25); color: #7dd3fc; font-size: .63rem; font-weight: 700; text-transform: uppercase; letter-spacing: .3px;">
-        ✦ Bônus de Boss: ${fmt(bossBonusPower)}/${fmt(bossBonusToughness)}
+        ✦ ${isEn ? 'Boss Bonus' : 'Bônus de Boss'}: ${fmt(bossBonusPower)}/${fmt(bossBonusToughness)}
       </div>
     `;
   }
@@ -910,7 +1174,7 @@ function renderVirtualCard(card, isOnBattlefield = false, allowEditFromModal = f
     sicknessBadgeHTML = `
       <div style="position: absolute; inset: 0; background: rgba(0,0,0,0.5); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 10;">
         <span style="font-size: 2rem;">💤</span>
-        <span style="background: rgba(0,0,0,0.8); color: #ccc; font-size: 0.65rem; font-weight: bold; padding: 2px 6px; border-radius: 4px; text-transform: uppercase; margin-top: 4px; border: 1px solid #555;">Enjoo de Invocação</span>
+        <span style="background: rgba(0,0,0,0.8); color: #ccc; font-size: 0.65rem; font-weight: bold; padding: 2px 6px; border-radius: 4px; text-transform: uppercase; margin-top: 4px; border: 1px solid #555;">${isEn ? 'Summoning Sickness' : 'Enjoo de Invocação'}</span>
       </div>
     `;
   }
@@ -931,13 +1195,13 @@ function renderVirtualCard(card, isOnBattlefield = false, allowEditFromModal = f
           ${sicknessBadgeHTML}
         </div>
         <div class="mtg-card-type-line">
-          <span>${card.type}</span>
+          <span>${cardType}</span>
           <span class="mtg-card-symbol">${card.grantedFirstStrike ? '⚡' : (card.grantedDeathtouch ? '☠️' : (card.grantedFlying ? '🪽' : '👹'))}</span>
         </div>
         <div class="mtg-card-text-box">
           <p>${cardText.replace(/\n/g, '<br>')}</p>
           ${bossEffectBadgeHTML}
-          ${card.flavor ? `<p class="mtg-card-flavor">${card.flavor}</p>` : ''}
+          ${cardFlavor ? `<p class="mtg-card-flavor">${cardFlavor}</p>` : ''}
         </div>
         ${isCreature ? `<div class="mtg-card-pt">${finalPT}</div>` : ''}
       </div>
@@ -1155,7 +1419,7 @@ function updateUI() {
   const bossesContainer = document.getElementById('active-bosses-container');
   if (bossesContainer) {
     if (GameEngine.activeBosses.length === 0) {
-      bossesContainer.innerHTML = `<div style="color: var(--text-muted); font-style: italic; font-size: 0.9rem; padding: var(--space-sm) 0;">Nenhum chefe ativo.</div>`;
+      bossesContainer.innerHTML = `<div style="color: var(--text-muted); font-style: italic; font-size: 0.9rem; padding: var(--space-sm) 0;">${currentLang === 'en' ? 'No active bosses.' : 'Nenhum chefe ativo.'}</div>`;
     } else {
       bossesContainer.innerHTML = GameEngine.activeBosses.map(b => renderVirtualCard(b, false, false)).join('');
     }
@@ -1165,7 +1429,7 @@ function updateUI() {
   const battlefieldContainer = document.getElementById('battlefield-container');
   if (battlefieldContainer) {
     if (GameEngine.battlefield.length === 0) {
-      battlefieldContainer.innerHTML = `<div style="color: var(--text-muted); font-style: italic; font-size: 0.9rem; padding: var(--space-sm) 0;">Nenhum lacaio inimigo em campo.</div>`;
+      battlefieldContainer.innerHTML = `<div style="color: var(--text-muted); font-style: italic; font-size: 0.9rem; padding: var(--space-sm) 0;">${currentLang === 'en' ? 'No enemy minions on the battlefield.' : 'Nenhum lacaio inimigo em campo.'}</div>`;
     } else {
       const combustionActive = Array.isArray(GameEngine.activeBosses)
         && GameEngine.activeBosses.some(b => b && b.id === 'combustion_man');
@@ -1201,10 +1465,18 @@ function updateUI() {
   const drawnTitle = document.getElementById('drawn-cards-title');
   if (drawnContainer) {
     if (GameEngine.drawnCards.length === 0) {
-      if (drawnTitle) drawnTitle.textContent = "Ações Reveladas neste Turno:";
-      drawnContainer.innerHTML = `<div style="color: var(--text-muted); font-style: italic; font-size: 0.9rem; padding: 20px 0;">Nenhuma carta revelada na Ação deste turno.</div>`;
+      if (drawnTitle) {
+        drawnTitle.innerHTML = currentLang === 'en' 
+          ? '<span data-i18n="actions_revealed_turn">ACTIONS REVEALED THIS TURN:</span>' 
+          : '<span data-i18n="actions_revealed_turn">AÇÕES REVELADAS NESTE TURNO:</span>';
+      }
+      drawnContainer.innerHTML = `<div style="color: var(--text-muted); font-style: italic; font-size: 0.9rem; padding: 20px 0;">${currentLang === 'en' ? "No cards revealed during this turn's Action." : "Nenhuma carta revelada na Ação deste turno."}</div>`;
     } else {
-      if (drawnTitle) drawnTitle.textContent = "Ações Reveladas no Turno " + (GameEngine.turnCount - 1) + ":";
+      if (drawnTitle) {
+        drawnTitle.innerHTML = currentLang === 'en' 
+          ? `<span>ACTIONS REVEALED ON TURN ${GameEngine.turnCount - 1}:</span>` 
+          : `<span>AÇÕES REVELADAS NO TURNO ${GameEngine.turnCount - 1}:</span>`;
+      }
       drawnContainer.innerHTML = GameEngine.drawnCards.map(c => renderVirtualCard(c, false, false)).join('');
     }
   }
@@ -1213,7 +1485,7 @@ function updateUI() {
   const graveyardContainer = document.getElementById('graveyard-container');
   if (graveyardContainer) {
     if (GameEngine.eventGraveyard.length === 0) {
-      graveyardContainer.innerHTML = `<div style="color: var(--text-muted); font-style: italic; font-size: 0.85rem; padding: var(--space-sm) 0; grid-column: 1 / -1;">Nenhuma carta descartada no cemitério.</div>`;
+      graveyardContainer.innerHTML = `<div style="color: var(--text-muted); font-style: italic; font-size: 0.85rem; padding: var(--space-sm) 0; grid-column: 1 / -1;">${currentLang === 'en' ? 'No cards discarded in the graveyard.' : 'Nenhuma carta descartada no cemitério.'}</div>`;
     } else {
       graveyardContainer.innerHTML = GameEngine.eventGraveyard.map(c => renderVirtualCard(c, false, false)).join('');
     }
@@ -1230,10 +1502,10 @@ function updateUI() {
   const bossesDefeatedList = document.getElementById('bosses-defeated-list');
   if (bossesDefeatedList) {
     if (GameEngine.defeatedBosses.length === 0) {
-      bossesDefeatedList.innerHTML = `<span style="color: var(--text-muted); font-style: italic;">Nenhum chefe derrotado ainda.</span>`;
+      bossesDefeatedList.innerHTML = `<span style="color: var(--text-muted); font-style: italic;">${currentLang === 'en' ? 'No boss defeated yet.' : 'Nenhum chefe derrotado ainda.'}</span>`;
     } else {
       bossesDefeatedList.innerHTML = GameEngine.defeatedBosses.map((boss, idx) => {
-        return `<div style="padding: 2px 0; border-bottom: 1px solid rgba(255,255,255,0.03); color: var(--text-secondary);">☠️ ${idx + 1}. ${boss.name}</div>`;
+        return `<div style="padding: 2px 0; border-bottom: 1px solid rgba(255,255,255,0.03); color: var(--text-secondary);">☠️ ${idx + 1}. ${(currentLang === 'en' && boss.nameEn) ? boss.nameEn : boss.name}</div>`;
       }).join('');
     }
   }
@@ -1268,12 +1540,12 @@ function updateUI() {
         div.style.background = 'rgba(16, 185, 129, 0.15)';
         div.style.border = '1px solid #10b981';
         div.style.color = '#10b981';
-        div.innerHTML = '🏆 VITÓRIA SUPREMA DOS HERÓIS! A invasão foi totalmente repelida!';
+        div.innerHTML = currentLang === 'en' ? '🏆 SUPREME HERO VICTORY! The invasion has been totally repelled!' : '🏆 VITÓRIA SUPREMA DOS HERÓIS! A invasão foi totalmente repelida!';
       } else {
         div.style.background = 'rgba(225, 29, 72, 0.15)';
         div.style.border = '1px solid var(--fire-primary)';
         div.style.color = 'var(--fire-primary)';
-        div.innerHTML = '💀 DERROTA DOS HERÓIS! O mundo sucumbirá à Nação do Fogo.';
+        div.innerHTML = currentLang === 'en' ? '💀 HERO DEFEAT! The world will fall to the Fire Nation.' : '💀 DERROTA DOS HERÓIS! O mundo sucumbirá à Nação do Fogo.';
       }
       logEl.appendChild(div);
       logEl.scrollTop = logEl.scrollHeight;
@@ -1309,7 +1581,7 @@ function handleAddMinionCounter(instanceId, powerDelta, toughnessDelta) {
   const fmt = (n) => (n >= 0 ? `+${n}` : `${n}`);
   const markerText = `${fmt(p)}/${fmt(t)}`;
   if (typeof GameEngine.logMessage === 'function') {
-    GameEngine.logMessage(`🧩 Marcador ${markerText} aplicado em ${minion.name}.`);
+    GameEngine.logMessage(`🧩 Marcador ${markerText} aplicado em ${minion.name}.`, `🧩 Marker ${markerText} applied to ${minion.nameEn || minion.name}.`);
   }
   updateUI();
 }
@@ -1330,7 +1602,7 @@ function handleRollDie() {
     dieEl.textContent = result;
     const msgEl = document.getElementById('dice-result-msg');
     if (msgEl) {
-      msgEl.innerHTML = `Resultado: <strong>${result}</strong> — use para resolver habilidades ou sortear alvos!`;
+      msgEl.innerHTML = currentLang === 'en' ? `Result: <strong>${result}</strong> — use to resolve abilities or pick targets!` : `Resultado: <strong>${result}</strong> — use para resolver habilidades ou sortear alvos!`;
     }
     updateUI();
   }, 600);
@@ -1360,7 +1632,7 @@ function handleResetGame() {
   GameEngine.setupGame(GameEngine.playerCount);
   const consoleLog = document.getElementById('game-console-log');
   if (consoleLog) consoleLog.innerHTML = '';
-  GameEngine.logMessage(`🎮 Partida reiniciada para ${GameEngine.playerCount} jogadores.`);
+  GameEngine.logMessage(`🎮 Partida reiniciada para ${GameEngine.playerCount} jogadores.`, `🎮 Match restarted for ${GameEngine.playerCount} players.`);
   updateUI();
 }
 
@@ -1401,7 +1673,7 @@ function openCardCustomizer(cardId) {
   const custom = CustomizationStore.get(cardId) || {};
   
   document.getElementById('customizer-image-url').value = convertToScryfallArtCrop(custom.artUrl || '');
-  document.getElementById('customizer-name').value = custom.customName || card.name;
+  document.getElementById('customizer-name').value = custom.customName || (currentLang === 'en' && card.nameEn ? card.nameEn : card.name);
   document.getElementById('customizer-text').value = custom.customText || card.rules;
   
   const ptGroup = document.getElementById('customizer-pt-group');
@@ -1564,7 +1836,7 @@ function saveCardCustomization(e) {
   // Update the input field to reflect the converted URL
   if (artUrl !== rawUrl) {
     document.getElementById('customizer-image-url').value = artUrl;
-    showToast("URL do Scryfall convertida automaticamente para ilustração pura! 🎨");
+    showToast(currentLang === "en" ? "Scryfall URL auto-converted to pure illustration! 🎨" : "URL do Scryfall convertida automaticamente para ilustração pura! 🎨");
   }
   
   let baseCard = findCardById(cardId);
@@ -1581,7 +1853,7 @@ function saveCardCustomization(e) {
   closeCardCustomizer();
   
   // Show toast notice
-  if (artUrl === rawUrl) showToast("Carta personalizada com sucesso!");
+  if (artUrl === rawUrl) showToast(currentLang === "en" ? "Card customized successfully!" : "Carta personalizada com sucesso!");
 
   // Refresh battlefield, drawn cards, active bosses, and gallery
   updateUI();
@@ -1593,7 +1865,7 @@ function resetCardCustomization() {
   const cardId = document.getElementById('modal-card-id').value;
   CustomizationStore.reset(cardId);
   closeCardCustomizer();
-  showToast("Carta restaurada para o padrão.");
+  showToast(currentLang === "en" ? "Card restored to default." : "Carta restaurada para o padrão.");
   updateUI();
   renderCardGallery(currentFilter);
 }
@@ -1736,6 +2008,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 1. Initial setup of Game state machine (2 players by default)
   GameEngine.setupGame(2);
+  if (typeof applyTranslations === 'function') applyTranslations();
+  GameEngine.logMessage(`👾 Companion carregado. Clique em 'Próximo Turno' ou compre cartas para começar!`, `👾 Companion loaded. Click 'Next Turn' or draw cards to start!`);
   updateUI();
 
   // 2. Setup Card Gallery
@@ -1754,6 +2028,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.target === modal) {
       closeCardCustomizer();
     }
+  });
+
+  // Update lang button active state
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.lang === currentLang);
   });
 });
 
@@ -1827,11 +2106,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         if (typeof engine.logMessage === "function") {
-          const names = selected.map(c => c.name).join(", ");
-          engine.logMessage(`♻️ Decreto Imperial de Ozai${contextLabel}: ${selected.length} lacaio(s) retornaram do descarte ao campo (${names}).`);
+          const names = selected.map(c => (currentLang === 'en' && c.nameEn) ? c.nameEn : c.name).join(", ");
+          engine.logMessage(`♻️ Decreto Imperial de Ozai${contextLabel}: ${selected.length} lacaio(s) retornaram do descarte ao campo (${names}).`, `♻️ Ozai's Imperial Decree${contextLabel}: ${selected.length} minion(s) returned from the discard pile to the battlefield (${names}).`);
         }
       } else if (typeof engine.logMessage === "function") {
-        engine.logMessage(`♻️ Decreto Imperial de Ozai${contextLabel}: nenhum lacaio no descarte para retornar.`);
+        engine.logMessage(`♻️ Decreto Imperial de Ozai${contextLabel}: nenhum lacaio no descarte para retornar.`, `♻️ Ozai's Imperial Decree${contextLabel}: no minion in discard pile to return.`);
       }
       return true;
     }
@@ -1842,7 +2121,7 @@ document.addEventListener('DOMContentLoaded', () => {
       engine.heroesLife = Math.max(0, (engine.heroesLife || 0) - 3);
       engine.bossesLife = (engine.bossesLife || 0) + 3;
       if (typeof engine.logMessage === "function") {
-        engine.logMessage(`🕵️ Infiltração de Azula${contextLabel}: heróis perdem 3 de vida e chefes ganham 3 de vida.`);
+        engine.logMessage(`🕵️ Infiltração de Azula${contextLabel}: heróis perdem 3 de vida e chefes ganham 3 de vida.`, `🕵️ Azula's Infiltration${contextLabel}: heroes lose 3 life and bosses gain 3 life.`);
       }
       return true;
     }
@@ -1857,7 +2136,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 1) Se comprou Explosão de Combustão: arma duplicação do próximo evento.
     if (card.id === "combustion_blast") {
       this.pendingDoubleNextEvent = true;
-      this.logMessage("💥 Explosão de Combustão armada: o próximo evento será aplicado 2x.");
+      this.logMessage("💥 Explosão de Combustão armada: o próximo evento será aplicado 2x.", "💥 Combustion Blast armed: the next event will be applied 2x.");
       return card;
     }
     // Aplica efeito automatizado normal do evento (quando existir).
@@ -1870,14 +2149,14 @@ document.addEventListener('DOMContentLoaded', () => {
       card.doubleApplied = true; // visual "2x" no evento afetado
       const duplicated = applyAutomatedEventEffects(this, card, " (2x)");
       if (duplicated && typeof this.logMessage === "function") {
-        this.logMessage(`🔴 2x ativo: "${card.name}" teve seu efeito automatizado aplicado novamente.`);
+        this.logMessage(`🔴 2x ativo: "${card.name}" teve seu efeito automatizado aplicado novamente.`, `🔴 2x active: "${card.nameEn || card.name}" had its automated effect applied again.`);
       } else if (!duplicated && eventResolver) {
         try {
           eventResolver(card);
-          this.logMessage(`🔴 2x ativo: "${card.name}" foi aplicado uma vez extra.`);
+          this.logMessage(`🔴 2x ativo: "${card.name}" foi aplicado uma vez extra.`, `🔴 2x active: "${card.nameEn || card.name}" was applied one extra time.`);
         } catch (err) {
           console.error("Erro ao aplicar duplicação do evento:", err);
-          this.logMessage("⚠️ Não foi possível aplicar a duplicação automática deste evento.");
+          this.logMessage("⚠️ Não foi possível aplicar a duplicação automática deste evento.", "⚠️ Could not apply automatic duplication for this event.");
         }
       }
     }
@@ -1928,7 +2207,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     this.heroesLife = Math.max(0, (this.heroesLife || 0) - 1);
     if (typeof this.logMessage === "function") {
-      this.logMessage("👑 Ozai ativo: um lacaio morreu, heróis perdem 1 ponto de vida.");
+      this.logMessage("👑 Ozai ativo: um lacaio morreu, heróis perdem 1 ponto de vida.", "👑 Ozai active: a minion died, heroes lose 1 life point.");
     }
 
     return out;
@@ -1976,7 +2255,7 @@ document.addEventListener('DOMContentLoaded', () => {
       this.eventDeck.push(...toReturn);
       if (typeof this.shuffleArray === "function") this.shuffleArray(this.eventDeck);
       if (typeof this.logMessage === "function") {
-        this.logMessage(`🔁 Ordem aplicada: ${toReturn.length} evento(s) anterior(es) ao Ressurgimento voltaram ao Event Deck.`);
+        this.logMessage(`🔁 Ordem aplicada: ${toReturn.length} evento(s) anterior(es) ao Ressurgimento voltaram ao Event Deck.`, `🔁 Order applied: ${toReturn.length} event(s) prior to Resurgence returned to the Event Deck.`);
       }
     }
   };
@@ -2004,7 +2283,7 @@ document.addEventListener('DOMContentLoaded', () => {
       boss.__hamaEntryApplied = true;
 
       if (typeof engine.logMessage === "function") {
-        engine.logMessage(`🌕 Hama entrou: chefes ganham ${lifeGain} de vida (${bossesInPlay} chefe(s) em jogo).`);
+        engine.logMessage(`🌕 Hama entrou: chefes ganham ${lifeGain} de vida (${bossesInPlay} chefe(s) em jogo).`, `🌕 Hama entered: bosses gain ${lifeGain} life (${bossesInPlay} boss(es) in play).`);
       }
     });
   }
