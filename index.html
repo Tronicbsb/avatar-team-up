@@ -1,0 +1,3933 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18082795529"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'AW-18082795529');
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- SEO Meta Tags -->
+  <title>Avatar: Invasão da Nação do Fogo — MTG Co-op Companion</title>
+  <meta name="description" content="Auxiliar de mesa interativo e galeria de cartas para o modo cooperativo customizado de Magic: The Gathering com o tema Avatar: A Lenda de Aang. Personalize a arte e jogue offline!" />
+  <meta name="keywords" content="Avatar MTG, Magic cooperativo, companion MTG, custom cards, Avatar benders, Nação do Fogo TCG" />
+  <link rel="icon" type="image/png" href="../nerdforja/assets/images/logo.png" />
+  
+  <!-- Stylesheets -->
+  <style>
+/* ================================================================
+   Loot Geek — Design System
+   Blog Geek de Reviews | Afiliados Amazon + AdSense
+   ================================================================ */
+
+/* ── Google Fonts ── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@400;500;600;700;800;900&family=Press+Start+2P&display=swap');
+
+/* ── CSS Custom Properties ── */
+:root {
+  /* Colors - Warm Pikachu/Kanto Palette */
+  --bg-primary: #111118;
+  --bg-secondary: #16161f;
+  --bg-card: #1c1c28;
+  --bg-card-hover: #242435;
+  --bg-surface: #222230;
+  --bg-input: #1e1e2a;
+  
+  --accent-primary: #FFD700;     /* Pikachu Yellow / Gold */
+  --accent-secondary: #FF6B35;   /* Warm Orange */
+  --accent-tertiary: #DC2626;    /* Kanto Red */
+  --accent-green: #22c55e;
+  --accent-orange: #ff9900;      /* Amazon Orange */
+  --accent-amber: #f59e0b;
+  
+  /* Legacy aliases for compatibility */
+  --accent-cyan: #FFD700;
+  --accent-purple: #FF6B35;
+  --accent-pink: #ff6b9d;
+  --accent-red: #DC2626;
+  
+  --text-primary: #f0ece4;
+  --text-secondary: #a8a29e;
+  --text-muted: #78716c;
+  --text-white: #ffffff;
+  
+  --border-color: #2e2e3c;
+  --border-glow: rgba(255, 215, 0, 0.3);
+  
+  /* Gradients */
+  --gradient-hero: linear-gradient(135deg, #111118 0%, #1a1510 50%, #111118 100%);
+  --gradient-card: linear-gradient(145deg, #1c1c28 0%, #1e1c22 100%);
+  --gradient-accent: linear-gradient(135deg, #FFD700 0%, #FF6B35 100%);
+  --gradient-cta: linear-gradient(135deg, #ff9900 0%, #ffb84d 100%);
+  --gradient-green: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  
+  /* Typography */
+  --font-heading: 'Orbitron', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-retro: 'Press Start 2P', cursive;
+  
+  /* Spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+  --space-4xl: 6rem;
+  
+  /* Border Radius */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+  
+  /* Shadows */
+  --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.4);
+  --shadow-card-hover: 0 8px 40px rgba(255, 215, 0, 0.12);
+  --shadow-glow-cyan: 0 0 20px rgba(255, 215, 0, 0.3);
+  --shadow-glow-purple: 0 0 20px rgba(255, 107, 53, 0.3);
+  --shadow-glow-orange: 0 0 20px rgba(255, 153, 0, 0.3);
+  
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
+  
+  /* Layout */
+  --container-max: 1280px;
+  --sidebar-width: 320px;
+  --header-height: 70px;
+
+  /* ── Category Theme Variables ── */
+  --cat-accent: var(--accent-primary);
+  --cat-accent-rgb: 255, 215, 0;
+  --cat-glow: rgba(255, 215, 0, 0.15);
+}
+
+/* ── Per-Category Themes ── */
+/* Card Games: Golden Amber - TCG & Competitive */
+.theme-cardgames {
+  --cat-accent: #e2a82a;
+  --cat-accent-rgb: 226, 168, 42;
+  --cat-glow: rgba(226, 168, 42, 0.15);
+  --cat-gradient: linear-gradient(135deg, #e2a82a 0%, #c47f17 100%);
+  --cat-bg-tint: rgba(226, 168, 42, 0.04);
+}
+
+/* Legacy alias for old theme */
+.theme-tcg-pokemon {
+  --cat-accent: #FFD700;
+  --cat-accent-rgb: 255, 215, 0;
+  --cat-glow: rgba(255, 215, 0, 0.15);
+  --cat-gradient: linear-gradient(135deg, #FFD700 0%, #f59e0b 100%);
+  --cat-bg-tint: rgba(255, 215, 0, 0.04);
+}
+
+/* Board Games: Royal Purple - Magic & Fantasy */
+.theme-board-games {
+  --cat-accent: #a855f7;
+  --cat-accent-rgb: 168, 85, 247;
+  --cat-glow: rgba(168, 85, 247, 0.15);
+  --cat-gradient: linear-gradient(135deg, #a855f7 0%, #7c3aed 100%);
+  --cat-bg-tint: rgba(168, 85, 247, 0.04);
+}
+
+/* Peças de PC: Electric Blue - Tech & Circuits */
+.theme-pc-parts {
+  --cat-accent: #3b82f6;
+  --cat-accent-rgb: 59, 130, 246;
+  --cat-glow: rgba(59, 130, 246, 0.15);
+  --cat-gradient: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  --cat-bg-tint: rgba(59, 130, 246, 0.04);
+}
+
+/* Notebooks Gamer: Neon Green - Gaming */
+.theme-notebooks {
+  --cat-accent: #22c55e;
+  --cat-accent-rgb: 34, 197, 94;
+  --cat-glow: rgba(34, 197, 94, 0.15);
+  --cat-gradient: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  --cat-bg-tint: rgba(34, 197, 94, 0.04);
+}
+
+/* Consoles & Acessórios: Crimson Red - Power & Action */
+.theme-consoles {
+  --cat-accent: #ef4444;
+  --cat-accent-rgb: 239, 68, 68;
+  --cat-glow: rgba(239, 68, 68, 0.15);
+  --cat-gradient: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  --cat-bg-tint: rgba(239, 68, 68, 0.04);
+}
+
+/* Colecionáveis: Fuchsia Premium */
+.theme-colecionaveis {
+  --cat-accent: #d946ef;
+  --cat-accent-rgb: 217, 70, 239;
+  --cat-glow: rgba(217, 70, 239, 0.15);
+  --cat-gradient: linear-gradient(135deg, #d946ef 0%, #a21caf 100%);
+  --cat-bg-tint: rgba(217, 70, 239, 0.04);
+}
+
+/* ── Subcategory Tabs ── */
+.subcategory-tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: var(--space-md) 0;
+  margin-bottom: var(--space-xl);
+}
+
+.subcategory-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 18px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-color);
+  background: transparent;
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.subcategory-tab:hover {
+  border-color: var(--cat-accent, var(--accent-primary));
+  color: var(--cat-accent, var(--accent-primary));
+  background: rgba(var(--cat-accent-rgb, 255,215,0), 0.08);
+}
+
+.subcategory-tab.active {
+  border-color: var(--cat-accent, var(--accent-primary));
+  background: rgba(var(--cat-accent-rgb, 255,215,0), 0.15);
+  color: var(--cat-accent, var(--accent-primary));
+}
+
+.subcategory-tab .sub-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.2em;
+  height: 1.2em;
+  overflow: hidden;
+}
+
+/* ── Nav Dropdown for Subcategories ── */
+.nav-dropdown-container {
+  position: relative;
+}
+
+.nav-dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: var(--space-sm);
+  min-width: 200px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  z-index: 1001;
+}
+
+.nav-dropdown-container:hover .nav-dropdown {
+  display: block;
+}
+
+.nav-dropdown a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.nav-dropdown a:hover {
+  background: rgba(var(--cat-accent-rgb, 255,215,0), 0.1);
+  color: var(--text-white);
+}
+
+/* Category theme overrides for elements */
+[class*="theme-"] .section-title h2 {
+  background: var(--cat-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+[class*="theme-"] .section-title::after {
+  background: var(--cat-gradient);
+}
+
+[class*="theme-"] .category-count {
+  background: rgba(var(--cat-accent-rgb), 0.15);
+  color: var(--cat-accent);
+}
+
+[class*="theme-"] .product-card:hover {
+  border-color: rgba(var(--cat-accent-rgb), 0.4);
+  box-shadow: 0 8px 40px var(--cat-glow);
+}
+
+[class*="theme-"] .btn-primary {
+  background: var(--cat-gradient);
+}
+
+/* Category page hero tint */
+.category-hero-themed {
+  background: var(--cat-bg-tint);
+}
+
+
+
+/* ── Reset & Base ── */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.7;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: var(--accent-cyan);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--accent-purple);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+/* ── Container ── */
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--space-xl);
+}
+
+/* ── Typography ── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.5px;
+}
+
+h1 { font-size: clamp(1.8rem, 4vw, 3rem); }
+h2 { font-size: clamp(1.4rem, 3vw, 2.2rem); }
+h3 { font-size: clamp(1.1rem, 2.5vw, 1.6rem); }
+h4 { font-size: clamp(1rem, 2vw, 1.3rem); }
+
+.section-title {
+  text-align: center;
+  margin-bottom: var(--space-3xl);
+  position: relative;
+}
+
+.section-title h2 {
+  display: inline-block;
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: var(--space-sm);
+}
+
+.section-title p {
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.section-title::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 3px;
+  background: var(--gradient-accent);
+  margin: var(--space-md) auto 0;
+  border-radius: var(--radius-full);
+}
+
+/* ── Header / Navigation ── */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  height: var(--header-height);
+  background: rgba(10, 10, 26, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-color);
+  transition: all var(--transition-normal);
+}
+
+.header.scrolled {
+  background: rgba(10, 10, 26, 0.95);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+}
+
+.header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  flex-shrink: 0;
+  margin-right: var(--space-lg);
+}
+
+.logo img {
+  height: 36px;
+  width: auto;
+}
+
+.logo-text {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+.logo-text span:first-child {
+  color: var(--accent-primary);
+}
+
+.logo-text span:last-child {
+  color: var(--accent-secondary);
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  flex: 1;
+  justify-content: center;
+}
+
+.nav-menu a {
+  color: var(--text-secondary);
+  font-weight: 500;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+  position: relative;
+  white-space: nowrap;
+}
+
+.nav-menu a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: var(--gradient-accent);
+  transition: width var(--transition-normal);
+  border-radius: var(--radius-full);
+}
+
+.nav-menu a:hover {
+  color: var(--text-white);
+}
+
+.nav-menu a:hover::after {
+  width: 80%;
+}
+
+.nav-menu a.active {
+  color: var(--accent-cyan);
+}
+
+.nav-menu a.active::after {
+  width: 80%;
+}
+
+/* Mobile Menu Toggle */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: var(--space-sm);
+  z-index: 1001;
+}
+
+.menu-toggle span {
+  width: 28px;
+  height: 2px;
+  background: var(--text-primary);
+  border-radius: var(--radius-full);
+  transition: all var(--transition-normal);
+}
+
+.menu-toggle.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Search Bar */
+.search-bar {
+  display: flex;
+  align-items: center;
+  background: var(--bg-input);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-full);
+  padding: var(--space-xs) var(--space-md);
+  gap: var(--space-sm);
+  transition: all var(--transition-fast);
+}
+
+.search-bar:focus-within {
+  border-color: var(--accent-cyan);
+  box-shadow: var(--shadow-glow-cyan);
+}
+
+.search-bar input {
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  width: 140px;
+  outline: none;
+}
+
+.search-bar input::placeholder {
+  color: var(--text-muted);
+}
+
+.search-bar button {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: color var(--transition-fast);
+}
+
+.search-bar button:hover {
+  color: var(--accent-cyan);
+}
+
+/* ── Hero Section ── */
+.hero {
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gradient-hero);
+  position: relative;
+  overflow: hidden;
+  padding-top: var(--header-height);
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(255, 215, 0, 0.07) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 107, 53, 0.07) 0%, transparent 50%),
+    radial-gradient(circle at 50% 80%, rgba(220, 38, 38, 0.04) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Animated grid background */
+.hero::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(rgba(255, 215, 0, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 215, 0, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 800px;
+  padding: var(--space-2xl);
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  background: rgba(0, 240, 255, 0.1);
+  border: 1px solid rgba(0, 240, 255, 0.3);
+  border-radius: var(--radius-full);
+  padding: var(--space-xs) var(--space-lg);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--accent-cyan);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: var(--space-xl);
+}
+
+.hero-badge .badge-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--accent-green);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+.hero h1 {
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-weight: 900;
+  margin-bottom: var(--space-lg);
+  line-height: 1.1;
+}
+
+.hero h1 .gradient-text {
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero p {
+  font-size: 1.15rem;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-2xl);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: var(--space-md);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.hero-stats {
+  display: flex;
+  gap: var(--space-3xl);
+  justify-content: center;
+  margin-top: var(--space-3xl);
+  padding-top: var(--space-2xl);
+  border-top: 1px solid var(--border-color);
+}
+
+.hero-stat {
+  text-align: center;
+}
+
+.hero-stat .stat-value {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--accent-cyan);
+  display: block;
+}
+
+.hero-stat .stat-label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* ── Buttons ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 0.75rem 1.8rem;
+  border-radius: var(--radius-full);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  border: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.btn-primary {
+  background: var(--gradient-accent);
+  color: var(--bg-primary);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-glow-cyan);
+  color: var(--bg-primary);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+  border-color: var(--accent-cyan);
+  color: var(--accent-cyan);
+  transform: translateY(-2px);
+}
+
+.btn-amazon {
+  background: var(--gradient-cta);
+  color: #111;
+  font-weight: 700;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  text-decoration: none;
+  border-radius: var(--radius-full);
+}
+
+.btn-amazon:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-glow-orange);
+  color: #111;
+}
+
+.btn-mercadolivre {
+  background: #FFE600;
+  color: #2D3277;
+  font-weight: 700;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  text-decoration: none;
+  border-radius: var(--radius-full);
+}
+
+.btn-mercadolivre:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px rgba(255, 230, 0, 0.4);
+  color: #2D3277;
+}
+
+/* Marketplace specific sizing to ensure they match exactly */
+.btn-amazon.btn-sm, .btn-mercadolivre.btn-sm {
+  height: 40px;
+  padding: 0 var(--space-md);
+  font-size: 0.75rem;
+}
+
+.btn-amazon.btn-lg, .btn-mercadolivre.btn-lg {
+  height: 52px;
+  padding: 0 var(--space-xl);
+  font-size: 0.85rem;
+}
+
+.btn-sm {
+  padding: 0 var(--space-md);
+  font-size: 0.8rem;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-lg {
+  padding: 0 var(--space-xl);
+  font-size: 1.05rem;
+  height: 52px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/*
+ * UNIFIED MARKETPLACE BUTTON CONTAINERS
+ * The key rule: inside any marketplace container,
+ * both buttons stretch to the SAME width via flex: 1.
+ */
+.product-marketplace-btns,
+.top5-marketplace-btns,
+.table-marketplace-btns,
+.review-cta-btns,
+.guide-marketplace-btns {
+  display: flex;
+  gap: 10px;
+}
+
+/* Force equal width on ALL marketplace buttons inside containers */
+.product-marketplace-btns .btn,
+.top5-marketplace-btns .btn,
+.table-marketplace-btns .btn,
+.review-cta-btns .btn,
+.guide-marketplace-btns .btn {
+  flex: 1;
+  text-align: center;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+/* Desktop defaults for specific containers */
+.product-marketplace-btns {
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+
+.top5-marketplace-btns {
+  flex-direction: row;
+  min-width: 260px;
+}
+
+.table-marketplace-btns {
+  flex-direction: column;
+  min-width: 140px;
+}
+
+.review-cta-btns {
+  flex-direction: column;
+  flex: 1;
+  min-width: 250px;
+}
+
+.guide-marketplace-btns {
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.section-nav-btns {
+  display: flex;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .section-nav-btns .btn {
+    flex: 1 1 140px;
+    font-size: 0.7rem;
+    padding: 0 10px;
+  }
+}
+
+/* ── Category Cards ── */
+.categories-section {
+  padding: var(--space-4xl) 0;
+}
+
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-lg);
+}
+
+.category-card {
+  background: var(--gradient-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: var(--space-2xl);
+  text-align: center;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.category-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--gradient-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition-normal);
+}
+
+.category-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--accent-cyan);
+  box-shadow: var(--shadow-card-hover);
+  background: var(--bg-card-hover);
+}
+
+.category-card:hover::before {
+  transform: scaleX(1);
+}
+
+.category-icon {
+  margin-bottom: var(--space-md);
+  display: inline-flex;
+}
+
+.category-card h3 {
+  font-size: 1rem;
+  margin-bottom: var(--space-sm);
+  color: var(--text-white);
+}
+
+.category-card p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: var(--space-md);
+}
+
+.category-count {
+  display: inline-block;
+  margin-top: auto;
+  margin-top: var(--space-lg); /* Fallback */
+  margin-top: auto;
+  background: rgba(0, 240, 255, 0.1);
+  color: var(--accent-cyan);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: var(--space-xs) var(--space-md);
+  border-radius: var(--radius-full);
+}
+
+/* ── Product Cards ── */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--space-xl);
+}
+
+.product-card {
+  background: var(--gradient-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: all var(--transition-normal);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(0, 240, 255, 0.4);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.product-card-badge {
+  position: absolute;
+  top: var(--space-md);
+  left: var(--space-md);
+  z-index: 5;
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.badge-top {
+  background: rgba(168, 85, 247, 0.9);
+  color: white;
+}
+
+.badge-best {
+  background: rgba(0, 255, 136, 0.9);
+  color: #111;
+}
+
+.badge-new {
+  background: rgba(0, 240, 255, 0.9);
+  color: #111;
+}
+
+.badge-hot {
+  background: rgba(255, 68, 68, 0.9);
+  color: white;
+}
+
+.product-image {
+  width: 100%;
+  height: 220px;
+  background: var(--bg-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.product-card:hover .product-image img {
+  transform: scale(1.05);
+}
+
+.product-image .placeholder-icon {
+  font-size: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.product-image .placeholder-icon:not(:has(img)) {
+  opacity: 0.3;
+}
+
+/* Rating */
+.product-rating {
+  position: absolute;
+  top: var(--space-md);
+  right: var(--space-md);
+  background: rgba(10, 10, 26, 0.9);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: var(--space-xs) var(--space-sm);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  z-index: 5;
+}
+
+.product-rating .rating-value {
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--accent-orange);
+}
+
+.product-rating .rating-star {
+  color: var(--accent-orange);
+  font-size: 0.9rem;
+}
+
+.product-info {
+  padding: var(--space-lg);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-category-tag {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--accent-purple);
+  margin-bottom: var(--space-sm);
+}
+
+.product-info h3 {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: var(--space-sm);
+  color: var(--text-white);
+  line-height: 1.4;
+}
+
+.product-description {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-md);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  flex: 1;
+}
+
+.product-pros-cons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-md);
+  font-size: 0.8rem;
+}
+
+.pro-item, .con-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.pro-item::before {
+  content: '✅';
+  font-size: 0.7rem;
+  flex-shrink: 0;
+}
+
+.con-item::before {
+  content: '❌';
+  font-size: 0.7rem;
+  flex-shrink: 0;
+}
+
+.pro-item {
+  color: var(--accent-green);
+}
+
+.con-item {
+  color: var(--accent-red);
+}
+
+.product-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--border-color);
+}
+
+.product-price {
+  display: flex;
+  flex-direction: column;
+}
+
+.product-price .price-current {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--accent-green);
+}
+
+.product-price .price-old {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-decoration: line-through;
+}
+
+/* ── Featured Review (Hero Card) ── */
+.featured-review {
+  padding: var(--space-4xl) 0;
+  background: var(--bg-secondary);
+}
+
+.featured-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3xl);
+  background: var(--gradient-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  padding: var(--space-3xl);
+  position: relative;
+}
+
+.featured-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--gradient-accent);
+}
+
+.featured-image {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--bg-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 350px;
+}
+
+.featured-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.featured-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.featured-content .review-label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--accent-cyan);
+  margin-bottom: var(--space-md);
+}
+
+.featured-content h2 {
+  margin-bottom: var(--space-md);
+  color: var(--text-white);
+}
+
+.featured-content p {
+  color: var(--text-secondary);
+  margin-bottom: var(--space-xl);
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+.featured-rating-display {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-xl);
+}
+
+.rating-circle {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--bg-primary);
+  background: var(--gradient-accent);
+  position: relative;
+}
+
+.rating-circle::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  background: var(--gradient-accent);
+  z-index: -1;
+  opacity: 0.3;
+  filter: blur(8px);
+}
+
+.rating-stars {
+  display: flex;
+  gap: 2px;
+  color: var(--accent-orange);
+  font-size: 1.1rem;
+}
+
+.rating-text {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* ── Comparison Table ── */
+.comparison-section {
+  padding: var(--space-4xl) 0;
+}
+
+.comparison-table-wrapper {
+  overflow-x: auto;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+}
+
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.comparison-table thead {
+  background: var(--bg-surface);
+}
+
+.comparison-table th {
+  padding: var(--space-lg);
+  text-align: left;
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--accent-cyan);
+  border-bottom: 2px solid var(--border-color);
+  white-space: normal;
+  min-width: 250px;
+}
+
+.comparison-table td {
+  padding: var(--space-md) var(--space-lg);
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  vertical-align: middle;
+}
+
+.comparison-table tbody tr {
+  transition: background var(--transition-fast);
+}
+
+.comparison-table tbody tr:hover {
+  background: rgba(0, 240, 255, 0.03);
+}
+
+.comparison-table .product-name-cell {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  color: var(--text-white);
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.comparison-table .mini-img {
+  width: 50px;
+  height: 50px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.comparison-table .table-rating {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.comparison-table .table-rating .score {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--accent-orange);
+}
+
+/* ── Top 5 Section ── */
+.top5-section {
+  padding: var(--space-4xl) 0;
+  background: var(--bg-secondary);
+}
+
+.top5-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.top5-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-xl);
+  background: var(--gradient-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  transition: all var(--transition-normal);
+  cursor: pointer;
+}
+
+.top5-body {
+  display: grid;
+  grid-template-columns: 60px 80px 1fr;
+  gap: var(--space-xl);
+  align-items: center;
+  flex: 1;
+}
+
+.top5-image {
+  width: 80px;
+  height: 80px;
+  background: var(--bg-primary);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  font-size: 2.5rem;
+  flex-shrink: 0;
+}
+
+.top5-image a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.top5-item:hover {
+  border-color: rgba(0, 240, 255, 0.4);
+  box-shadow: var(--shadow-card-hover);
+  transform: translateX(8px);
+}
+
+.top5-rank {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 900;
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-align: center;
+}
+
+.top5-info h3 {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-white);
+  margin-bottom: var(--space-xs);
+}
+
+.top5-info p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.top5-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--space-sm);
+}
+
+.top5-meta .price {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--accent-green);
+  font-size: 1.1rem;
+}
+
+/* ── Ad Slots ── */
+.ad-slot {
+  background: var(--bg-card);
+  border: 1px dashed var(--border-color);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: relative;
+  overflow: hidden;
+}
+
+.ad-slot::before {
+  content: '📢 Espaço Publicitário';
+  opacity: 0.5;
+}
+
+.ad-slot-leaderboard {
+  height: 100px;
+  margin: var(--space-xl) 0;
+}
+
+.ad-slot-sidebar {
+  height: 280px;
+  margin-bottom: var(--space-xl);
+}
+
+.ad-slot-in-article {
+  height: 120px;
+  margin: var(--space-2xl) 0;
+}
+
+/* ── Newsletter ── */
+.newsletter-section {
+  padding: var(--space-4xl) 0;
+}
+
+.newsletter-box {
+  background: var(--gradient-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  padding: var(--space-3xl);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.newsletter-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--gradient-accent);
+}
+
+.newsletter-box h2 {
+  color: var(--text-white);
+  margin-bottom: var(--space-sm);
+}
+
+.newsletter-box p {
+  color: var(--text-secondary);
+  margin-bottom: var(--space-xl);
+}
+
+.newsletter-form {
+  display: flex;
+  gap: var(--space-md);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.newsletter-form input {
+  flex: 1;
+  padding: 0.8rem 1.4rem;
+  background: var(--bg-input);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-full);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  outline: none;
+  transition: all var(--transition-fast);
+}
+
+.newsletter-form input:focus {
+  border-color: var(--accent-cyan);
+  box-shadow: var(--shadow-glow-cyan);
+}
+
+/* ── Footer ── */
+.footer {
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border-color);
+  padding: var(--space-3xl) 0 var(--space-xl);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: var(--space-3xl);
+  margin-bottom: var(--space-2xl);
+}
+
+.footer-brand p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin: var(--space-md) 0;
+  line-height: 1.8;
+}
+
+.footer-social {
+  display: flex;
+  gap: var(--space-md);
+  margin-top: var(--space-md);
+}
+
+.footer-social a {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  transition: all var(--transition-fast);
+}
+
+.footer-social a:hover {
+  border-color: var(--accent-cyan);
+  color: var(--accent-cyan);
+  transform: translateY(-2px);
+}
+
+.footer-column h4 {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--text-white);
+  margin-bottom: var(--space-lg);
+}
+
+.footer-column ul {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.footer-column a {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  transition: all var(--transition-fast);
+}
+
+.footer-column a:hover {
+  color: var(--accent-cyan);
+  padding-left: var(--space-sm);
+}
+
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: var(--space-xl);
+  border-top: 1px solid var(--border-color);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.affiliate-disclaimer {
+  background: rgba(255, 153, 0, 0.08);
+  border: 1px solid rgba(255, 153, 0, 0.2);
+  border-radius: var(--radius-md);
+  padding: var(--space-md) var(--space-lg);
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: var(--space-xl);
+}
+
+.affiliate-disclaimer strong {
+  color: var(--accent-orange);
+}
+
+/* ── Sidebar Layout ── */
+.content-with-sidebar {
+  display: grid;
+  grid-template-columns: 1fr var(--sidebar-width);
+  gap: var(--space-2xl);
+  padding: var(--space-3xl) 0;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.sidebar-widget {
+  background: var(--gradient-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+}
+
+.sidebar-widget h4 {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--accent-cyan);
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-sm);
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* ── Scroll to Top ── */
+.scroll-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 48px;
+  height: 48px;
+  background: var(--gradient-accent);
+  border: none;
+  border-radius: var(--radius-full);
+  color: var(--bg-primary);
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: all var(--transition-normal);
+  z-index: 999;
+  box-shadow: var(--shadow-glow-cyan);
+}
+
+.scroll-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.scroll-to-top:hover {
+  transform: translateY(-4px);
+}
+
+/* ── Loading Skeleton ── */
+.skeleton {
+  background: linear-gradient(90deg, var(--bg-card) 25%, var(--bg-surface) 50%, var(--bg-card) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: var(--radius-sm);
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .content-with-sidebar {
+    grid-template-columns: 1fr;
+  }
+  
+  .sidebar {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  
+  .sidebar-widget {
+    flex: 1 1 280px;
+  }
+  
+  .featured-card {
+    grid-template-columns: 1fr;
+  }
+  
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --header-height: 60px;
+  }
+  
+  .container {
+    padding: 0 var(--space-md);
+  }
+  
+  .nav-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    max-width: 320px;
+    height: 100vh;
+    background: rgba(10, 10, 26, 0.98);
+    backdrop-filter: blur(20px);
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--space-xl);
+    transition: right var(--transition-normal);
+    border-left: 1px solid var(--border-color);
+    padding: var(--space-2xl);
+    z-index: 1000;
+  }
+  
+  .nav-menu.active {
+    right: 0;
+  }
+  
+  .menu-toggle {
+    display: flex;
+  }
+  
+  .search-bar {
+    display: none;
+  }
+  
+  .hero {
+    min-height: 70vh;
+    padding: var(--space-3xl) 0;
+  }
+  
+  .hero-content {
+    padding: var(--space-md);
+  }
+  
+  .hero-stats {
+    flex-direction: column;
+    gap: var(--space-lg);
+  }
+  
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .categories-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .products-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .top5-item {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-sm);
+    padding: var(--space-md);
+  }
+  
+  .top5-body {
+    display: grid;
+    grid-template-columns: 40px 60px 1fr;
+    gap: var(--space-md);
+    align-items: center;
+  }
+  
+  .top5-rank { 
+    font-size: 1.2rem;
+    font-weight: 800;
+  }
+  
+  .top5-image { 
+    width: 60px; 
+    height: 60px;
+    font-size: 1.5rem;
+  }
+  
+  .top5-info h3 { 
+    font-size: 0.85rem; 
+    line-height: 1.3;
+  }
+
+  .top5-info p {
+    font-size: 0.7rem;
+    margin-top: 2px;
+  }
+  
+  /* Top 5 meta: stack price on top, buttons below */
+  .top5-meta {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-sm);
+    padding-top: var(--space-sm);
+    border-top: 1px solid var(--border-color);
+    width: 100%;
+  }
+
+  .top5-meta .price {
+    font-size: 0.95rem;
+    text-align: center;
+  }
+
+  .top5-marketplace-btns {
+    flex-direction: row;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .top5-marketplace-btns .btn {
+    flex: 1;
+    font-size: 0.75rem;
+    padding: 0 8px;
+    height: 38px;
+  }
+
+  /* Review CTA: full width stacked buttons */
+  .review-cta-btns {
+    flex-direction: column;
+    min-width: 0;
+    width: 100%;
+  }
+
+  .review-cta-btns .btn {
+    width: 100%;
+    font-size: 0.8rem;
+    height: 48px;
+  }
+
+  /* Guide: full width stacked buttons */
+  .guide-marketplace-btns {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .guide-marketplace-btns .btn {
+    width: 100%;
+    font-size: 0.8rem;
+    height: 48px;
+  }
+
+  /* Product card marketplace buttons */
+  .product-marketplace-btns {
+    flex-direction: row;
+    width: 100%;
+  }
+
+  .product-marketplace-btns .btn {
+    flex: 1;
+    font-size: 0.7rem;
+    padding: 0 8px;
+    height: 38px;
+  }
+  
+  .newsletter-form {
+    flex-direction: column;
+  }
+  
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+  
+  .footer-bottom {
+    flex-direction: column;
+    gap: var(--space-md);
+    text-align: center;
+  }
+  
+  .comparison-table {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .categories-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .hero h1 {
+    font-size: 1.6rem;
+  }
+}
+
+/*
+ * MOBILE SECTION PADDING FIX
+ * Sections use padding: var(--space-3xl) (= 4rem = 64px) in inline styles.
+ * On a ~390px screen that eats 128px, leaving only ~246px for content.
+ * This must override inline styles, hence !important.
+ */
+@media (max-width: 768px) {
+  /* All major section wrappers with excessive inline padding */
+  #cat-top5 > div,
+  #cat-guide > div,
+  #panel-build1 > div,
+  #panel-build2 > div {
+    padding: var(--space-md) !important;
+    border-radius: var(--radius-lg) !important;
+  }
+
+  /* PC build tab buttons */
+  #pc-guide > div:first-child {
+    gap: var(--space-xs) !important;
+  }
+
+  #pc-guide .btn {
+    min-width: 140px !important;
+    font-size: 0.75rem;
+  }
+
+  /* Featured guide content card */
+  #cat-guide .fade-in,
+  #featured-guide-container .fade-in {
+    padding: var(--space-md) !important;
+    margin-bottom: var(--space-lg) !important;
+  }
+
+  /* Guide featured product layout: stack vertically */
+  #cat-guide .fade-in > div[style*="display: flex"][style*="flex-wrap"] {
+    flex-direction: column !important;
+  }
+
+  /* Guide featured image: full width */
+  #cat-guide .fade-in > div > div[style*="max-width: 250px"] {
+    max-width: 100% !important;
+    width: 100% !important;
+    height: 180px !important;
+  }
+
+  /* Guide featured text area: full width */
+  #cat-guide .fade-in > div > div[style*="flex: 1 1 250px"] {
+    min-width: 100% !important;
+  }
+
+  /* Guide title font size */
+  #cat-guide h3[style*="font-size: 1.5rem"] {
+    font-size: 1.2rem !important;
+  }
+
+  /* Guide previous/next nav: compact */
+  #cat-guide .fade-in > div[style*="justify-content: space-between"] {
+    flex-wrap: wrap !important;
+    gap: 6px !important;
+    padding: 6px 10px !important;
+  }
+
+  /* ── Review Page Mobile Fixes ── */
+
+  /* CTA box: stack price + buttons vertically */
+  .review-cta-box {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    padding: var(--space-lg) !important;
+    gap: var(--space-md) !important;
+  }
+
+  /* Price area: remove min-width so it doesn't overflow */
+  .review-cta-price {
+    min-width: 0 !important;
+    width: 100% !important;
+  }
+
+  /* Pros & Cons grid: stack vertically */
+  .review-pros-cons {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Product image area: reduce padding and height */
+  .review-product-image-box {
+    padding: var(--space-lg) !important;
+  }
+
+  .review-product-image-inner {
+    height: 200px !important;
+    font-size: 5rem !important;
+  }
+
+  /* Verdict section: tighter padding */
+  .review-verdict {
+    padding: var(--space-xl) var(--space-md) !important;
+  }
+
+  /* Verdict buttons: stack vertically */
+  .review-verdict-btns {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+
+  /* Prevent content from overflowing horizontally */
+  #review-content {
+    overflow-x: hidden;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  #review-content article {
+    min-width: 0;
+    overflow: hidden;
+  }
+}
+
+/* ═══════════════════════════════════════════
+   GAMES & CONSOLES — Platform Buttons
+   ═══════════════════════════════════════════ */
+
+/* Base Platform Button - Standardized */
+.btn-platform {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 var(--space-lg);
+  height: 48px;
+  border-radius: var(--radius-full);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all var(--transition-normal);
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  color: #fff;
+}
+
+.btn-platform:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.15);
+}
+
+.btn-platform.btn-lg {
+  height: 48px;
+  font-size: 0.85rem;
+  padding: 0 var(--space-xl);
+}
+
+/* Platform Color Variants */
+.btn-platform-ps5      { background: linear-gradient(135deg, #0070D1, #004AAD); color: #fff; }
+.btn-platform-ps5:hover { box-shadow: 0 0 20px rgba(0, 112, 209, 0.5); color: #fff; }
+
+.btn-platform-ps4      { background: linear-gradient(135deg, #003087, #001D5C); color: #fff; }
+.btn-platform-ps4:hover { box-shadow: 0 0 20px rgba(0, 48, 135, 0.5); color: #fff; }
+
+.btn-platform-xbox-sx  { background: linear-gradient(135deg, #107C10, #0B5E0B); color: #fff; }
+.btn-platform-xbox-sx:hover { box-shadow: 0 0 20px rgba(16, 124, 16, 0.5); color: #fff; }
+
+.btn-platform-xbox-one { background: linear-gradient(135deg, #0E7A0D, #065406); color: #fff; }
+.btn-platform-xbox-one:hover { box-shadow: 0 0 20px rgba(14, 122, 13, 0.5); color: #fff; }
+
+.btn-platform-switch2  { background: linear-gradient(135deg, #E60012, #B3000E); color: #fff; }
+.btn-platform-switch2:hover { box-shadow: 0 0 20px rgba(230, 0, 18, 0.5); color: #fff; }
+
+.btn-platform-switch   { background: linear-gradient(135deg, #E60012, #B3000E); color: #fff; }
+.btn-platform-switch:hover { box-shadow: 0 0 20px rgba(230, 0, 18, 0.5); color: #fff; }
+
+.btn-platform-pc-steam { background: linear-gradient(135deg, #1B2838, #0E1A26); color: #66C0F4; }
+.btn-platform-pc-steam:hover { box-shadow: 0 0 20px rgba(102, 192, 244, 0.4); color: #66C0F4; }
+
+.btn-platform-pc-epic  { background: linear-gradient(135deg, #313131, #1A1A1A); color: #fff; }
+.btn-platform-pc-epic:hover { box-shadow: 0 0 20px rgba(49, 49, 49, 0.6); color: #fff; }
+
+.btn-platform-pc-gog   { background: linear-gradient(135deg, #a855f7, #7C3AED); color: #fff; }
+.btn-platform-pc-gog:hover { box-shadow: 0 0 20px rgba(168, 85, 247, 0.5); color: #fff; }
+
+/* Platform Buttons Container */
+.platform-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  width: 100%;
+}
+
+.platform-buttons .btn-platform {
+  flex: 1 1 auto;
+  min-width: 140px;
+}
+
+/* ── Platform Badges (small indicators) ── */
+.platform-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 6px;
+}
+
+.platform-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  border: 1px solid;
+}
+
+.platform-badge-ps5     { background: rgba(0,112,209,0.15); border-color: rgba(0,112,209,0.4); color: #4DA6FF; }
+.platform-badge-ps4     { background: rgba(0,48,135,0.15); border-color: rgba(0,48,135,0.4); color: #5B8FCC; }
+.platform-badge-xbox-sx { background: rgba(16,124,16,0.15); border-color: rgba(16,124,16,0.4); color: #3DD83D; }
+.platform-badge-xbox-one{ background: rgba(14,122,13,0.15); border-color: rgba(14,122,13,0.4); color: #2ABE29; }
+.platform-badge-switch2 { background: rgba(230,0,18,0.15); border-color: rgba(230,0,18,0.4); color: #FF5A66; }
+.platform-badge-switch  { background: rgba(230,0,18,0.15); border-color: rgba(230,0,18,0.4); color: #FF5A66; }
+.platform-badge-pc-steam{ background: rgba(27,40,56,0.3); border-color: rgba(102,192,244,0.4); color: #66C0F4; }
+.platform-badge-pc-epic { background: rgba(49,49,49,0.3); border-color: rgba(255,255,255,0.2); color: #ccc; }
+.platform-badge-pc-gog  { background: rgba(168,85,247,0.15); border-color: rgba(168,85,247,0.4); color: #C084FC; }
+
+/* ── Games Filter Bar ── */
+.games-filter-bar {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: var(--space-md);
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--space-xl);
+}
+
+.games-filter-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid var(--border-color);
+  background: transparent;
+  color: var(--text-secondary);
+  transition: all var(--transition-fast);
+}
+
+.games-filter-chip:hover,
+.games-filter-chip.active {
+  border-color: var(--accent-cyan);
+  background: rgba(0, 240, 255, 0.1);
+  color: var(--accent-cyan);
+}
+
+/* ── Sub-section tab buttons ── */
+.subsection-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-xl);
+  padding: var(--space-md) 0;
+  border-bottom: 1px solid var(--border-color);
+  background: var(--bg-primary);
+}
+
+.subsection-tab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-md);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  background: transparent;
+  color: var(--text-white);
+  border: 1px solid var(--border-color);
+  transition: all var(--transition-fast);
+}
+
+.subsection-tab:hover {
+  background: rgba(255,255,255,0.05);
+  border-color: rgba(255,255,255,0.2);
+}
+
+.subsection-tab.active {
+  background: var(--cat-gradient, var(--gradient-accent));
+  color: #111;
+  border-color: transparent;
+}
+
+/* ── Mobile: Platform Buttons ── */
+@media (max-width: 768px) {
+  .platform-buttons {
+    flex-direction: column;
+  }
+  .platform-buttons .btn-platform {
+    min-width: unset;
+    width: 100%;
+  }
+  .subsection-tabs {
+    flex-wrap: wrap;
+  }
+  .subsection-tab {
+    flex: 1 1 auto;
+    font-size: 0.75rem;
+  }
+}
+/* ── Platform UI Elements ── */
+.platform-badges {
+  display: flex;
+  gap: var(--space-xs);
+  flex-wrap: wrap;
+  margin-top: var(--space-sm);
+}
+
+.platform-badge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-secondary);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  text-transform: uppercase;
+}
+
+/* Platform specific colors */
+.platform-badge-ps5, .btn-platform-ps5 { --plat-color: #003791; }
+.platform-badge-ps4, .btn-platform-ps4 { --plat-color: #003791; }
+.platform-badge-xbox-series, .btn-platform-xbox-series { --plat-color: #107c10; }
+.platform-badge-xbox-one, .btn-platform-xbox-one { --plat-color: #107c10; }
+.platform-badge-switch, .btn-platform-switch { --plat-color: #e60012; }
+.platform-badge-switch-2, .btn-platform-switch-2 { --plat-color: #e60012; }
+.platform-badge-pc, .btn-platform-pc { --plat-color: #171a21; }
+
+.platform-badge[class*="platform-badge-"] {
+  background: rgba(var(--plat-color-rgb, 255, 255, 255), 0.1);
+  border-color: var(--plat-color);
+  color: var(--plat-color);
+}
+
+.platform-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: var(--space-md);
+}
+
+.btn-platform {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  height: 48px !important;
+  border-radius: var(--radius-full);
+  text-decoration: none;
+  font-family: var(--font-body);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(20, 20, 30, 0.6);
+  color: var(--text-white);
+  padding: 0 20px;
+}
+
+/* Internal layout */
+.btn-platform .btn-icon {
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-platform .btn-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1.1;
+  flex: 1;
+}
+
+.btn-platform .btn-text strong {
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #fff;
+}
+
+.btn-platform .btn-text small {
+  font-size: 0.65rem;
+  opacity: 0.7;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Amazon Style */
+.btn-platform.btn-amazon {
+  background: linear-gradient(135deg, #ff9900 0%, #ffb84d 100%);
+  border-color: #ff9900;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+  color: #111;
+}
+.btn-platform.btn-amazon:hover {
+  background: linear-gradient(135deg, #ffa31a 0%, #ffc266 100%);
+  border-color: #ffa31a;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(255, 153, 0, 0.4);
+}
+.btn-platform.btn-amazon .btn-icon {
+  color: #111;
+}
+.btn-platform.btn-amazon .btn-text strong {
+  color: #111;
+}
+.btn-platform.btn-amazon .btn-text small {
+  color: rgba(17, 17, 17, 0.75);
+}
+
+/* Mercado Livre Style */
+.btn-platform.btn-mercadolivre {
+  background: #FFE600;
+  border-color: #FFE600;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+.btn-platform.btn-mercadolivre .btn-text strong {
+  color: #2D3277;
+}
+.btn-platform.btn-mercadolivre .btn-text small {
+  color: rgba(45, 50, 119, 0.7);
+}
+.btn-platform.btn-mercadolivre:hover {
+  background: #fff059;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(255, 230, 0, 0.4);
+}
+.btn-platform.btn-mercadolivre .btn-icon {
+  color: #2D3277;
+}
+
+/* Generic Store Style */
+.btn-platform.btn-store {
+  background: var(--bg-surface);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.btn-platform.btn-store:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--plat-color);
+  box-shadow: 0 6px 15px rgba(var(--plat-color-rgb, 255,255,255), 0.2);
+}
+.btn-platform.btn-store .btn-icon {
+  color: var(--plat-color);
+}
+.btn-platform.btn-store .btn-text small {
+  color: var(--plat-color);
+}
+
+/* ── Global Page Components ── */
+.page-hero {
+  text-align: center;
+  padding: var(--space-4xl) 0 var(--space-xl);
+  background: var(--gradient-card);
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: var(--space-xl);
+}
+
+.page-hero h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: var(--space-sm);
+  font-weight: 900;
+}
+
+.page-content {
+  padding: var(--space-xl) 0 var(--space-4xl);
+  color: var(--text-secondary);
+  line-height: 1.8;
+  font-size: 1.1rem;
+}
+
+/* ── Contact Page Specific ── */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: var(--space-3xl);
+  align-items: start;
+}
+
+@media (max-width: 992px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-2xl);
+  }
+}
+
+.info-group {
+  display: flex;
+  gap: var(--space-md);
+  margin-bottom: var(--space-xl);
+}
+
+.info-icon {
+  font-size: 1.5rem;
+  width: 44px;
+  height: 44px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.info-text h4 {
+  color: var(--text-white);
+  font-size: 1.1rem;
+  margin-bottom: 4px;
+  font-family: var(--font-heading);
+}
+
+.info-text p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.transparency-notice {
+  margin-top: var(--space-2xl);
+  padding: var(--space-lg);
+  background: rgba(var(--cat-accent-rgb, 255,215,0), 0.05);
+  border-left: 4px solid var(--cat-accent, var(--accent-primary));
+  border-radius: var(--radius-sm);
+}
+
+/* ── Form Styling ── */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  margin-bottom: var(--space-sm);
+}
+
+.form-group label {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 0.9rem 1.2rem;
+  background: var(--bg-input);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  transition: all var(--transition-fast);
+  outline: none;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.15);
+  background: var(--bg-surface);
+}
+
+.form-group select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2378716c' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1.2em;
+  padding-right: 3rem;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+@media (max-width: 768px) {
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    font-size: 0.95rem;
+    padding: 0.8rem 1rem;
+  }
+}
+
+/* ================================================================
+   Avatar: Invasão da Nação do Fogo (MTG Team-Up) — Stylesheet Premium
+   ================================================================ */
+
+:root {
+  --fire-primary: #e11d48;
+  --fire-primary-rgb: 225, 29, 72;
+  --fire-gold: #eab308;
+  --fire-gold-rgb: 234, 179, 8;
+  --fire-dark: #0f0506;
+  --fire-card-bg: rgba(26, 12, 13, 0.8);
+  
+  --water-primary: #0ea5e9;
+  --water-dark: #041d2d;
+  
+  --earth-primary: #10b981;
+  --earth-dark: #052316;
+  
+  --spirit-primary: #a855f7;
+  --spirit-dark: #220835;
+
+  --card-width: 250px;
+  --card-height: 350px;
+  --card-border-radius: 12px;
+}
+
+/* Page Layout */
+.avatar-page {
+  background-color: var(--fire-dark);
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(225, 29, 72, 0.05) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(234, 179, 8, 0.05) 0%, transparent 40%);
+  color: var(--text-white);
+  padding-top: calc(var(--header-height) + var(--space-xl));
+  min-height: 100vh;
+}
+
+.avatar-hero {
+  text-align: center;
+  padding: var(--space-2xl) 0 var(--space-xl);
+  position: relative;
+  overflow: hidden;
+}
+
+.avatar-hero h1 {
+  font-size: 3rem;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  letter-spacing: -1px;
+  margin-bottom: var(--space-md);
+  text-transform: uppercase;
+  background: linear-gradient(135deg, #ff7e5f 0%, #feb47b 50%, #e11d48 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 2px 10px rgba(225, 29, 72, 0.3));
+}
+
+.avatar-hero p {
+  max-width: 700px;
+  margin: 0 auto;
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+/* Glassmorphism Panels */
+.panel-glass {
+  background: var(--fire-card-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(225, 29, 72, 0.15);
+  border-radius: var(--radius-xl);
+  padding: var(--space-2xl);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.05);
+  margin-bottom: var(--space-2xl);
+  transition: border-color 0.3s, box-shadow 0.3s;
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
+.panel-glass:hover {
+  border-color: rgba(225, 29, 72, 0.3);
+  box-shadow: 0 15px 50px rgba(225, 29, 72, 0.1);
+}
+
+/* Grid Layouts */
+.game-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-xl);
+  margin-bottom: var(--space-3xl);
+}
+
+.game-grid > * {
+  min-width: 0;
+}
+
+@media (min-width: 992px) {
+  .game-grid {
+    grid-template-columns: 350px 1fr;
+  }
+}
+
+/* Setup Panel Styles */
+.setup-group {
+  margin-bottom: var(--space-xl);
+}
+
+.setup-group label {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--fire-gold);
+  margin-bottom: var(--space-sm);
+}
+
+.btn-player-select {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  width: 100%;
+}
+
+.btn-player-select button {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-weight: 700;
+  transition: all 0.2s;
+  min-width: 0;
+  width: 100%;
+  white-space: normal;
+  word-break: break-word;
+}
+
+.btn-player-select button.active {
+  background: rgba(225, 29, 72, 0.15);
+  border-color: var(--fire-primary);
+  color: var(--text-white);
+  box-shadow: 0 0 15px rgba(225, 29, 72, 0.3);
+}
+
+.btn-player-select button:hover:not(.active) {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-white);
+}
+
+/* Life Trackers */
+.life-tracker-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+  margin-top: var(--space-xl);
+}
+
+.life-box {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md);
+  text-align: center;
+}
+
+.life-box.heroes {
+  border-left: 3px solid var(--water-primary);
+}
+
+.life-box.bosses {
+  border-left: 3px solid var(--fire-primary);
+}
+
+.life-box h4 {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: var(--space-xs);
+  letter-spacing: 0.5px;
+}
+
+.life-value {
+  font-size: 2.2rem;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  color: var(--text-white);
+  margin: var(--space-xs) 0;
+}
+
+.life-controls {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-md);
+}
+
+.life-controls button {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-white);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.life-controls button:hover {
+  background: var(--fire-primary);
+  border-color: var(--fire-primary);
+  box-shadow: 0 0 10px rgba(225, 29, 72, 0.4);
+}
+
+/* Companion Engine Grid */
+.engine-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-xl);
+}
+
+@media (min-width: 768px) {
+  .engine-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Active Bosses & Battlefield */
+.active-bosses-panel {
+  border-left: 4px solid var(--fire-primary);
+}
+
+.battlefield-panel {
+  border-left: 4px solid var(--fire-gold);
+}
+
+.boss-cards-row, .battlefield-cards-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  margin-top: var(--space-md);
+  min-height: 100px;
+}
+
+/* Event Deck Controls */
+.deck-card-back {
+  width: 140px;
+  height: 196px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #2e080c 0%, #150204 100%);
+  border: 2px solid #5a1219;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.deck-card-back:hover {
+  transform: translateY(-5px) scale(1.03);
+  border-color: var(--fire-primary);
+  box-shadow: 0 8px 25px rgba(225, 29, 72, 0.4);
+}
+
+.deck-card-back .logo-mini {
+  width: 50px;
+  height: 50px;
+  background: var(--fire-primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  box-shadow: 0 0 15px rgba(225, 29, 72, 0.5);
+  margin-bottom: 8px;
+}
+
+.deck-card-back .deck-count {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  font-weight: bold;
+}
+
+.drawn-cards-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  margin-top: var(--space-md);
+  min-height: 196px;
+}
+
+/* Virtual Magic Card (Estilo MTG) */
+.mtg-card-wrapper {
+  perspective: 1000px;
+  width: var(--card-width);
+  height: var(--card-height);
+  cursor: pointer;
+}
+
+.mtg-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--card-border-radius);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+  transform-style: preserve-3d;
+  transition: transform 0.1s ease;
+  background: #111;
+  border: 6px solid #1c1c1c; /* Borda preta de Magic */
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+  font-family: 'Inter', sans-serif;
+  overflow: hidden;
+}
+
+/* Molduras por Elemento/Facção */
+.mtg-card.element-fire {
+  background: linear-gradient(135deg, #3d1115 0%, #1c0507 100%);
+  border-color: #631821;
+}
+
+.mtg-card.element-water {
+  background: linear-gradient(135deg, #102d42 0%, #05131c 100%);
+  border-color: #1a4d70;
+}
+
+.mtg-card.element-earth {
+  background: linear-gradient(135deg, #113320 0%, #05130b 100%);
+  border-color: #1e5a39;
+}
+
+.mtg-card.element-spirit {
+  background: linear-gradient(135deg, #270f3d 0%, #0c0414 100%);
+  border-color: #4b1f73;
+}
+
+/* Card Header */
+.mtg-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  padding: 4px 8px;
+  margin-bottom: 4px;
+}
+
+.mtg-card-name {
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--text-white);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mtg-card-mana {
+  font-size: 0.8rem;
+  display: flex;
+  gap: 2px;
+}
+
+.mana-circle {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #ccc;
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  font-weight: bold;
+}
+
+.mana-circle.red { background: #f97316; color: #fff; }
+.mana-circle.white { background: #fef08a; color: #000; }
+.mana-circle.blue { background: #3b82f6; color: #fff; }
+
+/* Card Image Area */
+.mtg-card-art {
+  width: 100%;
+  height: 130px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin-bottom: 4px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Standard art styles when no custom art is loaded */
+.art-fire { background: linear-gradient(45deg, #b91c1c, #f97316); }
+.art-water { background: linear-gradient(45deg, #0369a1, #38bdf8); }
+.art-earth { background: linear-gradient(45deg, #047857, #34d399); }
+.art-spirit { background: linear-gradient(45deg, #6d28d9, #a78bfa); }
+
+/* Art overlay pattern */
+.mtg-card-art::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(rgba(0,0,0,0) 60%, rgba(0,0,0,0.5));
+  pointer-events: none;
+}
+
+/* Card Type Line */
+.mtg-card-type-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  padding: 3px 8px;
+  margin-bottom: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-white);
+}
+
+.mtg-card-symbol {
+  font-size: 0.75rem;
+}
+
+/* Card Rules Box */
+.mtg-card-text-box {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  padding: 6px 8px;
+  font-size: 0.72rem;
+  line-height: 1.3;
+  color: #ddd;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.mtg-card-text-box p {
+  margin-bottom: 6px;
+}
+
+.mtg-card-text-box p:last-child {
+  margin-bottom: 0;
+}
+
+.mtg-card-flavor {
+  font-style: italic;
+  color: #aaa;
+  margin-top: auto;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 4px;
+  font-size: 0.68rem;
+}
+
+/* Power & Toughness box */
+.mtg-card-pt {
+  align-self: flex-end;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-size: 0.8rem;
+  font-weight: 800;
+  margin-top: 4px;
+  color: var(--text-white);
+  box-shadow: inset 0 1px 2px rgba(255,255,255,0.1);
+}
+
+/* Card Hologram effect */
+.mtg-card-wrapper:hover .mtg-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, 
+    transparent 40%, 
+    rgba(255, 255, 255, 0.08) 45%, 
+    rgba(255, 255, 255, 0.18) 50%, 
+    rgba(255, 255, 255, 0.08) 55%, 
+    transparent 60%
+  );
+  transform: translateX(-100%);
+  animation: shine 1.5s infinite;
+  pointer-events: none;
+  z-index: 5;
+}
+
+@keyframes shine {
+  0% { transform: translateX(-150%); }
+  50% { transform: translateX(150%); }
+  100% { transform: translateX(150%); }
+}
+
+/* 3D tilt effects controlled by JS variables */
+.mtg-card-wrapper {
+  transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.mtg-card-wrapper:hover {
+  transform: translateY(-8px) scale(1.02);
+  z-index: 10;
+}
+
+/* Card Gallery Section */
+.gallery-section {
+  padding: var(--space-3xl) 0;
+  background: rgba(0, 0, 0, 0.2);
+  border-top: 1px solid rgba(225, 29, 72, 0.1);
+}
+
+.gallery-filters {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-2xl);
+  flex-wrap: wrap;
+}
+
+.gallery-filters button {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  padding: var(--space-sm) var(--space-lg);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.gallery-filters button.active, .gallery-filters button:hover {
+  background: var(--fire-primary);
+  border-color: var(--fire-primary);
+  color: var(--text-white);
+  box-shadow: 0 0 15px rgba(225, 29, 72, 0.3);
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(var(--card-width), 1fr));
+  gap: var(--space-xl);
+  justify-items: center;
+}
+
+/* Custom Modal style */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-md);
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-container {
+  background: var(--bg-card);
+  border: 1px solid rgba(225, 29, 72, 0.2);
+  border-radius: var(--radius-xl);
+  max-width: 800px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-xl);
+  padding: var(--space-2xl);
+  position: relative;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+  animation: scaleIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+@media (min-width: 768px) {
+  .modal-container {
+    grid-template-columns: var(--card-width) 1fr;
+  }
+}
+
+.modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.modal-close:hover {
+  color: var(--fire-primary);
+}
+
+/* Card Customizer Form */
+.customizer-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.customizer-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.customizer-group label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--fire-gold);
+  text-transform: uppercase;
+}
+
+.customizer-group input, .customizer-group textarea, .customizer-group select {
+  background: rgba(0,0,0,0.3);
+  border: 1px solid var(--border-color);
+  color: var(--text-white);
+  padding: 8px 12px;
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  font-family: inherit;
+}
+
+.customizer-group input:focus, .customizer-group textarea:focus, .customizer-group select:focus {
+  outline: none;
+  border-color: var(--fire-primary);
+  box-shadow: 0 0 10px rgba(225, 29, 72, 0.2);
+}
+
+.customizer-actions {
+  display: flex;
+  gap: var(--space-sm);
+  margin-top: var(--space-lg);
+}
+
+.customizer-actions button {
+  flex: 1;
+}
+
+/* Success notice popup */
+.toast-notice {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: #10b981;
+  color: #fff;
+  padding: var(--space-md) var(--space-lg);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
+  z-index: 2000;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  animation: slideUpFade 0.3s ease-out;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes slideUpFade {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Helper styles for rules */
+.rules-list {
+  padding-left: var(--space-lg);
+}
+
+.rules-list li {
+  margin-bottom: var(--space-sm);
+  line-height: 1.5;
+}
+
+.boss-active-badge {
+  background: var(--fire-primary);
+  color: var(--text-white);
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: inline-block;
+  margin-top: 4px;
+}
+
+/* 🎲 D10 Die Styles */
+.d10-die {
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(135deg, var(--fire-primary) 0%, #be123c 100%);
+  border: 2px solid var(--fire-gold);
+  border-radius: 8px;
+  color: #fff;
+  font-weight: 800;
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 0 12px rgba(225, 29, 72, 0.4), inset 0 1px 1px rgba(255,255,255,0.2);
+  user-select: none;
+}
+.d10-die:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 18px rgba(225, 29, 72, 0.7);
+}
+.d10-die.rolling {
+  animation: rollDieAnimation 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+@keyframes rollDieAnimation {
+  0% { transform: rotate(0deg) scale(1); }
+  30% { transform: rotate(180deg) scale(1.2); }
+  60% { transform: rotate(540deg) scale(0.9); }
+  100% { transform: rotate(720deg) scale(1); }
+}
+
+/* 💀 Graveyard Grid Styles */
+.graveyard-cards-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: var(--space-md);
+  margin-top: var(--space-md);
+  min-height: 100px;
+}
+
+.graveyard-cards-row .mtg-card-wrapper {
+  transform: scale(0.8);
+  transform-origin: top left;
+  opacity: 0.55;
+  filter: grayscale(40%);
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  margin-right: -25px; /* Compensa a escala para juntar as cartas */
+  margin-bottom: -50px;
+}
+
+.graveyard-cards-row .mtg-card-wrapper:hover {
+  transform: scale(0.95);
+  opacity: 1;
+  filter: none;
+  z-index: 20;
+  margin-right: 0;
+  margin-bottom: 0;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+}
+
+/* ⚔️ Minion Defeat overlay button */
+.minion-defeat-btn {
+  background: rgba(225, 29, 72, 0.9);
+  border: 1px solid var(--fire-primary);
+  color: #fff;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 4px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  transition: background 0.2s;
+}
+
+.minion-defeat-btn:hover {
+  background: #be123c;
+}
+
+/* ================================================================
+   📱 RESPONSIVIDADE — Mobile First
+   ================================================================ */
+
+/* ── Telas muito pequenas (< 480px) ── */
+@media (max-width: 480px) {
+  :root {
+    --card-width: 160px;
+    --card-height: 224px;
+  }
+
+  /* Hero */
+  .avatar-hero h1 {
+    font-size: 1.6rem;
+    letter-spacing: -0.5px;
+  }
+
+  .avatar-hero p {
+    font-size: 0.9rem;
+    padding: 0 var(--space-md);
+  }
+
+  /* Panels */
+  .panel-glass {
+    padding: var(--space-lg);
+    border-radius: var(--radius-lg);
+  }
+
+  /* Sidebar botões de jogador */
+  .btn-player-select button {
+    font-size: 0.7rem;
+    padding: var(--space-xs) var(--space-sm);
+    line-height: 1.2;
+  }
+
+  /* Life tracker — valores menores */
+  .life-value {
+    font-size: 1.6rem;
+  }
+
+  .life-box {
+    padding: var(--space-sm);
+  }
+
+  /* Deck back menor */
+  .deck-card-back {
+    width: 110px;
+    height: 154px;
+  }
+
+  .deck-card-back .logo-mini {
+    width: 36px;
+    height: 36px;
+    font-size: 1.1rem;
+  }
+
+  /* Botão de próximo turno */
+  #btn-next-turn {
+    font-size: 0.85rem;
+    padding: var(--space-sm) var(--space-md);
+  }
+
+  /* Gallery grid */
+  .cards-grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: var(--space-md);
+  }
+
+  .gallery-filters {
+    gap: 6px;
+  }
+
+  .gallery-filters button {
+    font-size: 0.75rem;
+    padding: var(--space-xs) var(--space-md);
+  }
+
+  /* Modal fullscreen */
+  .modal-container {
+    padding: var(--space-lg);
+    border-radius: var(--radius-lg);
+    max-height: 95vh;
+  }
+
+  /* Boss cards row */
+  .boss-cards-row,
+  .battlefield-cards-row,
+  .drawn-cards-row {
+    justify-content: center;
+  }
+}
+
+/* ── Telas pequenas e médias (481px – 767px) ── */
+@media (min-width: 481px) and (max-width: 767px) {
+  :root {
+    --card-width: 200px;
+    --card-height: 280px;
+  }
+
+  .avatar-hero h1 {
+    font-size: 2rem;
+  }
+
+  .panel-glass {
+    padding: var(--space-xl);
+  }
+
+  .cards-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+
+  .life-value {
+    font-size: 1.9rem;
+  }
+
+  .deck-card-back {
+    width: 120px;
+    height: 168px;
+  }
+}
+
+/* ── Tablets (768px – 991px) ── */
+@media (min-width: 768px) and (max-width: 991px) {
+  .avatar-hero h1 {
+    font-size: 2.4rem;
+  }
+
+  .game-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Sidebar se torna uma banda horizontal no tablet */
+  .panel-glass aside {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-xl);
+  }
+}
+
+/* ── Desktop mínimo (992px+) já tratado no base ── */
+@media (min-width: 992px) {
+  .game-grid {
+    grid-template-columns: 320px 1fr;
+    align-items: start;
+  }
+}
+
+/* ── Desktop largo (1280px+) ── */
+@media (min-width: 1280px) {
+  .game-grid {
+    grid-template-columns: 360px 1fr;
+  }
+
+  :root {
+    --card-width: 250px;
+    --card-height: 350px;
+  }
+}
+
+/* ── Texto do painel lateral — nunca overflow ── */
+aside .setup-group label,
+aside .setup-group p,
+aside .setup-group span {
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+/* ── Cartas graveyard — mais compactas em mobile ── */
+@media (max-width: 600px) {
+  .graveyard-cards-row {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  }
+
+  .graveyard-cards-row .mtg-card-wrapper {
+    transform: scale(0.85);
+    margin-right: -15px;
+    margin-bottom: -40px;
+  }
+}
+
+/* ── Engine grid — 1 coluna sempre em mobile ── */
+@media (max-width: 767px) {
+  .engine-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .engine-grid > div:first-child {
+    align-items: center;
+  }
+}
+
+/* ── Toast responsivo ── */
+@media (max-width: 480px) {
+  .toast-notice {
+    bottom: 12px;
+    right: 12px;
+    left: 12px;
+    font-size: 0.85rem;
+    padding: var(--space-sm) var(--space-md);
+  }
+}
+
+  </style>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6097854898922388"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+  <main class="avatar-page">
+    <!-- Hero Section -->
+    <section class="avatar-hero">
+      <div class="container">
+        <h1>Avatar: Invasão da Nação do Fogo</h1>
+        <p>
+          Auxiliar interativo e galeria de cartas para o modo cooperativo de Magic: The Gathering. 
+          Enfrente a Nação do Fogo com seus amigos ou jogue sozinho nesta adaptação premium baseada no manual oficial.
+        </p>
+      </div>
+    </section>
+
+    <div class="container">
+      <!-- PANEL 1: CONFIGURAÇÃO E COMPANION -->
+      <div class="game-grid">
+        <!-- Sidebar de Controles e Configuração -->
+        <aside class="panel-glass">
+          <h3 style="color: var(--fire-gold); font-family: var(--font-heading); margin-bottom: var(--space-md); border-bottom: 1px solid rgba(225, 29, 72, 0.2); padding-bottom: 8px;">🎮 Painel do Jogo</h3>
+          
+          <!-- Seleção de Jogadores -->
+          <div class="setup-group">
+            <label>Quantidade de Jogadores</label>
+            <div class="btn-player-select">
+              <button id="player-2" class="active" onclick="handlePlayerChange(2)">2 Jogadores</button>
+              <button id="player-3" onclick="handlePlayerChange(3)">3 Jogadores</button>
+              <button id="player-4" onclick="handlePlayerChange(4)">4 Jogadores</button>
+            </div>
+            <p style="font-size: 0.72rem; color: var(--text-muted); margin-top: 6px; line-height: 1.3;">
+              2-3 jog.: 6 chefes aleatórios dos 11 disponíveis. 4 jog.: 10 chefes. O Event Deck sempre tem 27 cartas.
+            </p>
+          </div>
+
+          <!-- Rastreador de Vida -->
+          <div class="setup-group">
+            <label>Pontos de Vida (Compartilhados)</label>
+            <div class="life-tracker-container">
+              <div class="life-box heroes">
+                <h4>Heróis</h4>
+                <div class="life-value" id="heroes-life-val">20</div>
+                <div class="life-controls">
+                  <button onclick="adjustHeroesLife(-1)">-</button>
+                  <button onclick="adjustHeroesLife(1)">+</button>
+                </div>
+              </div>
+              <div class="life-box bosses">
+                <h4>Chefes</h4>
+                <div class="life-value" id="bosses-life-val">20</div>
+                <div class="life-controls">
+                  <button onclick="adjustBossesLife(-1)">-</button>
+                  <button onclick="adjustBossesLife(1)">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- Infos Gerais de Status -->
+          <div class="setup-group" style="background: rgba(0,0,0,0.2); padding: 12px; border-radius: var(--radius-md); border: 1px solid rgba(255, 255, 255, 0.03);">
+            <div style="display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 6px;">
+              <span style="color: var(--text-secondary);">Estágio Atual:</span>
+              <strong style="color: var(--fire-gold);" id="current-stage-val">1</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 6px;">
+              <span style="color: var(--text-secondary);">Turno do Jogo:</span>
+              <strong style="color: var(--text-white);" id="turn-count-val">1</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 6px;">
+              <span style="color: var(--text-secondary);">Cartas no Deck de Eventos:</span>
+              <strong style="color: var(--water-primary);" id="deck-count-val">27</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: 0.8rem;">
+              <span style="color: var(--text-secondary);">Cemitério de Táticas:</span>
+              <strong style="color: var(--text-muted);" id="graveyard-count-val">0</strong>
+            </div>
+          </div>
+
+          <!-- Deck de Chefes (10 Chefes Fechado) -->
+          <div class="setup-group" style="background: rgba(225, 29, 72, 0.03); padding: 12px; border-radius: var(--radius-md); border: 1px solid rgba(225, 29, 72, 0.15); margin-top: var(--space-md); text-align: center;">
+            <label style="color: var(--fire-gold); font-weight: bold; margin-bottom: 8px; display: block;">👹 Baralho de Chefes (<span id="boss-deck-count-val">10</span>)</label>
+            
+            <div style="display: flex; align-items: center; justify-content: center; gap: 12px; margin: 12px 0;">
+              <!-- Visual Pile Card Back for Bosses -->
+              <div class="deck-card-back" style="width: 100px; height: 140px; border-color: var(--fire-primary); background: linear-gradient(135deg, #1e0507 0%, #0c0102 100%); cursor: default; transform: none; box-shadow: 0 4px 15px rgba(225, 29, 72, 0.25);">
+                <div class="logo-mini" style="width: 36px; height: 36px; font-size: 1.1rem; background: var(--fire-primary); box-shadow: 0 0 10px rgba(225, 29, 72, 0.6);">👹</div>
+                <div class="deck-count" id="boss-deck-count-val-mini" style="font-size: 0.75rem;">10</div>
+              </div>
+            </div>
+
+            <!-- Chefes Já Derrotados -->
+            <div style="border-top: 1px dashed rgba(255, 255, 255, 0.08); padding-top: 8px; margin-top: 8px; text-align: left;">
+              <span style="font-size: 0.72rem; color: var(--text-muted); font-weight: bold; text-transform: uppercase; display: block; margin-bottom: 4px;">💀 Derrotados nesta partida:</span>
+              <div id="bosses-defeated-list" style="font-size: 0.72rem; color: var(--text-secondary); max-height: 80px; overflow-y: auto;">
+                Nenhum chefe derrotado ainda.
+              </div>
+            </div>
+          </div>
+
+          <!-- Botões Principais de Partida -->
+          <div style="display: flex; flex-direction: column; gap: var(--space-sm); margin-top: var(--space-md);">
+            <button id="btn-next-turn" class="btn btn-primary" style="background: var(--fire-primary); color: #fff; width: 100%; font-weight: bold;" onclick="handleNextTurn()">⌛ Próximo Turno dos Chefes</button>
+            <button class="btn btn-secondary" style="width: 100%; border-color: rgba(255,255,255,0.1); color: var(--text-muted);" onclick="handleResetGame()">🔄 Reiniciar Partida</button>
+          </div>
+        </aside>
+
+        <!-- Tabuleiro de Simulação Principal -->
+        <section class="panel-glass" style="display: flex; flex-direction: column; gap: var(--space-xl);">
+          <!-- Chefes Ativos do Estágio -->
+          <div class="active-bosses-panel">
+            <h3 style="font-family: var(--font-heading); color: var(--fire-primary); margin-bottom: 6px; font-size: 1.15rem; text-transform: uppercase;">👹 Chefes Ativos do Estágio</h3>
+            <p style="color: var(--text-muted); font-size: 0.78rem; margin-bottom: var(--space-md);">Estes são os dobradores de elite que lideram o ataque atualmente.</p>
+            <div class="boss-cards-row" id="active-bosses-container">
+              <!-- Renderizado dinamicamente via JS -->
+            </div>
+          </div>
+
+          <!-- Fase de Ação Automática do Boss -->
+          <div style="border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: var(--space-lg);">
+            <h3 style="font-family: var(--font-heading); color: var(--fire-gold); margin-bottom: 6px; font-size: 1.15rem; text-transform: uppercase;">🔥 Fase de Ação da Nação do Fogo</h3>
+            <p style="color: var(--text-muted); font-size: 0.78rem; margin-bottom: var(--space-md);">
+              Ao clicar em <strong style="color: var(--fire-gold);">Próximo Turno</strong>, os chefes jogam automaticamente
+              <strong id="cards-per-turn-label">2</strong> cartas do Event Deck em ordem. Lacaios entram em campo; táticas são resolvidas e descartadas.
+            </p>
+
+            <div class="engine-grid">
+              <!-- Verso do Event Deck (só visual, não clicavel) -->
+              <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(0,0,0,0.2); border-radius: var(--radius-lg); padding: var(--space-md); border: 1px dashed rgba(225, 29, 72, 0.2);">
+                <div class="deck-card-back" style="cursor: default;">
+                  <div class="logo-mini">🔥</div>
+                  <div class="deck-count" style="margin-top: 8px;"><span id="deck-count-val-mini">27</span> Restantes</div>
+                  <div style="font-size: 0.65rem; color: var(--fire-gold); margin-top: 4px; font-weight: bold; text-transform: uppercase;">Event Deck</div>
+                </div>
+              </div>
+
+              <!-- Cartas Reveladas neste Turno -->
+              <div style="display: flex; flex-direction: column; justify-content: space-between;">
+                <h4 id="drawn-cards-title" style="font-size: 0.85rem; text-transform: uppercase; color: var(--text-secondary); margin-bottom: var(--space-xs);">
+                  Ações Reveladas neste Turno:
+                </h4>
+                <div class="drawn-cards-row" id="drawn-cards-container">
+                  <!-- Renderizado dinamicamente via JS -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Lacaio e Campo de Criaturas Inimigas -->
+          <div class="battlefield-panel" style="border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: var(--space-lg);">
+            <h3 style="font-family: var(--font-heading); color: var(--earth-primary); margin-bottom: 6px; font-size: 1.15rem; text-transform: uppercase;">⚔️ Campo de Batalha Inimigo (Lacaios)</h3>
+            <p style="color: var(--text-muted); font-size: 0.78rem; margin-bottom: var(--space-md);">Criaturas da Nação do Fogo em combate ativo. Elas atacam os heróis a cada turno se possível.</p>
+            <div class="battlefield-cards-row" id="battlefield-container">
+              <!-- Renderizado dinamicamente via JS -->
+            </div>
+          </div>
+
+          <!-- Cemitério Inimigo (Descarte) -->
+          <div class="graveyard-panel" style="border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: var(--space-lg);">
+            <h3 style="font-family: var(--font-heading); color: var(--text-muted); margin-bottom: 6px; font-size: 1.15rem; text-transform: uppercase;">💀 Cemitério & Descarte (<span id="graveyard-count-val-mini">0</span>)</h3>
+            <p style="color: var(--text-muted); font-size: 0.78rem; margin-bottom: var(--space-md);">Histórico de táticas resolvidas e lacaios derrotados. Passe o mouse para focar ou clique para visualizar/editar.</p>
+            <div class="graveyard-cards-row" id="graveyard-container">
+              <!-- Renderizado dinamicamente via JS -->
+            </div>
+          </div>
+
+          <!-- Console de Logs da Partida -->
+          <div style="border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: var(--space-lg);">
+            <h4 style="font-size: 0.85rem; text-transform: uppercase; color: var(--text-secondary); margin-bottom: var(--space-xs);">📜 Diário de Batalha (Console)</h4>
+            <div id="game-console-log" style="height: 120px; background: rgba(0,0,0,0.5); border-radius: var(--radius-md); border: 1px solid rgba(255,255,255,0.05); padding: 10px; font-family: monospace; overflow-y: auto; color: #ddd; line-height: 1.4;">
+              <p style="color: var(--fire-gold); font-size: 0.85rem;">[T1] 🎮 Companion carregado. Clique em 'Próximo Turno' ou compre cartas para começar!</p>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- PANEL 2: MANUAL DE REGRAS RÁPIDO -->
+      <section class="panel-glass">
+        <h2 style="color: var(--fire-gold); font-family: var(--font-heading); margin-bottom: var(--space-md); border-bottom: 1px solid rgba(225, 29, 72, 0.2); padding-bottom: 8px;">📖 Guia de Jogo Rápido (Baseado nas Regras Oficiais)</h2>
+        <div style="display: grid; grid-template-columns: 1fr; gap: var(--space-xl); margin-top: var(--space-md);">
+          <div>
+            <h3 style="color: var(--text-white); font-size: 1rem; margin-bottom: 8px;">⚙️ Estrutura do Turno Inimigo:</h3>
+            <ol class="rules-list">
+              <li><strong>Etapa de Desvirar:</strong> Desvire todas as criaturas e chefes que o exército inimigo controla.</li>
+              <li><strong>Fase de Ação:</strong> Compre as duas cartas do topo do Event Deck sequencialmente. Revele a primeira, resolva-a por completo (se for Tática, execute e descarte; se for Criatura, coloque-a no campo), e depois revele e resolva a segunda.
+                <ul>
+                  <li><em>Escala multiplayer:</em> Se estiver jogando com 3 ou 4 jogadores, revele 3 cartas a cada turno de ação!</li>
+                </ul>
+              </li>
+              <li><strong>Etapa de Combate:</strong> Cada criatura do exército inimigo ataca os heróis se estiver apta (criaturas conjuradas neste turno não atacam a menos que possuam ímpeto/haste).</li>
+            </ol>
+          </div>
+          <div style="border-top: 1px dashed rgba(255,255,255,0.05); padding-top: var(--space-md);">
+            <h3 style="color: var(--text-white); font-size: 1rem; margin-bottom: 8px;">🎯 Avanço de Estágios:</h3>
+            <ul class="rules-list">
+              <li>Quando o total de vida da equipe dos Chefes chega a 0, aquele estágio é derrotado.</li>
+              <li>Remova os chefes antigos do jogo. Mantenha os lacaios, o Event Deck, o cemitério e a fase de turnos exatamente como estão!</li>
+              <li>Revele os novos chefes do estágio seguinte e restaure a vida total dos Chefes (20 PV, ou 30 PV se jogando com 4 jogadores).</li>
+              <li><strong>Distribuição por Estágio:</strong>
+                <ul>
+                  <li>2 ou 3 Jogadores (6 Chefes no total): Stage 1 = 1 Chefe, Stage 2 = 2 Chefes, Stage 3 = 3 Chefes.</li>
+                  <li>4 Jogadores (10 Chefes no total): Stage 1 = 2 Chefes, Stage 2 = 3 Chefes, Stage 3 = 5 Chefes.</li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- PANEL 3: GALERIA DE CARTAS INTERATIVA -->
+    <section class="gallery-section">
+      <div class="container">
+        <div class="section-title text-center" style="margin-bottom: var(--space-2xl);">
+          <h2 style="font-family: var(--font-heading); color: var(--text-white); margin-bottom: var(--space-xs);">🎴 Galeria de Cartas do Jogo</h2>
+          <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto;">
+            Explore todas as cartas disponíveis na campanha cooperativa.
+          </p>
+        </div>
+
+        <!-- Filtros da Galeria -->
+        <div class="gallery-filters">
+          <button id="filter-all" class="active" onclick="renderCardGallery('all')">🃏 Mostrar Todas</button>
+          <button id="filter-bosses" onclick="renderCardGallery('bosses')">👹 Chefes Inimigos (11)</button>
+          <button id="filter-tactics" onclick="renderCardGallery('tactics')">🔮 Táticas de Boss (11)</button>
+          <button id="filter-minions" onclick="renderCardGallery('minions')">👾 Lacaios (3 tipos · 10 cópias no deck)</button>
+        </div>
+
+        <!-- Grid de Cartas -->
+        <div class="cards-grid" id="gallery-cards-grid">
+          <!-- Renderizado dinamicamente via JS -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- MODAL DE CUSTOMIZAÇÃO DE ARTE (Art Customizer) -->
+  <div class="modal-overlay" id="customizer-modal">
+    <div class="modal-container">
+      <button class="modal-close" onclick="closeCardCustomizer()">×</button>
+      
+      <!-- Visual Card Preview Column -->
+      <div style="display: flex; flex-direction: column; align-items: center; gap: var(--space-md);">
+        <h4 style="font-family: var(--font-heading); font-size: 0.95rem; color: var(--fire-gold); text-transform: uppercase;">Visualização do Card</h4>
+        <div id="modal-card-preview" style="display: flex; justify-content: center; width: 100%;">
+          <!-- Renderizado dinamicamente -->
+        </div>
+        <p style="font-size: 0.7rem; color: var(--text-muted); text-align: center; max-width: 220px; line-height: 1.4;">
+          Passe o mouse por cima do card para ver o efeito holográfico de inclinação 3D!
+        </p>
+      </div>
+
+      <!-- Form Inputs Column -->
+      <div style="display: flex; flex-direction: column; justify-content: space-between;">
+        <div>
+          <h3 style="font-family: var(--font-heading); color: var(--text-white); margin-bottom: var(--space-xs);">✨ Personalizar Arte e Texto</h3>
+          <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: var(--space-xl);">
+            Você pode alterar o nome, a arte principal (enviando um arquivo local ou inserindo um link de imagem) e as regras desta carta.
+          </p>
+
+          <form id="card-customizer-form" onsubmit="saveCardCustomization(event)" class="customizer-form">
+            <!-- Hidden input to store cardId -->
+            <input type="hidden" id="modal-card-id" value="" />
+
+            <div class="customizer-group">
+              <label for="customizer-name">Nome do Card</label>
+              <input type="text" id="customizer-name" required />
+            </div>
+
+            <!-- Upload File or URL for Image Customization -->
+            <div class="customizer-group">
+              <label for="customizer-image-file">Carregar Imagem Local (Arte)</label>
+              <input type="file" id="customizer-image-file" accept="image/*" style="border: none; padding: 4px 0;" />
+              <p style="font-size: 0.68rem; color: var(--text-muted); margin-top: -2px;">Converta seu arquivo de imagem para armazenar localmente de forma persistente.</p>
+            </div>
+
+            <div class="customizer-group">
+              <label for="customizer-image-url">URL Alternativa da Imagem (Web)</label>
+              <input type="url" id="customizer-image-url" placeholder="https://exemplo.com/imagem.png" />
+            </div>
+
+            <div class="customizer-group">
+              <label for="customizer-text">Regras / Texto de Efeito</label>
+              <textarea id="customizer-text" rows="4" required></textarea>
+            </div>
+
+            <div class="customizer-group" id="customizer-pt-group">
+              <label for="customizer-pt">Poder / Resistência (P/T)</label>
+              <input type="text" id="customizer-pt" placeholder="3/3" style="max-width: 100px;" />
+            </div>
+
+            <div class="customizer-group">
+              <label>Backup das Personalizações</label>
+              <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                <button type="button" class="btn btn-secondary" style="border-color: rgba(255,255,255,0.2); color: var(--text-white);" onclick="exportCustomizations()">⬇️ Exportar JSON</button>
+                <button type="button" class="btn btn-secondary" style="border-color: rgba(14,165,233,0.4); color: var(--water-primary);" onclick="triggerImportCustomizations()">⬆️ Importar JSON</button>
+              </div>
+              <input type="file" id="customization-import-file" accept="application/json,.json" style="display:none;" onchange="importCustomizations(event)" />
+            </div>
+
+            <!-- Actions buttons inside form -->
+            <div class="customizer-actions">
+              <button type="submit" class="btn btn-primary" style="background: #10b981; color: #fff;">💾 Salvar Alterações</button>
+              <button type="button" class="btn btn-secondary" style="border-color: rgba(225,29,72,0.4); color: var(--fire-primary);" onclick="resetCardCustomization()">🔄 Restaurar Padrão</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="./avatar-team-up.js"></script>
+</body>
+</html>
+
+
+
