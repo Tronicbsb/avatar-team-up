@@ -1,0 +1,8 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "com.tronicbsb.teamupcoop",
+        "sha256_cert_fingerprints": ["B2:F1:8A:76:ED:14:94:4C:00:E1:C7:BB:A2:73:DD:08:DA:91:AA:4C:1D:08:B9:B0:5E:E7:38:79:C2:5E:2D:63"]
+      }
+    }]
