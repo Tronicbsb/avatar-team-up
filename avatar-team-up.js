@@ -16,37 +16,75 @@ const I18N = {
     "nav_companion": "Companion Engine",
     "hero_badge": "Avatar MTG Co-op Companion",
     "hero_title": "Fire Nation <span class='gradient-text'>Invasion</span>",
-    "hero_desc": "Interactive table assistant and card gallery for the custom cooperative mode of Magic: The Gathering. Defeat the Fire Lord!",
+    "hero_desc": "Interactive companion app for Magic: The Gathering cooperative mode. Face the Fire Nation with your friends or play solo in this premium adaptation based on the official cooperative rules.",
     "btn_rules": "How to Play",
     "btn_companion": "Start Game",
     "gallery_title": "Card Gallery",
     "gallery_desc": "Explore all custom cards from the Fire Nation deck.",
-    "tab_all": "All",
-    "tab_bosses": "Bosses",
-    "tab_tactics": "Tactics",
-    "tab_minions": "Minions",
-    "companion_title": "Companion Engine",
+    "tab_all": "Show All",
+    "tab_bosses": "Enemy Bosses (11)",
+    "tab_tactics": "Boss Tactics (11)",
+    "tab_minions": "Minions (3 types · 10 copies in deck)",
+    "companion_title": "Game Panel",
     "companion_desc": "Manage life points, enemy deck, and rules automatically.",
     "config_title": "Game Setup",
+    "player_count": "Number of Players",
     "btn_2p": "2 Players",
     "btn_3p": "3 Players",
     "btn_4p": "4 Players",
+    "setup_desc": "2-3 players: 6 random bosses out of 11. 4 players: 10 bosses. The Event Deck always contains 27 cards.",
     "btn_reset": "Restart Match",
     "heroes_life": "Heroes Life",
     "bosses_life": "Bosses Life",
+    "life_shared": "Life Points (Shared)",
+    "heroes": "HEROES",
+    "bosses": "BOSSES",
     "boss_stage": "Boss Stage",
     "cards_turn": "Cards / Turn",
     "boss_deck": "Boss Deck",
+    "stage_label": "Current Stage:",
+    "turn_label": "Game Turn:",
+    "event_cards_label": "Event Deck Cards:",
+    "cemetery_tactics_label": "Graveyard Tactics:",
+    "boss_deck_label": "BOSS DECK",
+    "defeated_match_label": "DEFEATED IN THIS MATCH:",
+    "no_boss_defeated_yet": "No boss defeated yet.",
+    "next_boss_turn_btn": "NEXT BOSS TURN",
+    "reset_match_btn": "RESTART MATCH",
     "enemy_graveyard": "Cemetery",
     "btn_draw": "Action Phase (Draw)",
     "btn_dice": "Roll d6 Dice",
     "btn_next": "End Turn",
     "log_title": "Action Log",
-    "active_bosses": "Active Bosses",
+    "active_bosses": "ACTIVE STAGE BOSSES",
+    "active_bosses_desc": "These are the elite benders currently leading the assault.",
+    "fire_nation_action_phase": "FIRE NATION ACTION PHASE",
+    "action_phase_desc": "By clicking <strong style='color: var(--fire-gold);'>Next Turn</strong>, the bosses automatically play <strong id='cards-per-turn-label'>2</strong> cards from the Event Deck in order. Minions enter the battlefield; tactics are resolved and discarded.",
+    "cards_left_label": "Left",
+    "event_deck_label": "Event Deck",
+    "actions_revealed_turn": "ACTIONS REVEALED THIS TURN:",
+    "enemy_battlefield": "ENEMY BATTLEFIELD (MINIONS)",
+    "enemy_battlefield_desc": "Fire Nation creatures in active combat. They attack the heroes every turn if possible.",
+    "cemetery_discard": "GRAVEYARD & DISCARDS",
+    "cemetery_desc": "History of resolved tactics and defeated minions. Hover to focus or click to view/edit.",
+    "battle_log": "BATTLE LOG (CONSOLE)",
     "battlefield": "Battlefield (Minions)",
     "drawn_actions": "Revealed Actions",
     "cemetery": "Cemetery",
     "defeated_bosses": "Defeated Bosses",
+    "quick_guide_title": "Quick Game Guide (Based on Official Rules)",
+    "guide_enemy_turn": "Enemy Turn Structure:",
+    "guide_untap": "<strong>Untap Step:</strong> Untap all creatures and bosses the enemy army controls.",
+    "guide_action": "<strong>Action Phase:</strong> Draw the top two cards of the Event Deck sequentially. Reveal the first, resolve it completely (if it is a Tactic, execute and discard; if it is a Creature, put it on the battlefield), and then reveal and resolve the second.",
+    "guide_multiplayer": "<em>Multiplayer Scaling:</em> If playing with 3 or 4 players, reveal 3 cards each action turn!",
+    "guide_combat": "<strong>Combat Step:</strong> Each creature in the enemy army attacks the heroes if able (creatures cast this turn do not attack unless they have haste).",
+    "guide_stage_advance": "Stage Advancement:",
+    "guide_stage_1": "When the Boss team's total life reaches 0, that stage is defeated.",
+    "guide_stage_2": "Remove the old bosses from the game. Keep the minions, the Event Deck, the graveyard, and the turn phase exactly as they are!",
+    "guide_stage_3": "Reveal the new bosses for the next stage and restore the Bosses' total life (20 HP, or 30 HP if playing with 4 players).",
+    "guide_stage_dist": "<strong>Distribution by Stage:</strong>",
+    "guide_stage_dist_1": "2 or 3 Players (6 Bosses total): Stage 1 = 1 Boss, Stage 2 = 2 Bosses, Stage 3 = 3 Bosses.",
+    "guide_stage_dist_2": "4 Players (10 Bosses total): Stage 1 = 2 Bosses, Stage 2 = 3 Bosses, Stage 3 = 5 Bosses.",
     "footer_text": "Not affiliated with Wizards of the Coast or Nickelodeon. Created for the MTG community.",
     "modal_edit_art": "Edit Art & Text",
     "modal_reset_art": "Reset",
@@ -66,37 +104,75 @@ const I18N = {
     "nav_companion": "Motor Companion",
     "hero_badge": "Avatar MTG Co-op Companion",
     "hero_title": "Invasão da <span class='gradient-text'>Nação do Fogo</span>",
-    "hero_desc": "Auxiliar de mesa interativo e galeria de cartas para o modo cooperativo customizado de Magic: The Gathering. Derrote o Senhor do Fogo!",
+    "hero_desc": "Aplicativo companion interativo para o modo cooperativo de Magic: The Gathering. Enfrente a Nação do Fogo com seus amigos ou jogue solo nesta adaptação premium baseada nas regras cooperativas oficiais.",
     "btn_rules": "Como Jogar",
     "btn_companion": "Iniciar Partida",
     "gallery_title": "Galeria de Cartas",
     "gallery_desc": "Explore todas as cartas customizadas do baralho da Nação do Fogo.",
     "tab_all": "Todas",
-    "tab_bosses": "Chefes",
-    "tab_tactics": "Táticas",
-    "tab_minions": "Lacaios",
-    "companion_title": "Motor Companion",
+    "tab_bosses": "Chefes Inimigos (11)",
+    "tab_tactics": "Táticas dos Chefes (11)",
+    "tab_minions": "Lacaios (3 tipos · 10 cópias no deck)",
+    "companion_title": "Painel do Jogo",
     "companion_desc": "Gerencie pontos de vida, deck inimigo e regras automaticamente.",
     "config_title": "Configuração da Partida",
+    "player_count": "Número de Jogadores",
     "btn_2p": "2 Jogadores",
     "btn_3p": "3 Jogadores",
     "btn_4p": "4 Jogadores",
+    "setup_desc": "2-3 jogadores: 6 chefes aleatórios de 11. 4 jogadores: 10 chefes. O Event Deck sempre contém 27 cartas.",
     "btn_reset": "Reiniciar Partida",
     "heroes_life": "Vida dos Heróis",
     "bosses_life": "Vida dos Chefes",
+    "life_shared": "Pontos de Vida (Compartilhados)",
+    "heroes": "HERÓIS",
+    "bosses": "CHEFES",
     "boss_stage": "Estágio do Chefe",
     "cards_turn": "Cartas / Turno",
     "boss_deck": "Deck de Chefes",
+    "stage_label": "Estágio Atual:",
+    "turn_label": "Turno do Jogo:",
+    "event_cards_label": "Cartas do Event Deck:",
+    "cemetery_tactics_label": "Táticas no Cemitério:",
+    "boss_deck_label": "DECK DE CHEFES",
+    "defeated_match_label": "DERROTADOS NESTA PARTIDA:",
+    "no_boss_defeated_yet": "Nenhum chefe derrotado ainda.",
+    "next_boss_turn_btn": "PRÓXIMO TURNO DOS CHEFES",
+    "reset_match_btn": "REINICIAR PARTIDA",
     "enemy_graveyard": "Cemitério",
     "btn_draw": "Fase de Ação (Comprar)",
     "btn_dice": "Rolar Dado d6",
     "btn_next": "Encerrar Turno",
     "log_title": "Registro de Ações",
-    "active_bosses": "Chefes Ativos",
+    "active_bosses": "CHEFES ATIVOS",
+    "active_bosses_desc": "Estes são os dobradores de elite que lideram o ataque atualmente.",
+    "fire_nation_action_phase": "FASE DE AÇÃO DA NAÇÃO DO FOGO",
+    "action_phase_desc": "Ao clicar em <strong style='color: var(--fire-gold);'>Próximo Turno</strong>, os chefes jogam automaticamente <strong id='cards-per-turn-label'>2</strong> cartas do Event Deck em ordem. Lacaios entram no campo de batalha; táticas são resolvidas e descartadas.",
+    "cards_left_label": "Restantes",
+    "event_deck_label": "Event Deck",
+    "actions_revealed_turn": "AÇÕES REVELADAS NESTE TURNO:",
+    "enemy_battlefield": "CAMPO DE BATALHA INIMIGO (LACAIOS)",
+    "enemy_battlefield_desc": "Criaturas da Nação do Fogo em combate ativo. Elas atacam os heróis a cada turno, se possível.",
+    "cemetery_discard": "CEMITÉRIO E DESCARTES",
+    "cemetery_desc": "Histórico de táticas resolvidas e lacaios derrotados. Passe o mouse para focar ou clique para ver/editar.",
+    "battle_log": "REGISTRO DE BATALHA (CONSOLE)",
     "battlefield": "Campo de Batalha (Lacaios)",
     "drawn_actions": "Ações Reveladas",
     "cemetery": "Cemitério",
     "defeated_bosses": "Chefes Derrotados",
+    "quick_guide_title": "Guia Rápido do Jogo (Baseado nas Regras Oficiais)",
+    "guide_enemy_turn": "Estrutura do Turno Inimigo:",
+    "guide_untap": "<strong>Etapa de Desvirar:</strong> Desvire todas as criaturas e chefes que o exército inimigo controla.",
+    "guide_action": "<strong>Fase de Ação:</strong> Compre as duas cartas do topo do Event Deck sequencialmente. Revele a primeira, resolva-a completamente (se for uma Tática, execute e descarte; se for uma Criatura, coloque-a no campo de batalha), e então revele e resolva a segunda.",
+    "guide_multiplayer": "<em>Escalonamento Multijogador:</em> Se jogar com 3 ou 4 jogadores, revele 3 cartas por turno de ação!",
+    "guide_combat": "<strong>Etapa de Combate:</strong> Cada criatura no exército inimigo ataca os heróis se possível (criaturas conjuradas neste turno não atacam a menos que tenham ímpeto).",
+    "guide_stage_advance": "Avanço de Estágio:",
+    "guide_stage_1": "Quando a vida total do time de Chefes chegar a 0, aquele estágio é derrotado.",
+    "guide_stage_2": "Remova os chefes antigos do jogo. Mantenha os lacaios, o Event Deck, o cemitério e a fase do turno exatamente como estão!",
+    "guide_stage_3": "Revele os novos chefes para o próximo estágio e restaure a vida total dos Chefes (20 PV, ou 30 PV se jogar com 4 jogadores).",
+    "guide_stage_dist": "<strong>Distribuição por Estágio:</strong>",
+    "guide_stage_dist_1": "2 ou 3 Jogadores (6 Chefes no total): Estágio 1 = 1 Chefe, Estágio 2 = 2 Chefes, Estágio 3 = 3 Chefes.",
+    "guide_stage_dist_2": "4 Jogadores (10 Chefes no total): Estágio 1 = 2 Chefes, Estágio 2 = 3 Chefes, Estágio 3 = 5 Chefes.",
     "footer_text": "Não afiliado com Wizards of the Coast ou Nickelodeon. Criado para a comunidade de MTG.",
     "modal_edit_art": "Editar Arte e Texto",
     "modal_reset_art": "Restaurar",
@@ -122,8 +198,8 @@ function switchLanguage(lang) {
   if (typeof updateUI === 'function') {
     updateUI();
   }
-  if (typeof renderGallery === 'function') {
-    renderGallery('all');
+  if (typeof renderCardGallery === 'function') {
+    renderCardGallery('all');
   }
   
   // Update button active state
@@ -311,7 +387,11 @@ const CARD_DATABASE = {
       flavor: "Suas espadas duplas em gancho agora atacam sob as ordens e controle da lavagem cerebral do Dai Li.",
       pt: "5/3",
       artDefault: "🌲"
-    }
+    ,
+      nameEn: "Jet, Brainwashed Rebel",
+      typeEn: "Legendary Boss — Warrior",
+      rulesEn: `Attacking creatures the bosses control have first strike.`,
+      flavorEn: "His dual hook swords now strike under the orders and brainwashing control of the Dai Li."}
   ],
   
   minions: [
@@ -326,10 +406,6 @@ const CARD_DATABASE = {
       pt: "3/3",
       artDefault: "🛡️"
     ,
-      nameEn: "Jet, Brainwashed Rebel",
-      typeEn: "Legendary Boss — Warrior",
-      rulesEn: `Attacking creatures the bosses control have first strike.`,
-      flavorEn: "His dual hook swords now strike under the orders and brainwashing control of the Dai Li.",
       nameEn: "Fire Nation Soldier",
       typeEn: "Creature — Fire Nation Soldier",
       rulesEn: `This creature can't block.`,
@@ -359,7 +435,11 @@ const CARD_DATABASE = {
       flavor: "Com armaduras pesadas e chamas concentradas, eles quebram qualquer linha de defesa dos heróis.",
       pt: "6/3",
       artDefault: "💥"
-    }
+    ,
+      nameEn: "Fire Elite Vanguard",
+      typeEn: "Creature — Elite Soldier",
+      rulesEn: `This creature can't block.\nThis creature can only be blocked by one creature.`,
+      flavorEn: "With heavy armor and concentrated flames, they break any of the heroes' defense lines."}
   ],
   
   events: [
@@ -372,10 +452,6 @@ const CARD_DATABASE = {
       rules: "Copie o próximo evento que os Chefes jogarem.\n(Coloque este card ao lado do deck de eventos. Depois que o próximo evento for jogado e resolvido, coloque este card no descarte de eventos.)",
       flavor: "Uma segunda faísca mental que explode logo em seguida, dobrando o perigo."
     ,
-      nameEn: "Fire Elite Vanguard",
-      typeEn: "Creature — Elite Soldier",
-      rulesEn: `This creature can't block.\nThis creature can only be blocked by one creature.`,
-      flavorEn: "With heavy armor and concentrated flames, they break any of the heroes' defense lines.",
       nameEn: "Combustion Blast",
       typeEn: "Tactic (Enemy Sorcery)",
       rulesEn: `Copy the next event the Bosses play.\n(Put this card aside. After the next event is played and resolved, put this card into the graveyard.)`,
@@ -544,7 +620,11 @@ const CARD_DATABASE = {
       type: "Tática (Feitiço Inimigo)",
       rules: "Embaralhe esta carta e todo o cemitério dos chefes de volta no grimório (Event Deck) dos chefes.",
       flavor: "Quando a vitória dos heróis parece próxima, a máquina de guerra se reorganiza."
-    }
+    ,
+      nameEn: "Imperial Resurgence",
+      typeEn: "Tactic (Enemy Sorcery)",
+      rulesEn: `Shuffle this card and the bosses' entire graveyard back into the bosses' Event Deck.`,
+      flavorEn: "When the heroes' victory seems close, the war machine reorganizes itself."}
   ]
 };
 
@@ -698,6 +778,7 @@ const GameEngine = {
     this.eventGraveyard = [];
     this.drawnCards = [];
     this.battlefield = [];
+    this.logEntries = [];
     this.turnCount = 1;
     this.isGameOver = false;
     this.isVictory = false;
@@ -890,7 +971,7 @@ const GameEngine = {
       this.bossesLife = Math.max(0, this.bossesLife - 2);
       this.logMessage("🩸 Almirante Zhao ativo: os chefes perdem 2 pontos de vida no início do turno.", "🩸 Admiral Zhao active: bosses lose 2 life points at the start of the turn.");
       if (this.bossesLife === 0) {
-        this.advanceBossStage();
+        this.nextStage();
         return;
       }
     }
@@ -1020,6 +1101,15 @@ const GameEngine = {
     let msg = ptText;
     if (typeof currentLang !== 'undefined' && currentLang === 'en' && enText) {
       msg = enText;
+    }
+    if (!Array.isArray(this.logEntries)) this.logEntries = [];
+    this.logEntries.push({
+      turn: this.turnCount,
+      text: msg,
+      timestamp: Date.now()
+    });
+    if (this.logEntries.length > 80) {
+      this.logEntries = this.logEntries.slice(-80);
     }
     const logEl = document.getElementById('game-console-log');
     if (logEl) {
@@ -1553,6 +1643,10 @@ function updateUI() {
   } else {
     if (turnBtn) turnBtn.disabled = false;
   }
+
+  if (typeof renderMobileApp === 'function') {
+    renderMobileApp();
+  }
 }
 
 // Draw event handler (reveals card and updates UI)
@@ -1970,6 +2064,423 @@ function importCustomizations(event) {
 
 let currentFilter = 'all';
 
+const MobileApp = {
+  view: 'home',
+  gameTab: 'battlefield',
+  galleryFilter: 'all',
+  gallerySearch: '',
+  expandedCardId: null
+};
+
+function escapeHTML(value) {
+  return String(value || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
+function getCardName(card) {
+  const custom = card ? CustomizationStore.get(card.id) || {} : {};
+  if (custom.customName) return custom.customName;
+  return currentLang === 'en' && card && card.nameEn ? card.nameEn : card.name;
+}
+
+function getCardType(card) {
+  return currentLang === 'en' && card && card.typeEn ? card.typeEn : card.type;
+}
+
+function getCardRules(card) {
+  const custom = card ? CustomizationStore.get(card.id) || {} : {};
+  if (custom.customText) return custom.customText;
+  return currentLang === 'en' && card && card.rulesEn ? card.rulesEn : card.rules;
+}
+
+function isBossCard(card) {
+  const type = `${card && card.type ? card.type : ''} ${card && card.typeEn ? card.typeEn : ''}`.toLowerCase();
+  return type.includes('chefe') || type.includes('boss');
+}
+
+function getCardArtStyle(card) {
+  const custom = card ? CustomizationStore.get(card.id) || {} : {};
+  const artUrl = convertToScryfallArtCrop(custom.artUrl || '');
+  return artUrl ? `style="background-image:url('${escapeHTML(artUrl)}')"` : '';
+}
+
+function getMobileText(key) {
+  const copy = {
+    en: {
+      kicker: 'MTG Companion app fan',
+      titleTop: 'TEAM UP',
+      titleBottom: 'COOP',
+      subtitle: 'MTG Companion app fan - Team Up Coop',
+      selectPlayers: 'Select Players',
+      players: 'Players',
+      heroes: 'Heroes',
+      bosses: 'Bosses',
+      gallery: 'Card Gallery',
+      language: 'Language',
+      stage: 'Stage',
+      turn: 'Turn',
+      deck: 'Deck',
+      graveyard: 'Graveyard',
+      defeated: 'Defeated',
+      activeBosses: 'Active Bosses',
+      revealedEvents: 'Revealed This Turn',
+      noRevealedEvents: 'No event cards revealed yet.',
+      battlefield: 'Battlefield',
+      log: 'Log',
+      battlefieldClear: 'Battlefield is clear',
+      pressNext: 'Press Next Turn to draw event cards',
+      nextTurn: 'Next Turn',
+      noLog: 'No log entries yet.',
+      search: 'Search cards...',
+      all: 'All',
+      minions: 'Minions',
+      tactics: 'Tactics',
+      edit: 'Edit',
+      viewCard: 'View Card',
+      noCards: 'No cards found.'
+    },
+    pt: {
+      kicker: 'MTG Companion app fan',
+      titleTop: 'TEAM UP',
+      titleBottom: 'COOP',
+      subtitle: 'MTG Companion app fan - Team Up Coop',
+      selectPlayers: 'Selecionar Jogadores',
+      players: 'Jogadores',
+      heroes: 'Herois',
+      bosses: 'Chefes',
+      gallery: 'Galeria de Cartas',
+      language: 'Idioma',
+      stage: 'Estagio',
+      turn: 'Turno',
+      deck: 'Deck',
+      graveyard: 'Cemiterio',
+      defeated: 'Derrotados',
+      activeBosses: 'Chefes Ativos',
+      revealedEvents: 'Reveladas Neste Turno',
+      noRevealedEvents: 'Nenhuma carta de evento revelada ainda.',
+      battlefield: 'Campo',
+      log: 'Log',
+      battlefieldClear: 'Campo de batalha vazio',
+      pressNext: 'Pressione Proximo Turno para revelar eventos',
+      nextTurn: 'Proximo Turno',
+      noLog: 'Nenhum registro ainda.',
+      search: 'Buscar cartas...',
+      all: 'Todos',
+      minions: 'Lacaios',
+      tactics: 'Taticas',
+      edit: 'Editar',
+      viewCard: 'Ver Carta',
+      noCards: 'Nenhuma carta encontrada.'
+    }
+  };
+  const lang = currentLang === 'en' ? 'en' : 'pt';
+  return copy[lang][key] || key;
+}
+
+function mobileNavigate(view) {
+  MobileApp.view = view;
+  renderMobileApp();
+}
+
+function mobileStartGame(players) {
+  GameEngine.setupGame(players);
+  const consoleLog = document.getElementById('game-console-log');
+  if (consoleLog) consoleLog.innerHTML = '';
+  GameEngine.logMessage(
+    `Partida iniciada para ${players} jogadores.`,
+    `Match started for ${players} players.`
+  );
+  MobileApp.gameTab = 'battlefield';
+  MobileApp.view = 'game';
+  updateUI();
+}
+
+function mobileSetLanguage(lang) {
+  switchLanguage(lang);
+  renderMobileApp();
+}
+
+function mobileSetGameTab(tab) {
+  MobileApp.gameTab = tab;
+  renderMobileApp();
+}
+
+function mobileSetGalleryFilter(filter) {
+  MobileApp.galleryFilter = filter;
+  MobileApp.expandedCardId = null;
+  renderMobileApp();
+}
+
+function mobileSetGallerySearch(value) {
+  MobileApp.gallerySearch = value || '';
+  renderMobileApp();
+  const input = document.querySelector('.gallery-search');
+  if (input) {
+    input.focus();
+    const end = input.value.length;
+    input.setSelectionRange(end, end);
+  }
+}
+
+function mobileToggleCard(cardId) {
+  MobileApp.expandedCardId = MobileApp.expandedCardId === cardId ? null : cardId;
+  renderMobileApp();
+}
+
+function mobileResetGame() {
+  handleResetGame();
+  MobileApp.gameTab = 'battlefield';
+  MobileApp.view = 'game';
+  renderMobileApp();
+}
+
+function mobileRenderHome() {
+  const playerOptions = [2, 3, 4].map((players) => {
+    const heroes = players === 4 ? 40 : players === 3 ? 30 : 20;
+    const bosses = players === 4 ? 30 : players === 3 ? 30 : 20;
+    return `
+      <button class="player-card" type="button" onclick="mobileStartGame(${players})">
+        <span class="player-number">${players}</span>
+        <span class="player-label">${getMobileText('players')}</span>
+        <span class="player-stats">${heroes} ${getMobileText('heroes')}<br>${bosses} ${getMobileText('bosses')}</span>
+      </button>
+    `;
+  }).join('');
+
+  return `
+    <section class="mobile-screen active">
+      <div class="mobile-scroll home-hero">
+        <div class="mobile-inner">
+          <div class="home-kicker">${getMobileText('kicker')}</div>
+          <h1 class="home-title">${getMobileText('titleTop')}<span>${getMobileText('titleBottom')}</span></h1>
+          <div class="home-rule"></div>
+          <p class="home-subtitle">${getMobileText('subtitle')}</p>
+          <div class="section-label">${getMobileText('selectPlayers')}</div>
+          <div class="player-grid">${playerOptions}</div>
+          <div class="home-actions">
+            <button class="wide-action" type="button" onclick="mobileNavigate('gallery')">${getMobileText('gallery')}</button>
+            <div class="section-label" style="margin: 4px 0 0;">${getMobileText('language')}</div>
+            <div class="language-row">
+              <button class="seg-btn ${currentLang === 'pt' ? 'active' : ''}" type="button" onclick="mobileSetLanguage('pt')">PT</button>
+              <button class="seg-btn ${currentLang === 'en' ? 'active' : ''}" type="button" onclick="mobileSetLanguage('en')">EN</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+function renderCompactCard(card, isBattlefield = false) {
+  const artStyle = getCardArtStyle(card);
+  const pt = card.pt && !isBossCard(card) ? ` · ${escapeHTML(card.pt)}` : '';
+  const sickness = isBattlefield && card.summoningSickness
+    ? `<div class="compact-card-meta">${currentLang === 'en' ? 'Summoning sickness' : 'Enjoo de invocacao'}</div>`
+    : '';
+  const defeatAction = isBattlefield && card.instanceId
+    ? `<button class="compact-defeat" type="button" onclick="event.stopPropagation(); handleDefeatMinion('${card.instanceId}')">${currentLang === 'en' ? 'Defeat' : 'Derrotar'}</button>`
+    : '';
+
+  return `
+    <div class="compact-card" onclick="openCardArtModal('${card.id}', false)" role="button" tabindex="0">
+      <div class="compact-card-art" ${artStyle}>${artStyle ? '' : escapeHTML(card.artDefault || '*')}</div>
+      <div class="compact-card-body">
+        <div class="compact-card-name">${escapeHTML(getCardName(card))}</div>
+        <div class="compact-card-meta">${escapeHTML(getCardType(card))}${pt}</div>
+        ${sickness}
+        ${defeatAction}
+      </div>
+    </div>
+  `;
+}
+
+function mobileRenderGame() {
+  const activeBosses = GameEngine.activeBosses.length
+    ? GameEngine.activeBosses.map((card) => renderCompactCard(card, false)).join('')
+    : `<div class="empty-state">${currentLang === 'en' ? 'No active bosses.' : 'Nenhum chefe ativo.'}</div>`;
+
+  const revealedCards = GameEngine.drawnCards.length
+    ? GameEngine.drawnCards.map((card) => renderCompactCard(card, false)).join('')
+    : `<div class="empty-state">${getMobileText('noRevealedEvents')}</div>`;
+
+  const battlefield = GameEngine.battlefield.length
+    ? `<div class="compact-card-row">${GameEngine.battlefield.map((card) => renderCompactCard(card, true)).join('')}</div>`
+    : `<div class="empty-state"><div><strong>${getMobileText('battlefieldClear')}</strong><br>${getMobileText('pressNext')}</div></div>`;
+
+  const logs = Array.isArray(GameEngine.logEntries) && GameEngine.logEntries.length
+    ? GameEngine.logEntries.slice().reverse().map((entry) => `<div><strong>[T${entry.turn}]</strong> ${escapeHTML(entry.text)}</div>`).join('')
+    : `<div class="empty-state">${getMobileText('noLog')}</div>`;
+
+  const tabPanel = MobileApp.gameTab === 'log'
+    ? `<div class="tab-panel"><div class="log-list">${logs}</div></div>`
+    : `<div class="tab-panel">${battlefield}</div>`;
+
+  return `
+    <section class="mobile-screen active">
+      <div class="app-topbar">
+        <button class="icon-btn" type="button" onclick="mobileNavigate('home')" aria-label="Back">‹</button>
+        <div class="topbar-title">${getMobileText('stage')} ${GameEngine.activeStage} / 3<span class="topbar-subtitle">${getMobileText('turn')} ${GameEngine.turnCount}</span></div>
+        <button class="icon-btn" type="button" onclick="mobileResetGame()" aria-label="Reset">×</button>
+      </div>
+      <div class="mobile-scroll">
+        <div class="game-summary">
+          <div class="life-panel heroes">
+            <div class="life-label">${getMobileText('heroes')}</div>
+            <div class="life-value-mobile">${GameEngine.heroesLife}</div>
+            <div class="life-actions">
+              <button onclick="adjustHeroesLife(-5)">-5</button>
+              <button onclick="adjustHeroesLife(-1)">-1</button>
+              <button onclick="adjustHeroesLife(1)">+1</button>
+              <button onclick="adjustHeroesLife(5)">+5</button>
+            </div>
+          </div>
+          <div class="versus-stack">VS<br>${GameEngine.eventDeck.length} cards</div>
+          <div class="life-panel bosses">
+            <div class="life-label">${getMobileText('bosses')}</div>
+            <div class="life-value-mobile">${GameEngine.bossesLife}</div>
+            <div class="life-actions">
+              <button onclick="adjustBossesLife(-5)">-5</button>
+              <button onclick="adjustBossesLife(-1)">-1</button>
+              <button onclick="adjustBossesLife(1)">+1</button>
+              <button onclick="adjustBossesLife(5)">+5</button>
+            </div>
+          </div>
+        </div>
+        <div class="stat-strip">
+          <div class="mini-stat"><strong>${GameEngine.eventDeck.length}</strong><span>${getMobileText('deck')}</span></div>
+          <div class="mini-stat"><strong>${GameEngine.eventGraveyard.length}</strong><span>${getMobileText('graveyard')}</span></div>
+          <div class="mini-stat"><strong>${(GameEngine.defeatedBosses || []).length}</strong><span>${getMobileText('defeated')}</span></div>
+        </div>
+        <div class="panel-block">
+          <div class="panel-heading">${getMobileText('activeBosses')}</div>
+          <div class="compact-card-row">${activeBosses}</div>
+        </div>
+        <div class="panel-block">
+          <div class="panel-heading">${getMobileText('revealedEvents')} (${GameEngine.drawnCards.length})</div>
+          <div class="compact-card-row">${revealedCards}</div>
+        </div>
+        <div class="tab-bar">
+          <button class="${MobileApp.gameTab === 'battlefield' ? 'active' : ''}" type="button" onclick="mobileSetGameTab('battlefield')">${getMobileText('battlefield')} (${GameEngine.battlefield.length})</button>
+          <button class="${MobileApp.gameTab === 'log' ? 'active' : ''}" type="button" onclick="mobileSetGameTab('log')">${getMobileText('log')}</button>
+        </div>
+        ${tabPanel}
+      </div>
+      <div class="bottom-action">
+        <button id="mobile-next-turn" class="next-turn-btn" type="button" onclick="handleNextTurn()" ${GameEngine.isGameOver ? 'disabled' : ''}>▶ ${getMobileText('nextTurn')}</button>
+      </div>
+    </section>
+  `;
+}
+
+function getGalleryCards() {
+  let cards = [];
+  const filter = MobileApp.galleryFilter;
+  if (filter === 'all' || filter === 'bosses') cards = cards.concat(CARD_DATABASE.bosses);
+  if (filter === 'all' || filter === 'minions') cards = cards.concat(CARD_DATABASE.minions);
+  if (filter === 'all' || filter === 'tactics') cards = cards.concat(CARD_DATABASE.events);
+
+  const term = MobileApp.gallerySearch.trim().toLowerCase();
+  if (!term) return cards;
+
+  return cards.filter((card) => {
+    const haystack = [
+      getCardName(card),
+      getCardType(card),
+      getCardRules(card),
+      card.pt || ''
+    ].join(' ').toLowerCase();
+    return haystack.includes(term);
+  });
+}
+
+function getGalleryIcon(card) {
+  if (CARD_DATABASE.bosses.some((boss) => boss.id === card.id)) return '☠';
+  if (CARD_DATABASE.minions.some((minion) => minion.id === card.id)) return '♟';
+  return '✦';
+}
+
+function mobileRenderGalleryCard(card) {
+  const expanded = MobileApp.expandedCardId === card.id;
+  const pt = card.pt || '';
+  const rules = escapeHTML(getCardRules(card)).replace(/\n/g, '<br>');
+  const type = escapeHTML(getCardType(card));
+
+  return `
+    <article class="gallery-list-card ${expanded ? 'expanded' : ''}">
+      <button class="gallery-list-head" type="button" onclick="mobileToggleCard('${card.id}')">
+        <span class="gallery-type-icon">${getGalleryIcon(card)}</span>
+        <span>
+          <span class="gallery-card-name">${escapeHTML(getCardName(card))}</span>
+          <span class="gallery-card-type">${type}</span>
+        </span>
+        <span class="gallery-pt">${escapeHTML(pt)}</span>
+        <span>${expanded ? '⌃' : '⌄'}</span>
+      </button>
+      <div class="gallery-card-detail">
+        <p>${rules}</p>
+        <div class="detail-actions">
+          <button type="button" onclick="openCardArtModal('${card.id}', true)">${getMobileText('viewCard')}</button>
+          <button type="button" onclick="openCardCustomizer('${card.id}')">${getMobileText('edit')}</button>
+        </div>
+      </div>
+    </article>
+  `;
+}
+
+function mobileRenderGallery() {
+  const filters = [
+    ['all', getMobileText('all')],
+    ['bosses', 'Bosses'],
+    ['minions', getMobileText('minions')],
+    ['tactics', getMobileText('tactics')]
+  ].map(([key, label]) => `
+    <button class="${MobileApp.galleryFilter === key ? 'active' : ''}" type="button" onclick="mobileSetGalleryFilter('${key}')">${label}</button>
+  `).join('');
+
+  const cards = getGalleryCards();
+  const list = cards.length
+    ? cards.map((card) => renderVirtualCard(card, false, false)).join('')
+    : `<div class="empty-state">${getMobileText('noCards')}</div>`;
+
+  return `
+    <section class="mobile-screen active">
+      <div class="app-topbar">
+        <button class="icon-btn" type="button" onclick="mobileNavigate('home')" aria-label="Back">‹</button>
+        <div class="topbar-title">${getMobileText('gallery')}</div>
+        <span></span>
+      </div>
+      <div class="mobile-scroll">
+        <div class="mobile-inner">
+          <input class="gallery-search" type="search" placeholder="${getMobileText('search')}" value="${escapeHTML(MobileApp.gallerySearch)}" oninput="mobileSetGallerySearch(this.value)" />
+          <div class="filter-row">${filters}</div>
+          <div class="mobile-gallery-grid">${list}</div>
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+function renderMobileApp() {
+  const shell = document.getElementById('mobile-app-shell');
+  if (!shell) return;
+
+  if (MobileApp.view === 'game') {
+    shell.innerHTML = mobileRenderGame();
+  } else if (MobileApp.view === 'gallery') {
+    shell.innerHTML = mobileRenderGallery();
+  } else {
+    shell.innerHTML = mobileRenderHome();
+  }
+
+  shell.querySelectorAll('.mtg-card-wrapper').forEach(wrapper => {
+    initCard3DTilt(wrapper);
+  });
+}
+
 function renderCardGallery(filter = 'all') {
   currentFilter = filter;
   const grid = document.getElementById('gallery-cards-grid');
@@ -2297,7 +2808,14 @@ document.addEventListener('DOMContentLoaded', () => {
     };
   }
 
-  if (typeof GameEngine.advanceBossStage === "function") {
+  if (typeof GameEngine.nextStage === "function") {
+    const _nextStage = GameEngine.nextStage.bind(GameEngine);
+    GameEngine.nextStage = function() {
+      const out = _nextStage();
+      applyHamaEntryEffect(this);
+      return out;
+    };
+  } else if (typeof GameEngine.advanceBossStage === "function") {
     const _advanceBossStage = GameEngine.advanceBossStage.bind(GameEngine);
     GameEngine.advanceBossStage = function() {
       const out = _advanceBossStage();
