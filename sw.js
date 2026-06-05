@@ -1,4 +1,4 @@
-const CACHE_NAME = "avatar-team-up-v8";
+const CACHE_NAME = "avatar-team-up-v9";
 const APP_SHELL = [
   "./",
   "./index.html",
