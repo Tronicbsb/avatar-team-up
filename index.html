@@ -3967,6 +3967,7 @@ aside .setup-group span {
     background: rgba(54, 7, 7, 0.74);
     cursor: pointer;
     overflow: hidden;
+    position: relative;
   }
 
   .compact-card-art {
@@ -3995,6 +3996,39 @@ aside .setup-group span {
     margin-top: 4px;
     color: #a57768;
     font-size: 0.68rem;
+  }
+
+  .compact-bonus {
+    display: inline-flex;
+    margin-top: 6px;
+    padding: 2px 6px;
+    border: 1px solid rgba(56, 189, 248, 0.5);
+    border-radius: 999px;
+    background: rgba(14, 116, 144, 0.22);
+    color: #7dd3fc;
+    font-size: 0.62rem;
+    font-weight: 900;
+  }
+
+  .compact-sickness {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.48);
+    pointer-events: none;
+  }
+
+  .compact-sickness span {
+    padding: 4px 7px;
+    border: 1px solid rgba(255, 255, 255, 0.34);
+    border-radius: 6px;
+    background: rgba(0, 0, 0, 0.72);
+    color: #e8dfd8;
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 0;
   }
 
   .compact-defeat {
@@ -4621,7 +4655,7 @@ aside .setup-group span {
   </div>
 
   <!-- Scripts -->
-  <script src="./avatar-team-up.js?v=260611"></script>
+  <script src="./avatar-team-up.js?v=260612"></script>
   <script>
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", () => {

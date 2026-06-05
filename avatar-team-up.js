@@ -1177,13 +1177,13 @@ function renderVirtualCard(card, isOnBattlefield = false, allowEditFromModal = f
 
   // Efeitos temporários vindos de chefes ativos (somente render em campo).
   if (card.grantedFlying) {
-    cardText = (isEn ? 'Flying.\\n' : 'Voar.\\n') + cardText;
+    cardText = (isEn ? 'Flying.\n' : 'Voar.\n') + cardText;
   }
   if (card.grantedDeathtouch) {
-    cardText = (isEn ? 'Deathtouch.\\n' : 'Toque mortífero.\\n') + cardText;
+    cardText = (isEn ? 'Deathtouch.\n' : 'Toque mortífero.\n') + cardText;
   }
   if (card.grantedFirstStrike) {
-    cardText = (isEn ? 'First strike.\\n' : 'Iniciativa.\\n') + cardText;
+    cardText = (isEn ? 'First strike.\n' : 'Iniciativa.\n') + cardText;
   }
   
   // Bosses oficiais não exibem ataque/vida (PT).
@@ -1521,31 +1521,7 @@ function updateUI() {
     if (GameEngine.battlefield.length === 0) {
       battlefieldContainer.innerHTML = `<div style="color: var(--text-muted); font-style: italic; font-size: 0.9rem; padding: var(--space-sm) 0;">${currentLang === 'en' ? 'No enemy minions on the battlefield.' : 'Nenhum lacaio inimigo em campo.'}</div>`;
     } else {
-      const combustionActive = Array.isArray(GameEngine.activeBosses)
-        && GameEngine.activeBosses.some(b => b && b.id === 'combustion_man');
-      const longFengActive = Array.isArray(GameEngine.activeBosses)
-        && GameEngine.activeBosses.some(b => b && b.id === 'long_feng');
-      const jetActive = Array.isArray(GameEngine.activeBosses)
-        && GameEngine.activeBosses.some(b => b && b.id === 'jet_brainwashed');
-      const tyLeeActive = Array.isArray(GameEngine.activeBosses)
-        && GameEngine.activeBosses.some(b => b && b.id === 'ty_lee');
-      const activeBossCount = Array.isArray(GameEngine.activeBosses) ? GameEngine.activeBosses.length : 0;
-      const battlefieldView = GameEngine.battlefield.map(m => {
-        let viewCard = m;
-        if (combustionActive && m && m.id === 'fire_soldier') {
-          viewCard = { ...viewCard, grantedFlying: true };
-        }
-        if (longFengActive && m) {
-          viewCard = { ...viewCard, grantedDeathtouch: true };
-        }
-        if (jetActive && m) {
-          viewCard = { ...viewCard, grantedFirstStrike: true };
-        }
-        if (tyLeeActive && m) {
-          viewCard = { ...viewCard, bossBonusPower: activeBossCount, bossBonusToughness: 0 };
-        }
-        return viewCard;
-      });
+      const battlefieldView = GameEngine.battlefield.map(m => getBattlefieldCardView(m));
       battlefieldContainer.innerHTML = battlefieldView.map(m => renderVirtualCard(m, true, false)).join('');
     }
   }
@@ -1567,7 +1543,7 @@ function updateUI() {
           ? `<span>ACTIONS REVEALED ON TURN ${GameEngine.turnCount - 1}:</span>` 
           : `<span>AÇÕES REVELADAS NO TURNO ${GameEngine.turnCount - 1}:</span>`;
       }
-      drawnContainer.innerHTML = GameEngine.drawnCards.map(c => renderVirtualCard(c, false, false)).join('');
+      drawnContainer.innerHTML = GameEngine.drawnCards.map(c => renderVirtualCard(getBattlefieldCardView(c), false, false)).join('');
     }
   }
 
@@ -2108,6 +2084,48 @@ function getCardArtStyle(card) {
   return artUrl ? `style="background-image:url('${escapeHTML(artUrl)}')"` : '';
 }
 
+function getBattlefieldCardView(card) {
+  if (!card) return card;
+
+  const activeBosses = Array.isArray(GameEngine.activeBosses) ? GameEngine.activeBosses : [];
+  const hasBoss = (bossId) => activeBosses.some(boss => boss && boss.id === bossId);
+  const viewCard = { ...card };
+
+  if (hasBoss('combustion_man') && card.id === 'fire_soldier') {
+    viewCard.grantedFlying = true;
+  }
+  if (hasBoss('long_feng')) {
+    viewCard.grantedDeathtouch = true;
+  }
+  if (hasBoss('jet_brainwashed')) {
+    viewCard.grantedFirstStrike = true;
+  }
+  if (hasBoss('ty_lee')) {
+    viewCard.bossBonusPower = activeBosses.length;
+    viewCard.bossBonusToughness = 0;
+  }
+
+  return viewCard;
+}
+
+function getFinalPT(card, isBattlefield = false) {
+  if (!card || !card.pt || isBossCard(card)) return '';
+
+  if (!isBattlefield || !String(card.pt).includes('/')) {
+    return card.pt;
+  }
+
+  const [baseP, baseT] = String(card.pt).split('/').map(n => parseInt(n, 10));
+  if (Number.isNaN(baseP) || Number.isNaN(baseT)) return card.pt;
+
+  const markerPower = card.markerPower || 0;
+  const markerToughness = card.markerToughness || 0;
+  const bossBonusPower = card.bossBonusPower || 0;
+  const bossBonusToughness = card.bossBonusToughness || 0;
+
+  return `${baseP + markerPower + bossBonusPower}/${baseT + markerToughness + bossBonusToughness}`;
+}
+
 function getMobileText(key) {
   const copy = {
     en: {
@@ -2277,9 +2295,26 @@ function mobileRenderHome() {
 
 function renderCompactCard(card, isBattlefield = false) {
   const artStyle = getCardArtStyle(card);
-  const pt = card.pt && !isBossCard(card) ? ` · ${escapeHTML(card.pt)}` : '';
+  const finalPT = getFinalPT(card, isBattlefield);
+  const pt = finalPT ? ` · ${escapeHTML(finalPT)}` : '';
   const sickness = isBattlefield && card.summoningSickness
-    ? `<div class="compact-card-meta">${currentLang === 'en' ? 'Summoning sickness' : 'Enjoo de invocacao'}</div>`
+    ? `
+      <div class="compact-sickness" aria-label="${currentLang === 'en' ? 'Summoning sickness' : 'Enjoo de invocacao'}">
+        <span>Zzz</span>
+      </div>
+      <div class="compact-card-meta">${currentLang === 'en' ? 'Summoning sickness' : 'Enjoo de invocacao'}</div>
+    `
+    : '';
+  const bossBonus = isBattlefield && (card.bossBonusPower || card.bossBonusToughness)
+    ? `<div class="compact-bonus">+${card.bossBonusPower || 0}/+${card.bossBonusToughness || 0}</div>`
+    : '';
+
+  let grantedKeywords = [];
+  if (card.grantedFlying) grantedKeywords.push(currentLang === 'en' ? 'Flying 🪽' : 'Voar 🪽');
+  if (card.grantedDeathtouch) grantedKeywords.push(currentLang === 'en' ? 'Deathtouch ☠️' : 'Toque mortífero ☠️');
+  if (card.grantedFirstStrike) grantedKeywords.push(currentLang === 'en' ? 'First strike ⚡' : 'Iniciativa ⚡');
+  const grantedHTML = grantedKeywords.length > 0
+    ? `<div class="compact-card-meta" style="color: #38bdf8; font-weight: bold;">+ ${grantedKeywords.join(', ')}</div>`
     : '';
   const defeatAction = isBattlefield && card.instanceId
     ? `<button class="compact-defeat" type="button" onclick="event.stopPropagation(); handleDefeatMinion('${card.instanceId}')">${currentLang === 'en' ? 'Defeat' : 'Derrotar'}</button>`
@@ -2291,6 +2326,8 @@ function renderCompactCard(card, isBattlefield = false) {
       <div class="compact-card-body">
         <div class="compact-card-name">${escapeHTML(getCardName(card))}</div>
         <div class="compact-card-meta">${escapeHTML(getCardType(card))}${pt}</div>
+        ${grantedHTML}
+        ${bossBonus}
         ${sickness}
         ${defeatAction}
       </div>
@@ -2308,7 +2345,7 @@ function mobileRenderGame() {
     : `<div class="empty-state">${getMobileText('noRevealedEvents')}</div>`;
 
   const battlefield = GameEngine.battlefield.length
-    ? `<div class="compact-card-row">${GameEngine.battlefield.map((card) => renderCompactCard(card, true)).join('')}</div>`
+    ? `<div class="compact-card-row">${GameEngine.battlefield.map((card) => renderCompactCard(getBattlefieldCardView(card), true)).join('')}</div>`
     : `<div class="empty-state"><div><strong>${getMobileText('battlefieldClear')}</strong><br>${getMobileText('pressNext')}</div></div>`;
 
   const logs = Array.isArray(GameEngine.logEntries) && GameEngine.logEntries.length
@@ -2611,7 +2648,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const revived = {
             ...minion,
             instanceId: (typeof crypto !== "undefined" && crypto.randomUUID) ? crypto.randomUUID() : `${minion.id}-${Date.now()}-${Math.random()}`,
-            summoningSick: true
+            summoningSickness: true
           };
           engine.battlefield.push(revived);
         });

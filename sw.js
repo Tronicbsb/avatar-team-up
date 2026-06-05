@@ -1,8 +1,8 @@
-const CACHE_NAME = "avatar-team-up-v7";
+const CACHE_NAME = "avatar-team-up-v8";
 const APP_SHELL = [
   "./",
   "./index.html",
-  "./avatar-team-up.js?v=260611",
+  "./avatar-team-up.js?v=260612",
   "./manifest.webmanifest",
   "./assets/images/logo.png",
   "./assets/icons/icon-192.png",
